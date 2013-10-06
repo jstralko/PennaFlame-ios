@@ -12,7 +12,11 @@
 #define ENGLISH_UNITS   0
 #define METRIC_UNITS    1
 
-@interface PFUnitTableViewController : UITableViewController
+@interface PFUnitTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+    IBOutlet UISegmentedControl *segmentedControl;
+    IBOutlet UITableView *unitTable;
+}
 
--(id) initWithStyle:(UITableViewStyle)style withMetricVieController:(PFMetricViewController *)controller withUnitType:(NSInteger)type;
+- (IBAction)onSegmentedControlClick:(id)sender;
+
 @end

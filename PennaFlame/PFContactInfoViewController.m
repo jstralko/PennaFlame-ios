@@ -22,6 +22,8 @@
         // Custom initialization
         self.navigationItem.title = @"Contact Info";
         self.view.backgroundColor = [UIColor grayColor];
+        UIView *view = self.view;
+        
     }
     return self;
 }

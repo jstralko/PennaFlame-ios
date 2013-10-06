@@ -31,34 +31,6 @@
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="QsJ-0h-R5T">
-                    <rect key="frame" x="0.0" y="114" width="320" height="454"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJW-xz-GCK">
-                            <rect key="frame" x="137" y="355" width="46" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQB-ZO-pop">
-                            <rect key="frame" x="121" y="73" width="46" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                    </subviews>
-                    <constraints>
-                        <constraint firstItem="FJW-xz-GCK" firstAttribute="top" secondItem="QsJ-0h-R5T" secondAttribute="top" constant="355" id="Hpf-19-QbR"/>
-                        <constraint firstItem="yQB-ZO-pop" firstAttribute="top" secondItem="QsJ-0h-R5T" secondAttribute="top" constant="73" id="L4o-Iq-beY"/>
-                        <constraint firstAttribute="trailing" secondItem="FJW-xz-GCK" secondAttribute="trailing" constant="137" id="T2d-T9-4Lc"/>
-                        <constraint firstItem="yQB-ZO-pop" firstAttribute="leading" secondItem="QsJ-0h-R5T" secondAttribute="leading" constant="121" id="dDF-mA-hIA"/>
-                        <constraint firstAttribute="bottom" secondItem="FJW-xz-GCK" secondAttribute="bottom" constant="69" id="iLq-fD-azf"/>
-                        <constraint firstItem="FJW-xz-GCK" firstAttribute="centerX" secondItem="QsJ-0h-R5T" secondAttribute="centerX" id="jRg-Zy-K04"/>
-                    </constraints>
-                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -67,11 +39,7 @@
                 <constraint firstItem="XXs-aM-uPM" firstAttribute="leading" secondItem="61x-wx-Bcr" secondAttribute="leading" id="Js1-FA-UCs"/>
                 <constraint firstItem="XXs-aM-uPM" firstAttribute="top" secondItem="61x-wx-Bcr" secondAttribute="top" id="KDV-6a-dcD"/>
                 <constraint firstItem="121-ba-Gra" firstAttribute="top" secondItem="XXs-aM-uPM" secondAttribute="bottom" constant="8" symbolic="YES" id="O5u-sO-xuS"/>
-                <constraint firstItem="QsJ-0h-R5T" firstAttribute="top" secondItem="121-ba-Gra" secondAttribute="bottom" constant="8" symbolic="YES" id="Rho-HU-qbP"/>
                 <constraint firstItem="121-ba-Gra" firstAttribute="trailing" secondItem="XXs-aM-uPM" secondAttribute="trailing" id="Ss3-FT-6RU"/>
-                <constraint firstAttribute="bottom" secondItem="QsJ-0h-R5T" secondAttribute="bottom" constant="146" id="gOi-Mr-Hbr"/>
-                <constraint firstItem="QsJ-0h-R5T" firstAttribute="trailing" secondItem="121-ba-Gra" secondAttribute="trailing" id="ib9-ha-T6P"/>
-                <constraint firstItem="QsJ-0h-R5T" firstAttribute="leading" secondItem="121-ba-Gra" secondAttribute="leading" id="rtt-Sg-wJt"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

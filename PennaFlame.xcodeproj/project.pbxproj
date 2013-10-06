@@ -35,6 +35,8 @@
 		3C94381C18020ABF00845209 /* layer11.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381818020ABF00845209 /* layer11.gif */; };
 		3C94381D18020ABF00845209 /* layer12nomerge.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381918020ABF00845209 /* layer12nomerge.gif */; };
 		3C94381E18020ABF00845209 /* mti_statement.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381A18020ABF00845209 /* mti_statement.html */; };
+		3C9438231802166600845209 /* PFFakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9438221802166600845209 /* PFFakeViewController.m */; };
+		3C94382518021E2B00845209 /* PFUnitTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C94382418021E2B00845209 /* PFUnitTableView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,9 @@
 		3C94381818020ABF00845209 /* layer11.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layer11.gif; sourceTree = "<group>"; };
 		3C94381918020ABF00845209 /* layer12nomerge.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layer12nomerge.gif; sourceTree = "<group>"; };
 		3C94381A18020ABF00845209 /* mti_statement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mti_statement.html; sourceTree = "<group>"; };
+		3C9438211802166600845209 /* PFFakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFakeViewController.h; sourceTree = "<group>"; };
+		3C9438221802166600845209 /* PFFakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFakeViewController.m; sourceTree = "<group>"; };
+		3C94382418021E2B00845209 /* PFUnitTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFUnitTableView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +152,9 @@
 		3C9437C91802067400845209 /* PennaFlame */ = {
 			isa = PBXGroup;
 			children = (
+				3C94382418021E2B00845209 /* PFUnitTableView.xib */,
+				3C9438211802166600845209 /* PFFakeViewController.h */,
+				3C9438221802166600845209 /* PFFakeViewController.m */,
 				3C94382018020CEF00845209 /* images */,
 				3C94381F18020CD900845209 /* html */,
 				3C9438151802084600845209 /* PFMetricViewController.m */,
@@ -306,6 +314,7 @@
 				3C9437FF180206C000845209 /* PFHardnessCaseDepthViewController.xib in Resources */,
 				3C9438141802083800845209 /* PFContactInfoViewController.xib in Resources */,
 				3C94381E18020ABF00845209 /* mti_statement.html in Resources */,
+				3C94382518021E2B00845209 /* PFUnitTableView.xib in Resources */,
 				3C94381B18020ABF00845209 /* hardness_table.html in Resources */,
 				3C9437CE1802067400845209 /* InfoPlist.strings in Resources */,
 				3C94381C18020ABF00845209 /* layer11.gif in Resources */,
@@ -330,6 +339,7 @@
 			files = (
 				3C9437FE180206C000845209 /* PFHardnessCaseDepthViewController.m in Sources */,
 				3C9438131802083800845209 /* PFContactInfoViewController.m in Sources */,
+				3C9438231802166600845209 /* PFFakeViewController.m in Sources */,
 				3C943800180206C000845209 /* PFMathConverterViewController.m in Sources */,
 				3C943801180206C000845209 /* PFMTIViewController.m in Sources */,
 				3C943803180206C000845209 /* PFWebsiteViewController.m in Sources */,
@@ -544,6 +554,7 @@
 				3C9437EE1802067500845209 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C9437EF1802067500845209 /* Build configuration list for PBXNativeTarget "PennaFlameTests" */ = {
 			isa = XCConfigurationList;
@@ -552,6 +563,7 @@
 				3C9437F11802067500845209 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

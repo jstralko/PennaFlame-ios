@@ -15,16 +15,10 @@
     UIStepper *bottomStepper;;
     IBOutlet UITextField *topTextField;
     IBOutlet UITextField *bottomTextField;
-    UISegmentedControl *segmentedControl;
     UIScrollView *scrollView;
-    //NSString *englishUnit;
-    //NSString *metricUnit;
 
 }
-//@property (assign) NSString *englishUnit;
-//@property (assign) NSString *metricUnit;
 
 -(void) buttonClicked:(id)sender;
--(IBAction) onSegmentedControlChanged:(id)sender;
 
 @end

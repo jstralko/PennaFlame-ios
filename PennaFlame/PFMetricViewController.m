@@ -44,20 +44,13 @@
     scrollView = [[UIScrollView alloc] initWithFrame:frame];
     [self.view addSubview:scrollView];
     
-    NSArray *itemArray = [NSArray arrayWithObjects: @"English", @"Metric", nil];
-    segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
-    [segmentedControl setSelectedSegmentIndex:0];
-    [segmentedControl setCenter:CGPointMake(view.frame.size.width / 2, (segmentedControl.frame.size.height+10)/2)];
-    [segmentedControl addTarget:self action:@selector(onSegmentedControlChanged:) forControlEvents:UIControlEventValueChanged];
-    [scrollView addSubview:segmentedControl];
-    
-    frame = CGRectMake(45, 60, 100, 30);
+    frame = CGRectMake(45, 20, 100, 30);
     topTextField = [[UITextField alloc] initWithFrame:frame];
     [topTextField setBorderStyle:UITextBorderStyleBezel];
     [topTextField setBackgroundColor:[UIColor whiteColor]];
     [scrollView addSubview:topTextField];
   
-    frame = CGRectMake(160, 62, 125, 30);
+    frame = CGRectMake(160, 22, 125, 30);
     topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [topButton setFrame:frame];
     [topButton setTitle:@"Inches" forState:UIControlStateNormal];
@@ -67,41 +60,27 @@
     
     [scrollView addSubview:topButton];
   
-    frame = CGRectMake(48, 95, 100, 25);
+    frame = CGRectMake(48, 55, 100, 25);
     topStepper = [[UIStepper alloc] initWithFrame:frame];
     [scrollView addSubview:topStepper];
   
-    frame = CGRectMake(45, 145, 100, 30);
+    frame = CGRectMake(45, 105, 100, 30);
     bottomTextField = [[UITextField alloc]initWithFrame:frame];
     [bottomTextField setBorderStyle:UITextBorderStyleBezel];
     [bottomTextField setBackgroundColor:[UIColor whiteColor]];
     [scrollView addSubview:bottomTextField];
   
-    frame = CGRectMake(160, 147, 125, 30);
+    frame = CGRectMake(160, 127, 125, 30);
     bottomButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [bottomButton setFrame:frame];
-    [bottomButton setTitle:@"Cen" forState:UIControlStateNormal];
+    [bottomButton setTitle:@"Centimeters" forState:UIControlStateNormal];
     [bottomButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:bottomButton];
     
-    frame = CGRectMake(48, 185, 100, 25);
+    frame = CGRectMake(48, 145, 100, 25);
     bottomStepper = [[UIStepper alloc] initWithFrame:frame];
     [scrollView addSubview:bottomStepper];
     
-}
-
--(IBAction)onSegmentedControlChanged:(id)sender
-{
-    switch([sender selectedSegmentIndex]) {
-        case 0: {
-            
-        }
-            break;
-        case 1: {
-            
-        }
-            break;
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,14 +91,8 @@
 
 -(void)buttonClicked:(id)sender
 {
-    if ((sender == bottomButton && [segmentedControl selectedSegmentIndex] == 0)
-        || (sender == topButton && [segmentedControl selectedSegmentIndex] == 1)) {
-        PFUnitTableViewController *tableViewController = [[PFUnitTableViewController alloc] initWithStyle:UITableViewStylePlain withMetricVieController:self withUnitType:METRIC_UNITS];
-        [self.navigationController pushViewController:tableViewController animated:YES];
-    } else {
-        PFUnitTableViewController *tableViewController = [[PFUnitTableViewController alloc] initWithStyle:UITableViewStylePlain withMetricVieController:self withUnitType:ENGLISH_UNITS];
-        [self.navigationController pushViewController:tableViewController animated:YES];
-    }
+    PFUnitTableViewController *tableViewController = [[PFUnitTableViewController alloc] init];
+    [self.navigationController pushViewController:tableViewController animated:YES];
 }
 
 - (void)viewDidUnload {

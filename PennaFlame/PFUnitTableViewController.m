@@ -19,41 +19,39 @@ PFMetricViewController *metricViewController;
 
 @implementation PFUnitTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
+-(id) init {
+    self = [super init];
     if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
--(id) initWithStyle:(UITableViewStyle)style withMetricVieController:(PFMetricViewController *)controller withUnitType:(NSInteger)type {
-    if (type == ENGLISH_UNITS) {
         englishUnits = [[NSMutableArray alloc] init];
         [englishUnits addObject:@"Inches"];
         [englishUnits addObject:@"Feet"];
         [englishUnits addObject:@"Yards"];
         [englishUnits addObject:@"Furlongs"];
         [englishUnits addObject:@"Miles"];
+        
         currentDataSource = englishUnits;
-    } else {
+        [segmentedControl setSelected:YES];
+  
         metricUnits = [[NSMutableArray alloc] init];
         [metricUnits addObject:@"Millimeters"];
         [metricUnits addObject:@"Centimeters"];
         [metricUnits addObject:@"Decimeters"];
         [metricUnits addObject:@"Meters"];
         [metricUnits addObject:@"Kilometer"];
-        currentDataSource = metricUnits;
         
+
     }
-    metricViewController = controller;
-    return [self initWithStyle:style];
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    unitTable.dataSource = self;
+    unitTable.delegate = self;
+    
+    [unitTable reloadData];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -99,6 +97,19 @@ PFMetricViewController *metricViewController;
     // Signal the main registration controller with the selection
     NSString *selectedItemName = [currentDataSource objectAtIndex:[indexPath row]];
     
+}
+
+- (IBAction)onSegmentedControlClick:(id)sender {
+    switch([sender selectedSegmentIndex]) {
+        case 0:
+            currentDataSource = englishUnits;
+            break;
+        case 1:
+            currentDataSource = metricUnits;
+            break;
+    }
+    
+    [unitTable reloadData];
 }
 
 /*

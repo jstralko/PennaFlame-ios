@@ -13,6 +13,8 @@
 #import "PFHardnessCaseDepthViewController.h"
 #import "PFMTIViewController.h"
 
+#import "PFFakeViewController.h"
+
 @interface PFMasterViewController () {
 }
 @end
@@ -121,7 +123,10 @@
                 [self.navigationController pushViewController:pfmvc animated:YES];
             }
                 break;
-            case 4:
+            case 4: {
+                PFFakeViewController *fake = [[PFFakeViewController alloc] init];
+                [self.navigationController pushViewController:fake animated:YES];
+            }
                 break;
             case 5: {
                 PFContactInfoViewController *pfci = [[PFContactInfoViewController alloc]init];
