@@ -1,0 +1,559 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3C9437C41802067400845209 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C31802067400845209 /* Foundation.framework */; };
+		3C9437C61802067400845209 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C51802067400845209 /* CoreGraphics.framework */; };
+		3C9437C81802067400845209 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C71802067400845209 /* UIKit.framework */; };
+		3C9437CE1802067400845209 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C9437CC1802067400845209 /* InfoPlist.strings */; };
+		3C9437D01802067400845209 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9437CF1802067400845209 /* main.m */; };
+		3C9437D41802067400845209 /* PFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9437D31802067400845209 /* PFAppDelegate.m */; };
+		3C9437D61802067400845209 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C9437D51802067400845209 /* Images.xcassets */; };
+		3C9437DD1802067500845209 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437DC1802067500845209 /* XCTest.framework */; };
+		3C9437DE1802067500845209 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C31802067400845209 /* Foundation.framework */; };
+		3C9437DF1802067500845209 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C71802067400845209 /* UIKit.framework */; };
+		3C9437E71802067500845209 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C9437E51802067500845209 /* InfoPlist.strings */; };
+		3C9437E91802067500845209 /* PennaFlameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9437E81802067500845209 /* PennaFlameTests.m */; };
+		3C9437FE180206C000845209 /* PFHardnessCaseDepthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9437F3180206C000845209 /* PFHardnessCaseDepthViewController.m */; };
+		3C9437FF180206C000845209 /* PFHardnessCaseDepthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9437F4180206C000845209 /* PFHardnessCaseDepthViewController.xib */; };
+		3C943800180206C000845209 /* PFMathConverterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9437F6180206C000845209 /* PFMathConverterViewController.m */; };
+		3C943801180206C000845209 /* PFMTIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9437F8180206C000845209 /* PFMTIViewController.m */; };
+		3C943802180206C000845209 /* PFUnitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9437FA180206C000845209 /* PFUnitTableViewController.m */; };
+		3C943803180206C000845209 /* PFWebsiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9437FC180206C000845209 /* PFWebsiteViewController.m */; };
+		3C943804180206C000845209 /* PFWebsiteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9437FD180206C000845209 /* PFWebsiteViewController.xib */; };
+		3C94380D1802073900845209 /* PFMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C94380B1802073900845209 /* PFMasterViewController.m */; };
+		3C94380E1802073900845209 /* PFMTIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C94380C1802073900845209 /* PFMTIViewController.xib */; };
+		3C9438131802083800845209 /* PFContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9438101802083800845209 /* PFContactInfoViewController.m */; };
+		3C9438141802083800845209 /* PFContactInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9438111802083800845209 /* PFContactInfoViewController.xib */; };
+		3C9438161802084600845209 /* PFMetricViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9438151802084600845209 /* PFMetricViewController.m */; };
+		3C94381B18020ABF00845209 /* hardness_table.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381718020ABF00845209 /* hardness_table.html */; };
+		3C94381C18020ABF00845209 /* layer11.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381818020ABF00845209 /* layer11.gif */; };
+		3C94381D18020ABF00845209 /* layer12nomerge.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381918020ABF00845209 /* layer12nomerge.gif */; };
+		3C94381E18020ABF00845209 /* mti_statement.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381A18020ABF00845209 /* mti_statement.html */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3C9437E01802067500845209 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C9437B81802067400845209 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C9437BF1802067400845209;
+			remoteInfo = PennaFlame;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3C9437C01802067400845209 /* PennaFlame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PennaFlame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C9437C31802067400845209 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3C9437C51802067400845209 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3C9437C71802067400845209 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3C9437CB1802067400845209 /* PennaFlame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PennaFlame-Info.plist"; sourceTree = "<group>"; };
+		3C9437CD1802067400845209 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3C9437CF1802067400845209 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3C9437D11802067400845209 /* PennaFlame-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PennaFlame-Prefix.pch"; sourceTree = "<group>"; };
+		3C9437D21802067400845209 /* PFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PFAppDelegate.h; sourceTree = "<group>"; };
+		3C9437D31802067400845209 /* PFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PFAppDelegate.m; sourceTree = "<group>"; };
+		3C9437D51802067400845209 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3C9437DB1802067500845209 /* PennaFlameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PennaFlameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C9437DC1802067500845209 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		3C9437E41802067500845209 /* PennaFlameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PennaFlameTests-Info.plist"; sourceTree = "<group>"; };
+		3C9437E61802067500845209 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3C9437E81802067500845209 /* PennaFlameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PennaFlameTests.m; sourceTree = "<group>"; };
+		3C9437F2180206C000845209 /* PFHardnessCaseDepthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFHardnessCaseDepthViewController.h; sourceTree = "<group>"; };
+		3C9437F3180206C000845209 /* PFHardnessCaseDepthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFHardnessCaseDepthViewController.m; sourceTree = "<group>"; };
+		3C9437F4180206C000845209 /* PFHardnessCaseDepthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFHardnessCaseDepthViewController.xib; sourceTree = "<group>"; };
+		3C9437F5180206C000845209 /* PFMathConverterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMathConverterViewController.h; sourceTree = "<group>"; };
+		3C9437F6180206C000845209 /* PFMathConverterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMathConverterViewController.m; sourceTree = "<group>"; };
+		3C9437F7180206C000845209 /* PFMTIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMTIViewController.h; sourceTree = "<group>"; };
+		3C9437F8180206C000845209 /* PFMTIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMTIViewController.m; sourceTree = "<group>"; };
+		3C9437F9180206C000845209 /* PFUnitTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFUnitTableViewController.h; sourceTree = "<group>"; };
+		3C9437FA180206C000845209 /* PFUnitTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFUnitTableViewController.m; sourceTree = "<group>"; };
+		3C9437FB180206C000845209 /* PFWebsiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFWebsiteViewController.h; sourceTree = "<group>"; };
+		3C9437FC180206C000845209 /* PFWebsiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFWebsiteViewController.m; sourceTree = "<group>"; };
+		3C9437FD180206C000845209 /* PFWebsiteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFWebsiteViewController.xib; sourceTree = "<group>"; };
+		3C94380A1802073900845209 /* PFMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMasterViewController.h; sourceTree = "<group>"; };
+		3C94380B1802073900845209 /* PFMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMasterViewController.m; sourceTree = "<group>"; };
+		3C94380C1802073900845209 /* PFMTIViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFMTIViewController.xib; sourceTree = "<group>"; };
+		3C94380F1802083800845209 /* PFContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFContactInfoViewController.h; sourceTree = "<group>"; };
+		3C9438101802083800845209 /* PFContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFContactInfoViewController.m; sourceTree = "<group>"; };
+		3C9438111802083800845209 /* PFContactInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFContactInfoViewController.xib; sourceTree = "<group>"; };
+		3C9438121802083800845209 /* PFMetricViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMetricViewController.h; sourceTree = "<group>"; };
+		3C9438151802084600845209 /* PFMetricViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMetricViewController.m; sourceTree = "<group>"; };
+		3C94381718020ABF00845209 /* hardness_table.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = hardness_table.html; sourceTree = "<group>"; };
+		3C94381818020ABF00845209 /* layer11.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layer11.gif; sourceTree = "<group>"; };
+		3C94381918020ABF00845209 /* layer12nomerge.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layer12nomerge.gif; sourceTree = "<group>"; };
+		3C94381A18020ABF00845209 /* mti_statement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mti_statement.html; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3C9437BD1802067400845209 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C9437C61802067400845209 /* CoreGraphics.framework in Frameworks */,
+				3C9437C81802067400845209 /* UIKit.framework in Frameworks */,
+				3C9437C41802067400845209 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C9437D81802067500845209 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C9437DD1802067500845209 /* XCTest.framework in Frameworks */,
+				3C9437DF1802067500845209 /* UIKit.framework in Frameworks */,
+				3C9437DE1802067500845209 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3C9437B71802067400845209 = {
+			isa = PBXGroup;
+			children = (
+				3C9437C91802067400845209 /* PennaFlame */,
+				3C9437E21802067500845209 /* PennaFlameTests */,
+				3C9437C21802067400845209 /* Frameworks */,
+				3C9437C11802067400845209 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3C9437C11802067400845209 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3C9437C01802067400845209 /* PennaFlame.app */,
+				3C9437DB1802067500845209 /* PennaFlameTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3C9437C21802067400845209 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C9437C31802067400845209 /* Foundation.framework */,
+				3C9437C51802067400845209 /* CoreGraphics.framework */,
+				3C9437C71802067400845209 /* UIKit.framework */,
+				3C9437DC1802067500845209 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3C9437C91802067400845209 /* PennaFlame */ = {
+			isa = PBXGroup;
+			children = (
+				3C94382018020CEF00845209 /* images */,
+				3C94381F18020CD900845209 /* html */,
+				3C9438151802084600845209 /* PFMetricViewController.m */,
+				3C94380F1802083800845209 /* PFContactInfoViewController.h */,
+				3C9438101802083800845209 /* PFContactInfoViewController.m */,
+				3C9438111802083800845209 /* PFContactInfoViewController.xib */,
+				3C9438121802083800845209 /* PFMetricViewController.h */,
+				3C94380A1802073900845209 /* PFMasterViewController.h */,
+				3C94380B1802073900845209 /* PFMasterViewController.m */,
+				3C94380C1802073900845209 /* PFMTIViewController.xib */,
+				3C9437D21802067400845209 /* PFAppDelegate.h */,
+				3C9437D31802067400845209 /* PFAppDelegate.m */,
+				3C9437F2180206C000845209 /* PFHardnessCaseDepthViewController.h */,
+				3C9437F3180206C000845209 /* PFHardnessCaseDepthViewController.m */,
+				3C9437F4180206C000845209 /* PFHardnessCaseDepthViewController.xib */,
+				3C9437F5180206C000845209 /* PFMathConverterViewController.h */,
+				3C9437F6180206C000845209 /* PFMathConverterViewController.m */,
+				3C9437F7180206C000845209 /* PFMTIViewController.h */,
+				3C9437F8180206C000845209 /* PFMTIViewController.m */,
+				3C9437F9180206C000845209 /* PFUnitTableViewController.h */,
+				3C9437FA180206C000845209 /* PFUnitTableViewController.m */,
+				3C9437FB180206C000845209 /* PFWebsiteViewController.h */,
+				3C9437FC180206C000845209 /* PFWebsiteViewController.m */,
+				3C9437FD180206C000845209 /* PFWebsiteViewController.xib */,
+				3C9437D51802067400845209 /* Images.xcassets */,
+				3C9437CA1802067400845209 /* Supporting Files */,
+			);
+			path = PennaFlame;
+			sourceTree = "<group>";
+		};
+		3C9437CA1802067400845209 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3C9437CB1802067400845209 /* PennaFlame-Info.plist */,
+				3C9437CC1802067400845209 /* InfoPlist.strings */,
+				3C9437CF1802067400845209 /* main.m */,
+				3C9437D11802067400845209 /* PennaFlame-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3C9437E21802067500845209 /* PennaFlameTests */ = {
+			isa = PBXGroup;
+			children = (
+				3C9437E81802067500845209 /* PennaFlameTests.m */,
+				3C9437E31802067500845209 /* Supporting Files */,
+			);
+			path = PennaFlameTests;
+			sourceTree = "<group>";
+		};
+		3C9437E31802067500845209 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3C9437E41802067500845209 /* PennaFlameTests-Info.plist */,
+				3C9437E51802067500845209 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3C94381F18020CD900845209 /* html */ = {
+			isa = PBXGroup;
+			children = (
+				3C94381A18020ABF00845209 /* mti_statement.html */,
+				3C94381718020ABF00845209 /* hardness_table.html */,
+			);
+			name = html;
+			sourceTree = "<group>";
+		};
+		3C94382018020CEF00845209 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				3C94381818020ABF00845209 /* layer11.gif */,
+				3C94381918020ABF00845209 /* layer12nomerge.gif */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3C9437BF1802067400845209 /* PennaFlame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C9437EC1802067500845209 /* Build configuration list for PBXNativeTarget "PennaFlame" */;
+			buildPhases = (
+				3C9437BC1802067400845209 /* Sources */,
+				3C9437BD1802067400845209 /* Frameworks */,
+				3C9437BE1802067400845209 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PennaFlame;
+			productName = PennaFlame;
+			productReference = 3C9437C01802067400845209 /* PennaFlame.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3C9437DA1802067500845209 /* PennaFlameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C9437EF1802067500845209 /* Build configuration list for PBXNativeTarget "PennaFlameTests" */;
+			buildPhases = (
+				3C9437D71802067500845209 /* Sources */,
+				3C9437D81802067500845209 /* Frameworks */,
+				3C9437D91802067500845209 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3C9437E11802067500845209 /* PBXTargetDependency */,
+			);
+			name = PennaFlameTests;
+			productName = PennaFlameTests;
+			productReference = 3C9437DB1802067500845209 /* PennaFlameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3C9437B81802067400845209 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PF;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Gerald Stralko";
+				TargetAttributes = {
+					3C9437DA1802067500845209 = {
+						TestTargetID = 3C9437BF1802067400845209;
+					};
+				};
+			};
+			buildConfigurationList = 3C9437BB1802067400845209 /* Build configuration list for PBXProject "PennaFlame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3C9437B71802067400845209;
+			productRefGroup = 3C9437C11802067400845209 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3C9437BF1802067400845209 /* PennaFlame */,
+				3C9437DA1802067500845209 /* PennaFlameTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3C9437BE1802067400845209 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C94381D18020ABF00845209 /* layer12nomerge.gif in Resources */,
+				3C943804180206C000845209 /* PFWebsiteViewController.xib in Resources */,
+				3C94380E1802073900845209 /* PFMTIViewController.xib in Resources */,
+				3C9437FF180206C000845209 /* PFHardnessCaseDepthViewController.xib in Resources */,
+				3C9438141802083800845209 /* PFContactInfoViewController.xib in Resources */,
+				3C94381E18020ABF00845209 /* mti_statement.html in Resources */,
+				3C94381B18020ABF00845209 /* hardness_table.html in Resources */,
+				3C9437CE1802067400845209 /* InfoPlist.strings in Resources */,
+				3C94381C18020ABF00845209 /* layer11.gif in Resources */,
+				3C9437D61802067400845209 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C9437D91802067500845209 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C9437E71802067500845209 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3C9437BC1802067400845209 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C9437FE180206C000845209 /* PFHardnessCaseDepthViewController.m in Sources */,
+				3C9438131802083800845209 /* PFContactInfoViewController.m in Sources */,
+				3C943800180206C000845209 /* PFMathConverterViewController.m in Sources */,
+				3C943801180206C000845209 /* PFMTIViewController.m in Sources */,
+				3C943803180206C000845209 /* PFWebsiteViewController.m in Sources */,
+				3C94380D1802073900845209 /* PFMasterViewController.m in Sources */,
+				3C9438161802084600845209 /* PFMetricViewController.m in Sources */,
+				3C9437D41802067400845209 /* PFAppDelegate.m in Sources */,
+				3C9437D01802067400845209 /* main.m in Sources */,
+				3C943802180206C000845209 /* PFUnitTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C9437D71802067500845209 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C9437E91802067500845209 /* PennaFlameTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3C9437E11802067500845209 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C9437BF1802067400845209 /* PennaFlame */;
+			targetProxy = 3C9437E01802067500845209 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3C9437CC1802067400845209 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3C9437CD1802067400845209 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3C9437E51802067500845209 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3C9437E61802067500845209 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3C9437EA1802067500845209 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3C9437EB1802067500845209 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3C9437ED1802067500845209 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PennaFlame/PennaFlame-Prefix.pch";
+				INFOPLIST_FILE = "PennaFlame/PennaFlame-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3C9437EE1802067500845209 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PennaFlame/PennaFlame-Prefix.pch";
+				INFOPLIST_FILE = "PennaFlame/PennaFlame-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3C9437F01802067500845209 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PennaFlame.app/PennaFlame";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PennaFlame/PennaFlame-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PennaFlameTests/PennaFlameTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3C9437F11802067500845209 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PennaFlame.app/PennaFlame";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PennaFlame/PennaFlame-Prefix.pch";
+				INFOPLIST_FILE = "PennaFlameTests/PennaFlameTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3C9437BB1802067400845209 /* Build configuration list for PBXProject "PennaFlame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C9437EA1802067500845209 /* Debug */,
+				3C9437EB1802067500845209 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3C9437EC1802067500845209 /* Build configuration list for PBXNativeTarget "PennaFlame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C9437ED1802067500845209 /* Debug */,
+				3C9437EE1802067500845209 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3C9437EF1802067500845209 /* Build configuration list for PBXNativeTarget "PennaFlameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C9437F01802067500845209 /* Debug */,
+				3C9437F11802067500845209 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3C9437B81802067400845209 /* Project object */;
+}

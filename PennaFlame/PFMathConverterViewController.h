@@ -1,0 +1,29 @@
+//
+//  PFMathConverterViewController.h
+//  com.pennaflame.app
+//
+//  Created by Chris Copac on 10/5/13.
+//  Copyright (c) 2013 Gerald Stralko. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface PFMathConverterViewController : UIViewController <UITextFieldDelegate> {
+    IBOutlet UISegmentedControl *segmentedControl;
+    IBOutlet UITextField *numeratorTextField;
+    IBOutlet UITextField *denominatorTextField;
+    IBOutlet UILabel *fractionBarLabel;
+    IBOutlet UIStepper *numeratorStepper;
+    IBOutlet UIStepper *denominatorStepper;
+    UIStepper *decimalStepper;
+    IBOutlet UILabel *equalsLabel;
+    IBOutlet UITextField *decimalTextField;
+//    IBOutlet UIButton *clearButton;
+    UIScrollView *scrollView;
+    
+}
+
+- (IBAction) onSegmentedControlChanged:(id)sender;
+//- (IBAction)clearButtonClicked:(id)sender;
+- (IBAction)steppervalueChanged:(UIStepper *)sender;
+@end
