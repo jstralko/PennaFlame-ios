@@ -12,6 +12,8 @@
     UIImageView *logo;
     UILabel *label;
     UIButton *websiteButton;
+    UIButton *callButton;
+    UIButton *emailButton;
     UIScrollView *scrollView;
     NSLayoutConstraint *scrollViewBottom;
 }

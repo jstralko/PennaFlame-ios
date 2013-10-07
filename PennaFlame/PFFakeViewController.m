@@ -25,7 +25,7 @@
 
 - (void) loadView {
     [super loadView];
-    //[self setEdgesForExtendedLayout:UIRectEdgeNone];
+    [self setEdgesForExtendedLayout:UIRectEdgeNone];
     
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -52,10 +52,22 @@
     [scrollView addSubview:label];
 
     if(!websiteButton) websiteButton = [[UIButton alloc] initWithFrame:CGRectZero];
-	[websiteButton setTitle:@"Call" forState:UIControlStateNormal];
+	[websiteButton setTitle:@"Website" forState:UIControlStateNormal];
+    [websiteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [websiteButton setTranslatesAutoresizingMaskIntoConstraints:NO];
 	[scrollView addSubview:websiteButton];
-
+    
+    if(!callButton) callButton = [[UIButton alloc] initWithFrame:CGRectZero];
+	[callButton setTitle:@"Call" forState:UIControlStateNormal];
+    [callButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [callButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+	[scrollView addSubview:callButton];
+    
+    if(!emailButton) emailButton = [[UIButton alloc] initWithFrame:CGRectZero];
+	[emailButton setTitle:@"Email" forState:UIControlStateNormal];
+    [emailButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [emailButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+	[scrollView addSubview:emailButton];
 }
 
 - (void)viewDidLoad
@@ -87,6 +99,7 @@
                    multiplier:1.0
                    constant:0];
     [self.view addConstraint:myConstraint];
+    
     scrollViewBottom =[NSLayoutConstraint
                        constraintWithItem:scrollView
                        attribute:NSLayoutAttributeBottom
@@ -105,8 +118,10 @@
                    toItem:scrollView
                    attribute:NSLayoutAttributeTop
                    multiplier:1.0
-                   constant:20];
+                   constant:5];
     [scrollView addConstraint:myConstraint];
+
+    
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:logo
                    attribute:NSLayoutAttributeCenterX
@@ -116,15 +131,48 @@
                    multiplier:1.0
                    constant:0];
     [scrollView addConstraint:myConstraint];
+    
+    
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:logo
                    attribute:NSLayoutAttributeHeight
                    relatedBy:NSLayoutRelationEqual
                    toItem:nil
-                   attribute:NSLayoutAttributeHeight
+                   attribute:NSLayoutAttributeNotAnAttribute
                    multiplier:1.0
-                   constant:55.0];
+                   constant:55];
     [scrollView addConstraint:myConstraint];
+    
+//    myConstraint =[NSLayoutConstraint
+//                   constraintWithItem:logo
+//                   attribute:NSLayoutAttributeLeft
+//                   relatedBy:NSLayoutRelationLessThanOrEqual
+//                   toItem:scrollView
+//                   attribute:NSLayoutAttributeLeft
+//                   multiplier:1.0
+//                   constant:0];
+//    [scrollView addConstraint:myConstraint];
+//    
+//    myConstraint =[NSLayoutConstraint
+//                   constraintWithItem:logo
+//                   attribute:NSLayoutAttributeRight
+//                   relatedBy:NSLayoutRelationLessThanOrEqual
+//                   toItem:scrollView
+//                   attribute:NSLayoutAttributeRight
+//                   multiplier:1.0
+//                   constant:0];
+//    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logo
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:scrollView.frame.size.width - 10];
+    [scrollView addConstraint:myConstraint];
+    
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:label
@@ -133,8 +181,9 @@
                    toItem:logo
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:5];
+                   constant:10];
     [scrollView addConstraint:myConstraint];
+    
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:label
                    attribute:NSLayoutAttributeCenterX
@@ -142,25 +191,7 @@
                    toItem:scrollView
                    attribute:NSLayoutAttributeCenterX
                    multiplier:1.0
-                   constant:5];
-    [scrollView addConstraint:myConstraint];
-    myConstraint =[NSLayoutConstraint
-                   constraintWithItem:label
-                   attribute:NSLayoutAttributeWidth
-                   relatedBy:NSLayoutRelationEqual
-                   toItem:scrollView
-                   attribute:NSLayoutAttributeWidth
-                   multiplier:1.0
-                   constant:-40];
-    [scrollView addConstraint:myConstraint];
-    myConstraint =[NSLayoutConstraint
-                   constraintWithItem:label
-                   attribute:NSLayoutAttributeHeight
-                   relatedBy:NSLayoutRelationGreaterThanOrEqual
-                   toItem:nil
-                   attribute:NSLayoutAttributeHeight
-                   multiplier:1.0
-                   constant:50];
+                   constant:0];
     [scrollView addConstraint:myConstraint];
 
     myConstraint =[NSLayoutConstraint
@@ -170,8 +201,9 @@
                    toItem:label
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:5];
+                   constant:15];
     [scrollView addConstraint:myConstraint];
+    
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:websiteButton
                    attribute:NSLayoutAttributeCenterX
@@ -181,167 +213,65 @@
                    multiplier:1.0
                    constant:0];
     [scrollView addConstraint:myConstraint];
+    
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:websiteButton
-                   attribute:NSLayoutAttributeWidth
+                   constraintWithItem:callButton
+                   attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationEqual
-                   toItem:nil
-                   attribute:NSLayoutAttributeWidth
+                   toItem:websiteButton
+                   attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:200];
+                   constant:15];
     [scrollView addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:websiteButton
-                   attribute:NSLayoutAttributeCenterY
-                   relatedBy:NSLayoutRelationLessThanOrEqual
+                   constraintWithItem:callButton
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
                    toItem:scrollView
-                   attribute:NSLayoutAttributeCenterY
+                   attribute:NSLayoutAttributeCenterX
                    multiplier:1.0
                    constant:0];
-    [myConstraint setPriority:UILayoutPriorityDefaultLow];
     [scrollView addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:websiteButton
-                   attribute:NSLayoutAttributeHeight
+                   constraintWithItem:emailButton
+                   attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationEqual
-                   toItem:label
-                   attribute:NSLayoutAttributeHeight
+                   toItem:callButton
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:15];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:emailButton
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeCenterX
                    multiplier:1.0
                    constant:0];
     [scrollView addConstraint:myConstraint];
-//
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:passwordField
-//                   attribute:NSLayoutAttributeTop
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:emailField
-//                   attribute:NSLayoutAttributeBottom
-//                   multiplier:1.0
-//                   constant:5];
-//    [scrollView addConstraint:myConstraint];
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:passwordField
-//                   attribute:NSLayoutAttributeCenterX
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:scrollView
-//                   attribute:NSLayoutAttributeCenterX
-//                   multiplier:1.0
-//                   constant:0];
-//    [scrollView addConstraint:myConstraint];
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:passwordField
-//                   attribute:NSLayoutAttributeWidth
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:emailField
-//                   attribute:NSLayoutAttributeWidth
-//                   multiplier:1.0
-//                   constant:0];
-//    [scrollView addConstraint:myConstraint];
-//    
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:signInButton
-//                   attribute:NSLayoutAttributeTop
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:passwordField
-//                   attribute:NSLayoutAttributeBottom
-//                   multiplier:1.0
-//                   constant:5];
-//    [scrollView addConstraint:myConstraint];
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:signInButton
-//                   attribute:NSLayoutAttributeCenterX
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:scrollView
-//                   attribute:NSLayoutAttributeCenterX
-//                   multiplier:1.0
-//                   constant:0];
-//    [scrollView addConstraint:myConstraint];
-//    
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:forgotButton
-//                   attribute:NSLayoutAttributeTop
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:signInButton
-//                   attribute:NSLayoutAttributeBottom
-//                   multiplier:1.0
-//                   constant:5];
-//    [scrollView addConstraint:myConstraint];
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:forgotButton
-//                   attribute:NSLayoutAttributeCenterX
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:scrollView
-//                   attribute:NSLayoutAttributeCenterX
-//                   multiplier:1.0
-//                   constant:0];
-//    [scrollView addConstraint:myConstraint];
-//    
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:registering
-//                   attribute:NSLayoutAttributeCenterX
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:scrollView
-//                   attribute:NSLayoutAttributeCenterX
-//                   multiplier:1.0
-//                   constant:22];
-//    [scrollView addConstraint:myConstraint];
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:registering
-//                   attribute:NSLayoutAttributeTop
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:forgotButton
-//                   attribute:NSLayoutAttributeBottom
-//                   multiplier:1.0
-//                   constant:5];
-//    [scrollView addConstraint:myConstraint];
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:indicator
-//                   attribute:NSLayoutAttributeHeight
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:nil
-//                   attribute:NSLayoutAttributeHeight
-//                   multiplier:1.0
-//                   constant:40];
-//    [scrollView addConstraint:myConstraint];
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:indicator
-//                   attribute:NSLayoutAttributeWidth
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:indicator
-//                   attribute:NSLayoutAttributeHeight
-//                   multiplier:1.0
-//                   constant:0];
-//    [scrollView addConstraint:myConstraint];
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:indicator
-//                   attribute:NSLayoutAttributeRight
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:registering
-//                   attribute:NSLayoutAttributeLeft
-//                   multiplier:1.0
-//                   constant:-4];
-//    [scrollView addConstraint:myConstraint];
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:indicator
-//                   attribute:NSLayoutAttributeCenterY
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:registering
-//                   attribute:NSLayoutAttributeCenterY
-//                   multiplier:1.0
-//                   constant:0];
-//    [scrollView addConstraint:myConstraint];
-//    
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:registering
-//                   attribute:NSLayoutAttributeBottom
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:scrollView
-//                   attribute:NSLayoutAttributeBottom
-//                   multiplier:1.0
-//                   constant:0];
-//    [scrollView addConstraint:myConstraint];
+    
+    /*
+        WOW Apple, that is all i'm going to say....
+     
+        This code below is the "magic" to get 
+        scrolling working when the device is rotated.
+    */
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:emailButton
+                   attribute:NSLayoutAttributeBottom
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
