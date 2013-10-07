@@ -11,6 +11,9 @@
 
 @interface PFMetricViewController ()
 
+-(void)onStepChanged:(id)sender;
+-(void)textFieldDidChange:(id)sender;
+
 @end
 
 
@@ -47,7 +50,10 @@
     frame = CGRectMake(45, 20, 100, 30);
     topTextField = [[UITextField alloc] initWithFrame:frame];
     [topTextField setBorderStyle:UITextBorderStyleBezel];
+    [topTextField setKeyboardType:UIKeyboardTypeDecimalPad];
+    topTextField.textAlignment = NSTextAlignmentCenter;
     [topTextField setBackgroundColor:[UIColor whiteColor]];
+    [topTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [scrollView addSubview:topTextField];
   
     frame = CGRectMake(160, 22, 125, 30);
@@ -62,12 +68,16 @@
   
     frame = CGRectMake(48, 55, 100, 25);
     topStepper = [[UIStepper alloc] initWithFrame:frame];
+    [topStepper addTarget:self action:@selector(onStepChanged:) forControlEvents:UIControlEventValueChanged];
     [scrollView addSubview:topStepper];
   
     frame = CGRectMake(45, 105, 100, 30);
     bottomTextField = [[UITextField alloc]initWithFrame:frame];
+    bottomTextField.textAlignment = NSTextAlignmentCenter;
+    [bottomTextField setKeyboardType:UIKeyboardTypeDecimalPad];
     [bottomTextField setBorderStyle:UITextBorderStyleBezel];
     [bottomTextField setBackgroundColor:[UIColor whiteColor]];
+    [bottomTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [scrollView addSubview:bottomTextField];
   
     frame = CGRectMake(160, 127, 125, 30);
@@ -79,8 +89,25 @@
     
     frame = CGRectMake(48, 145, 100, 25);
     bottomStepper = [[UIStepper alloc] initWithFrame:frame];
+    [bottomStepper addTarget:self action:@selector(onStepChanged:) forControlEvents:UIControlEventValueChanged];
     [scrollView addSubview:bottomStepper];
     
+}
+
+-(void) textFieldDidChange:(id)sender {
+    if (topTextField == sender) {
+        topStepper.value = [topTextField.text floatValue];
+    } else {
+        bottomStepper.value = [bottomTextField.text floatValue];
+    }
+}
+
+-(void)onStepChanged:(id)sender {
+    if (sender == topStepper) {
+        topTextField.text = [NSString stringWithFormat:@"%4.2f", topStepper.value];
+    } else {
+        bottomTextField.text = [NSString stringWithFormat:@"%4.2f", bottomStepper.value];
+    }
 }
 
 - (void)didReceiveMemoryWarning

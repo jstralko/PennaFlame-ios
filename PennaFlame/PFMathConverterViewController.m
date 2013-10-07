@@ -250,14 +250,6 @@
     [self syncSteppers];
 }
 
-//	if(textField == numeratorTextField) {
-//		[denominatorTextField becomeFirstResponder];
-//        [scrollView scrollRectToVisible:[denominatorTextField frame] animated:YES];
-//		return YES;
-//	}
-//    return NO;
-//}
-
 + (int)gcdForNumber1:(int) m andNumber2:(int) n
 {
     while( m!= n) // execute loop until m == n
