@@ -26,7 +26,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.navigationItem.title = @"Converter";
-        self.view.backgroundColor = [UIColor grayColor];
+        self.view.backgroundColor = [UIColor lightGrayColor];
         
     }
     return self;

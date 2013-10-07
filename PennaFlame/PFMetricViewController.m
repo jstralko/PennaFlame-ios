@@ -28,7 +28,7 @@
     if (self) {
         // Custom initialization
         self.navigationItem.title = @"Metric Converter";
-        self.view.backgroundColor = [UIColor grayColor];
+        self.view.backgroundColor = [UIColor lightGrayColor];
     }
     return self;
 }

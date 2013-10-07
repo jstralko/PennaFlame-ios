@@ -21,7 +21,7 @@
         // Custom initialization
         // Custom initialization
         self.navigationItem.title = @"MTI Statement";
-        self.view.backgroundColor = [UIColor grayColor];
+        self.view.backgroundColor = [UIColor lightGrayColor];
         [self.view addSubview:mtiWebView];
         NSURL *url = [[NSBundle mainBundle] URLForResource:@"mti_statement" withExtension:@"html"];
         NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];

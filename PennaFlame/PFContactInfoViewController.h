@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
-#
 
 @interface PFContactInfoViewController: UIViewController <MFMailComposeViewControllerDelegate> {
     
+    UILabel *label;
+    IBOutlet UIImageView *logo;
     IBOutlet UIButton *emailButton;
     IBOutlet UIButton *callButton;
     IBOutlet UIButton *websiteButton;
+    UIScrollView *scrollView;
+    UILabel *extra;
     
 }
 

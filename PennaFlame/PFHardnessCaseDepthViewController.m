@@ -20,7 +20,7 @@
     if (self) {
         // Custom initialization
         self.navigationItem.title = @"Hardness Case Depth";
-        self.view.backgroundColor = [UIColor grayColor];
+        self.view.backgroundColor = [UIColor lightGrayColor];
         
         
         NSURL *url = [[NSBundle mainBundle] URLForResource:@"hardness_table" withExtension:@"html"];

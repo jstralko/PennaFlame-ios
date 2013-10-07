@@ -13,8 +13,6 @@
 #import "PFHardnessCaseDepthViewController.h"
 #import "PFMTIViewController.h"
 
-#import "PFFakeViewController.h"
-
 @interface PFMasterViewController () {
 }
 @end
@@ -124,8 +122,6 @@
             }
                 break;
             case 4: {
-                PFFakeViewController *fake = [[PFFakeViewController alloc] init];
-                [self.navigationController pushViewController:fake animated:YES];
             }
                 break;
             case 5: {

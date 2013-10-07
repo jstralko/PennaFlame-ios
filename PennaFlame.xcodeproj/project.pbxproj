@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C1713FC1803695600C2B817 /* PFLayoutConstraintFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1713FB1803695600C2B817 /* PFLayoutConstraintFactory.m */; };
 		3C9437C41802067400845209 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C31802067400845209 /* Foundation.framework */; };
 		3C9437C61802067400845209 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C51802067400845209 /* CoreGraphics.framework */; };
 		3C9437C81802067400845209 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C71802067400845209 /* UIKit.framework */; };
@@ -35,8 +36,6 @@
 		3C94381C18020ABF00845209 /* layer11.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381818020ABF00845209 /* layer11.gif */; };
 		3C94381D18020ABF00845209 /* layer12nomerge.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381918020ABF00845209 /* layer12nomerge.gif */; };
 		3C94381E18020ABF00845209 /* mti_statement.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381A18020ABF00845209 /* mti_statement.html */; };
-		3C9438231802166600845209 /* PFFakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9438221802166600845209 /* PFFakeViewController.m */; };
-		3C94382518021E2B00845209 /* PFUnitTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C94382418021E2B00845209 /* PFUnitTableView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C1713FA1803695600C2B817 /* PFLayoutConstraintFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLayoutConstraintFactory.h; sourceTree = "<group>"; };
+		3C1713FB1803695600C2B817 /* PFLayoutConstraintFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLayoutConstraintFactory.m; sourceTree = "<group>"; };
 		3C9437C01802067400845209 /* PennaFlame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PennaFlame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9437C31802067400845209 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3C9437C51802067400845209 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -90,9 +91,6 @@
 		3C94381818020ABF00845209 /* layer11.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layer11.gif; sourceTree = "<group>"; };
 		3C94381918020ABF00845209 /* layer12nomerge.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layer12nomerge.gif; sourceTree = "<group>"; };
 		3C94381A18020ABF00845209 /* mti_statement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mti_statement.html; sourceTree = "<group>"; };
-		3C9438211802166600845209 /* PFFakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFFakeViewController.h; sourceTree = "<group>"; };
-		3C9438221802166600845209 /* PFFakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFFakeViewController.m; sourceTree = "<group>"; };
-		3C94382418021E2B00845209 /* PFUnitTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFUnitTableView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,9 +150,6 @@
 		3C9437C91802067400845209 /* PennaFlame */ = {
 			isa = PBXGroup;
 			children = (
-				3C94382418021E2B00845209 /* PFUnitTableView.xib */,
-				3C9438211802166600845209 /* PFFakeViewController.h */,
-				3C9438221802166600845209 /* PFFakeViewController.m */,
 				3C94382018020CEF00845209 /* images */,
 				3C94381F18020CD900845209 /* html */,
 				3C9438151802084600845209 /* PFMetricViewController.m */,
@@ -181,6 +176,8 @@
 				3C9437FD180206C000845209 /* PFWebsiteViewController.xib */,
 				3C9437D51802067400845209 /* Images.xcassets */,
 				3C9437CA1802067400845209 /* Supporting Files */,
+				3C1713FA1803695600C2B817 /* PFLayoutConstraintFactory.h */,
+				3C1713FB1803695600C2B817 /* PFLayoutConstraintFactory.m */,
 			);
 			path = PennaFlame;
 			sourceTree = "<group>";
@@ -314,7 +311,6 @@
 				3C9437FF180206C000845209 /* PFHardnessCaseDepthViewController.xib in Resources */,
 				3C9438141802083800845209 /* PFContactInfoViewController.xib in Resources */,
 				3C94381E18020ABF00845209 /* mti_statement.html in Resources */,
-				3C94382518021E2B00845209 /* PFUnitTableView.xib in Resources */,
 				3C94381B18020ABF00845209 /* hardness_table.html in Resources */,
 				3C9437CE1802067400845209 /* InfoPlist.strings in Resources */,
 				3C94381C18020ABF00845209 /* layer11.gif in Resources */,
@@ -339,11 +335,11 @@
 			files = (
 				3C9437FE180206C000845209 /* PFHardnessCaseDepthViewController.m in Sources */,
 				3C9438131802083800845209 /* PFContactInfoViewController.m in Sources */,
-				3C9438231802166600845209 /* PFFakeViewController.m in Sources */,
 				3C943800180206C000845209 /* PFMathConverterViewController.m in Sources */,
 				3C943801180206C000845209 /* PFMTIViewController.m in Sources */,
 				3C943803180206C000845209 /* PFWebsiteViewController.m in Sources */,
 				3C94380D1802073900845209 /* PFMasterViewController.m in Sources */,
+				3C1713FC1803695600C2B817 /* PFLayoutConstraintFactory.m in Sources */,
 				3C9438161802084600845209 /* PFMetricViewController.m in Sources */,
 				3C9437D41802067400845209 /* PFAppDelegate.m in Sources */,
 				3C9437D01802067400845209 /* main.m in Sources */,
