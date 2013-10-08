@@ -58,6 +58,7 @@ NSLayoutConstraint *scrollViewBottom;
     topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [topButton setFrame:CGRectZero];
     [topButton setTitle:@"Inches" forState:UIControlStateNormal];
+    [topButton setTintColor:[UIColor blackColor]];
     [topButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     // Set the target, action and event for the button
     [topButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -67,6 +68,7 @@ NSLayoutConstraint *scrollViewBottom;
     topStepper = [[UIStepper alloc] initWithFrame:CGRectZero];
     [topStepper addTarget:self action:@selector(onStepChanged:) forControlEvents:UIControlEventValueChanged];
     [topStepper setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [topStepper setTintColor:[UIColor blackColor]];
     [scrollView addSubview:topStepper];
 //
 //    //frame = CGRectMake(45, 105, 100, 30);
@@ -85,12 +87,14 @@ NSLayoutConstraint *scrollViewBottom;
     [bottomButton setTitle:@"Centimeters" forState:UIControlStateNormal];
     [bottomButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [bottomButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [bottomButton setTintColor:[UIColor blackColor]];
     [scrollView addSubview:bottomButton];
 //
 //    //frame = CGRectMake(48, 145, 100, 25);
     bottomStepper = [[UIStepper alloc] initWithFrame:CGRectZero];
     [bottomStepper addTarget:self action:@selector(onStepChanged:) forControlEvents:UIControlEventValueChanged];
     [bottomStepper setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [bottomStepper setTintColor:[UIColor blackColor]];
     [scrollView addSubview:bottomStepper];
 }
 
@@ -380,8 +384,10 @@ NSLayoutConstraint *scrollViewBottom;
     
     BOOL isPortrait = UIDeviceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
     CGFloat height = isPortrait ? keyboardFrame.size.height : keyboardFrame.size.width;
-    UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, scrollView.frame.size.height - height + 50, 0);
-    scrollView.contentInset = insets;
+    
+    //if(keyboardHidden == 1) {
+    //    scrollView.frame = CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.frame.size.height + height);
+        scrollView.frame = CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.frame.size.height - height);
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {

@@ -137,7 +137,7 @@
                        toItem:scrollView
                        attribute:NSLayoutAttributeTop
                        multiplier:1.0
-                       constant:55];
+                       constant:5];
         [scrollView addConstraint:myConstraint];
         
         
@@ -289,12 +289,6 @@
                        multiplier:1.0
                        constant:0];
         [scrollView addConstraint:myConstraint];
-    
-        
-        
-        
-        //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
-        //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
