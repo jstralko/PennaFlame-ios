@@ -12,6 +12,7 @@
 #import "PFMathConverterViewController.h"
 #import "PFHardnessCaseDepthViewController.h"
 #import "PFMTIViewController.h"
+#import "PFHardnessChartViewController.h"
 
 @interface PFMasterViewController () {
 }
@@ -118,6 +119,8 @@
             }
                 break;
             case 4: {
+                PFHardnessChartViewController *pfhcvc = [[PFHardnessChartViewController alloc] init];
+                [self.navigationController pushViewController:pfhcvc animated:YES];
             }
                 break;
             case 5: {

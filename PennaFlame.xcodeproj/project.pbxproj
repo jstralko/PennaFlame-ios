@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C1713FE180392DF00C2B817 /* PFUnitTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C1713FD180392DF00C2B817 /* PFUnitTableViewController.xib */; };
+		3C17143F1803AE8F00C2B817 /* PFHardnessChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C17143E1803AE8F00C2B817 /* PFHardnessChartViewController.m */; };
 		3C9437C41802067400845209 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C31802067400845209 /* Foundation.framework */; };
 		3C9437C61802067400845209 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C51802067400845209 /* CoreGraphics.framework */; };
 		3C9437C81802067400845209 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C71802067400845209 /* UIKit.framework */; };
@@ -50,6 +51,8 @@
 
 /* Begin PBXFileReference section */
 		3C1713FD180392DF00C2B817 /* PFUnitTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFUnitTableViewController.xib; sourceTree = "<group>"; };
+		3C17143D1803AE8F00C2B817 /* PFHardnessChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFHardnessChartViewController.h; sourceTree = "<group>"; };
+		3C17143E1803AE8F00C2B817 /* PFHardnessChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFHardnessChartViewController.m; sourceTree = "<group>"; };
 		3C9437C01802067400845209 /* PennaFlame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PennaFlame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9437C31802067400845209 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3C9437C51802067400845209 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -149,6 +152,8 @@
 		3C9437C91802067400845209 /* PennaFlame */ = {
 			isa = PBXGroup;
 			children = (
+				3C17143D1803AE8F00C2B817 /* PFHardnessChartViewController.h */,
+				3C17143E1803AE8F00C2B817 /* PFHardnessChartViewController.m */,
 				3C94382018020CEF00845209 /* images */,
 				3C94381F18020CD900845209 /* html */,
 				3C9438151802084600845209 /* PFMetricViewController.m */,
@@ -339,6 +344,7 @@
 				3C943803180206C000845209 /* PFWebsiteViewController.m in Sources */,
 				3C94380D1802073900845209 /* PFMasterViewController.m in Sources */,
 				3C9438161802084600845209 /* PFMetricViewController.m in Sources */,
+				3C17143F1803AE8F00C2B817 /* PFHardnessChartViewController.m in Sources */,
 				3C9437D41802067400845209 /* PFAppDelegate.m in Sources */,
 				3C9437D01802067400845209 /* main.m in Sources */,
 				3C943802180206C000845209 /* PFUnitTableViewController.m in Sources */,
