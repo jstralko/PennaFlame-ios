@@ -95,11 +95,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        //NSDate *object = _objects[indexPath.row];
-        //self.detailViewController.detailItem = object;
-    } else {
-        
+
         switch (indexPath.row) {
             case 0: {
                 PFMetricViewController *pfvc = [[PFMetricViewController alloc]init];
@@ -132,8 +128,6 @@
             default:
                 break;
         }
-        
-    }
 }
 
 @end

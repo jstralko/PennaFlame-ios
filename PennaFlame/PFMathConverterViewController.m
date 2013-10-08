@@ -53,6 +53,7 @@
     [segmentedControl setFrame:CGRectZero];
     [segmentedControl setTintColor:[UIColor blackColor]];
     [segmentedControl addTarget:self action:@selector(onSegmentedControlChanged:) forControlEvents:UIControlEventValueChanged];
+    [segmentedControl setTintColor:[UIColor blackColor]];
     [segmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:segmentedControl];
     
@@ -184,7 +185,7 @@
                    toItem:nil
                    attribute:NSLayoutAttributeNotAnAttribute
                    multiplier:1.0
-                   constant:150];
+                   constant:175];
     [scrollView addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
