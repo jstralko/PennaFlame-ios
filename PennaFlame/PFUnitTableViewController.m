@@ -16,10 +16,21 @@ NSArray *currentDataSource;
 NSMutableArray *englishUnits;
 NSMutableArray *metricUnits;
 PFMetricViewController *metricViewController;
-
+NSInteger defaultSelectionIndex;
 @implementation PFUnitTableViewController
 
--(id) init {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        self.navigationItem.title = @"Units";
+        self.view.backgroundColor = [UIColor lightGrayColor];
+    }
+    return self;
+}
+
+-(id) init:(NSInteger) index {
     self = [super init];
     if (self) {
         englishUnits = [[NSMutableArray alloc] init];
@@ -29,15 +40,28 @@ PFMetricViewController *metricViewController;
         [englishUnits addObject:@"Furlongs"];
         [englishUnits addObject:@"Miles"];
         
-        currentDataSource = englishUnits;
-        [segmentedControl setSelected:YES];
-  
+        defaultSelectionIndex = index;
+        [segmentedControl setSelectedSegmentIndex:defaultSelectionIndex];
+        
+        if (index == 0) {
+            currentDataSource = englishUnits;
+        } else {
+            currentDataSource = metricUnits;
+        }
+        
         metricUnits = [[NSMutableArray alloc] init];
         [metricUnits addObject:@"Millimeters"];
         [metricUnits addObject:@"Centimeters"];
         [metricUnits addObject:@"Decimeters"];
         [metricUnits addObject:@"Meters"];
         [metricUnits addObject:@"Kilometer"];
+        
+        unitTable.dataSource = self;
+        unitTable.delegate = self;
+        
+        [unitTable reloadData];
+
+        self.view.backgroundColor = [UIColor lightGrayColor];
         
 
     }
@@ -48,10 +72,7 @@ PFMetricViewController *metricViewController;
 {
     [super viewDidLoad];
     
-    unitTable.dataSource = self;
-    unitTable.delegate = self;
-    
-    [unitTable reloadData];
+
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

@@ -17,6 +17,8 @@
     IBOutlet UITableView *unitTable;
 }
 
+-(id)init:(NSInteger)index;
+
 - (IBAction)onSegmentedControlClick:(id)sender;
 
 @end

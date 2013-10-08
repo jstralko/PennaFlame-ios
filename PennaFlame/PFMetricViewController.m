@@ -425,7 +425,12 @@ NSLayoutConstraint *scrollViewBottom;
 
 -(void)buttonClicked:(id)sender
 {
-    PFUnitTableViewController *tableViewController = [[PFUnitTableViewController alloc] init];
+    PFUnitTableViewController *tableViewController;
+    if (sender == bottomButton) {
+        tableViewController = [[PFUnitTableViewController alloc] init:1];
+    } else {
+        tableViewController = [[PFUnitTableViewController alloc] init:0];
+    }
     [self.navigationController pushViewController:tableViewController animated:YES];
 }
 

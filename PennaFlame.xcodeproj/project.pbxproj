@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C1713FC1803695600C2B817 /* PFLayoutConstraintFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1713FB1803695600C2B817 /* PFLayoutConstraintFactory.m */; };
+		3C1713FE180392DF00C2B817 /* PFUnitTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C1713FD180392DF00C2B817 /* PFUnitTableViewController.xib */; };
 		3C9437C41802067400845209 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C31802067400845209 /* Foundation.framework */; };
 		3C9437C61802067400845209 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C51802067400845209 /* CoreGraphics.framework */; };
 		3C9437C81802067400845209 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C71802067400845209 /* UIKit.framework */; };
@@ -49,8 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3C1713FA1803695600C2B817 /* PFLayoutConstraintFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFLayoutConstraintFactory.h; sourceTree = "<group>"; };
-		3C1713FB1803695600C2B817 /* PFLayoutConstraintFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFLayoutConstraintFactory.m; sourceTree = "<group>"; };
+		3C1713FD180392DF00C2B817 /* PFUnitTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFUnitTableViewController.xib; sourceTree = "<group>"; };
 		3C9437C01802067400845209 /* PennaFlame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PennaFlame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9437C31802067400845209 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3C9437C51802067400845209 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -170,14 +169,13 @@
 				3C9437F7180206C000845209 /* PFMTIViewController.h */,
 				3C9437F8180206C000845209 /* PFMTIViewController.m */,
 				3C9437F9180206C000845209 /* PFUnitTableViewController.h */,
+				3C1713FD180392DF00C2B817 /* PFUnitTableViewController.xib */,
 				3C9437FA180206C000845209 /* PFUnitTableViewController.m */,
 				3C9437FB180206C000845209 /* PFWebsiteViewController.h */,
 				3C9437FC180206C000845209 /* PFWebsiteViewController.m */,
 				3C9437FD180206C000845209 /* PFWebsiteViewController.xib */,
 				3C9437D51802067400845209 /* Images.xcassets */,
 				3C9437CA1802067400845209 /* Supporting Files */,
-				3C1713FA1803695600C2B817 /* PFLayoutConstraintFactory.h */,
-				3C1713FB1803695600C2B817 /* PFLayoutConstraintFactory.m */,
 			);
 			path = PennaFlame;
 			sourceTree = "<group>";
@@ -314,6 +312,7 @@
 				3C94381B18020ABF00845209 /* hardness_table.html in Resources */,
 				3C9437CE1802067400845209 /* InfoPlist.strings in Resources */,
 				3C94381C18020ABF00845209 /* layer11.gif in Resources */,
+				3C1713FE180392DF00C2B817 /* PFUnitTableViewController.xib in Resources */,
 				3C9437D61802067400845209 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,7 +338,6 @@
 				3C943801180206C000845209 /* PFMTIViewController.m in Sources */,
 				3C943803180206C000845209 /* PFWebsiteViewController.m in Sources */,
 				3C94380D1802073900845209 /* PFMasterViewController.m in Sources */,
-				3C1713FC1803695600C2B817 /* PFLayoutConstraintFactory.m in Sources */,
 				3C9438161802084600845209 /* PFMetricViewController.m in Sources */,
 				3C9437D41802067400845209 /* PFAppDelegate.m in Sources */,
 				3C9437D01802067400845209 /* main.m in Sources */,
