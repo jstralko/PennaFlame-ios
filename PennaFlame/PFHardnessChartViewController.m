@@ -14,6 +14,8 @@
 
 @implementation PFHardnessChartViewController
 
+NSMutableDictionary *hardnessChartDict;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,6 +27,9 @@
         
         pdfWrapper = [[UIWebView alloc]initWithFrame:self.view.frame];
         [self.view addSubview:pdfWrapper];
+        
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"HardnessChartData" ofType:@"plist"];
+        hardnessChartDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
         
         NSURL *url = [[NSURL alloc] initWithString:@"http://www.pennaflame.com/HardnessConversionChart.pdf"];
         NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];

@@ -22,7 +22,6 @@
         self.navigationItem.title = @"Hardness Case Depth";
         self.view.backgroundColor = [UIColor lightGrayColor];
         
-        
         NSURL *url = [[NSBundle mainBundle] URLForResource:@"hardness_table" withExtension:@"html"];
         NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
         [hardnessWebView loadRequest:request];
