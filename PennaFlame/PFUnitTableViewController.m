@@ -41,6 +41,12 @@ NSInteger defaultSelectionIndex;
         [englishUnits addObject:@"Yard"];
         [englishUnits addObject:@"Mile"];
         
+        metricUnits = [[NSMutableArray alloc] init];
+        [metricUnits addObject:@"Millimeter"];
+        [metricUnits addObject:@"Centimeter"];
+        [metricUnits addObject:@"Meter"];
+        [metricUnits addObject:@"Kilometer"];
+        
         defaultSelectionIndex = unitType;
         [segmentedControl setSelectedSegmentIndex:defaultSelectionIndex];
         
@@ -49,12 +55,6 @@ NSInteger defaultSelectionIndex;
         } else {
             currentDataSource = metricUnits;
         }
-        
-        metricUnits = [[NSMutableArray alloc] init];
-        [metricUnits addObject:@"Millimeter"];
-        [metricUnits addObject:@"Centimeter"];
-        [metricUnits addObject:@"Meter"];
-        [metricUnits addObject:@"Kilometer"];
         
         unitTable.dataSource = self;
         unitTable.delegate = self;

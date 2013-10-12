@@ -564,12 +564,22 @@ NSMutableDictionary *englishMetricConvertDict;
 
 -(void)buttonClicked:(id)sender
 {
+    NSInteger fromButton;
     PFUnitTableViewController *tableViewController;
-    if (sender == bottomButton) {
-        tableViewController = [[PFUnitTableViewController alloc] initWithUnitType:1 settingCallback:self fromButton:1];
+    NSInteger unitType;
+    if ([self isEnglishUnitClass:((UIButton *)sender).titleLabel.text]) {
+        unitType = 0;
     } else {
-        tableViewController = [[PFUnitTableViewController alloc] initWithUnitType:0 settingCallback:self fromButton:0];
+        unitType = 1;
     }
+    
+    if (sender == topButton) {
+        fromButton = 0;
+    } else {
+        fromButton = 1;
+    }
+    
+    tableViewController = [[PFUnitTableViewController alloc] initWithUnitType:unitType settingCallback:self fromButton:fromButton];
     [self.navigationController pushViewController:tableViewController animated:YES];
 }
 
