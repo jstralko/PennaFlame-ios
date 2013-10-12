@@ -19,6 +19,7 @@
 
 }
 
--(void) buttonClicked:(id)sender;
+- (void) buttonClicked:(id)sender;
+- (void) setButtonTitle:(NSString *)title fromIndex:(NSInteger) index;
 
 @end

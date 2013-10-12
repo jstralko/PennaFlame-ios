@@ -16,7 +16,12 @@
 
 @end
 
+#define ENGLISH_TO_METRIC   @"English"
+#define MAX_NUMBER          1000000
+
 NSLayoutConstraint *scrollViewBottom;
+NSMutableDictionary *unitConvertDict;
+NSMutableDictionary *englishMetricConvertDict;
 
 @implementation PFMetricViewController
 
@@ -27,6 +32,22 @@ NSLayoutConstraint *scrollViewBottom;
         // Custom initialization
         self.navigationItem.title = @"Metric Converter";
         self.view.backgroundColor = [UIColor lightGrayColor];
+        unitConvertDict = [[NSMutableDictionary alloc]init];
+        //english
+        [unitConvertDict setObject:[NSNumber numberWithInt:1] forKey:[NSString stringWithFormat:@"Inch"]];
+        [unitConvertDict setObject:[NSNumber numberWithInt:12] forKey:[NSString stringWithFormat:@"Foot"]];
+        [unitConvertDict setObject:[NSNumber numberWithInt:36] forKey:[NSString stringWithFormat:@"Yard"]];
+        [unitConvertDict setObject:[NSNumber numberWithInt:63360] forKey:[NSString stringWithFormat:@"Mile"]];
+        //metric
+        [unitConvertDict setObject:[NSNumber numberWithInt:1] forKey:[NSString stringWithFormat:@"Centimeter"]];
+        [unitConvertDict setObject:[NSNumber numberWithInt:10] forKey:[NSString stringWithFormat:@"Millimeter"]];
+        [unitConvertDict setObject:[NSNumber numberWithFloat:0.01] forKey:[NSString stringWithFormat:@"Meter"]];
+        [unitConvertDict setObject:[NSNumber numberWithFloat:0.00001] forKey:[NSString stringWithFormat:@"Kilometer"]];
+        
+        englishMetricConvertDict = [[NSMutableDictionary alloc] init];
+        [englishMetricConvertDict setObject:[NSNumber numberWithFloat:2.54] forKey:ENGLISH_TO_METRIC];
+        
+        
     }
     return self;
 }
@@ -57,7 +78,7 @@ NSLayoutConstraint *scrollViewBottom;
 //    //frame = CGRectMake(160, 22, 125, 30);
     topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [topButton setFrame:CGRectZero];
-    [topButton setTitle:@"Inches" forState:UIControlStateNormal];
+    [topButton setTitle:@"Inch" forState:UIControlStateNormal];
     [topButton setTintColor:[UIColor blackColor]];
     [topButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     // Set the target, action and event for the button
@@ -69,6 +90,7 @@ NSLayoutConstraint *scrollViewBottom;
     [topStepper addTarget:self action:@selector(onStepChanged:) forControlEvents:UIControlEventValueChanged];
     [topStepper setTranslatesAutoresizingMaskIntoConstraints:NO];
     [topStepper setTintColor:[UIColor blackColor]];
+    topStepper.maximumValue = MAX_NUMBER;
     [scrollView addSubview:topStepper];
 //
 //    //frame = CGRectMake(45, 105, 100, 30);
@@ -84,7 +106,7 @@ NSLayoutConstraint *scrollViewBottom;
 //    //frame = CGRectMake(160, 127, 125, 30);
     bottomButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [bottomButton setFrame:CGRectZero];
-    [bottomButton setTitle:@"Centimeters" forState:UIControlStateNormal];
+    [bottomButton setTitle:@"Centimeter" forState:UIControlStateNormal];
     [bottomButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [bottomButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [bottomButton setTintColor:[UIColor blackColor]];
@@ -95,6 +117,7 @@ NSLayoutConstraint *scrollViewBottom;
     [bottomStepper addTarget:self action:@selector(onStepChanged:) forControlEvents:UIControlEventValueChanged];
     [bottomStepper setTranslatesAutoresizingMaskIntoConstraints:NO];
     [bottomStepper setTintColor:[UIColor blackColor]];
+    bottomStepper.maximumValue = MAX_NUMBER;
     [scrollView addSubview:bottomStepper];
 }
 
@@ -385,9 +408,7 @@ NSLayoutConstraint *scrollViewBottom;
     BOOL isPortrait = UIDeviceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
     CGFloat height = isPortrait ? keyboardFrame.size.height : keyboardFrame.size.width;
     
-    //if(keyboardHidden == 1) {
-    //    scrollView.frame = CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.frame.size.height + height);
-        scrollView.frame = CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.frame.size.height - height);
+    scrollView.frame = CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.frame.size.height - height);
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
@@ -403,7 +424,23 @@ NSLayoutConstraint *scrollViewBottom;
 
 -(void) textFieldDidChange:(id)sender {
     if (topTextField == sender) {
+        
         topStepper.value = [topTextField.text floatValue];
+        NSString *convertee = topButton.titleLabel.text;
+        NSString *converter = bottomButton.titleLabel.text;
+        
+        float converteeBase = [[unitConvertDict objectForKey:convertee] floatValue];
+        float converterBase = [[unitConvertDict objectForKey:converter] floatValue];
+        
+        float conversionRate = [[englishMetricConvertDict objectForKey:ENGLISH_TO_METRIC] floatValue];
+        float topValue = converteeBase * topStepper.value * converterBase;
+        float value = (topValue * conversionRate);
+        
+        //NSLog(@"topStepper.value %f converterBase: %f and value %f", topStepper.value, converterBase, value);
+        
+        bottomTextField.text = [NSString stringWithFormat:@"%4.2f", value];
+        bottomStepper.value = value;
+        
     } else {
         bottomStepper.value = [bottomTextField.text floatValue];
     }
@@ -412,6 +449,23 @@ NSLayoutConstraint *scrollViewBottom;
 -(void)onStepChanged:(id)sender {
     if (sender == topStepper) {
         topTextField.text = [NSString stringWithFormat:@"%4.2f", topStepper.value];
+        
+        //TODO: move to a common function so other people can call this.
+        //topStepper.value = [topTextField.text floatValue];
+        NSString *convertee = topButton.titleLabel.text;
+        NSString *converter = bottomButton.titleLabel.text;
+        
+        float converteeBase = [[unitConvertDict objectForKey:convertee] floatValue];
+        float converterBase = [[unitConvertDict objectForKey:converter] floatValue];
+        
+        float conversionRate = [[englishMetricConvertDict objectForKey:ENGLISH_TO_METRIC] floatValue];
+        float topValue = converteeBase * topStepper.value * converterBase;
+        float value = (topValue * conversionRate);
+        
+        bottomTextField.text = [NSString stringWithFormat:@"%4.2f", value];
+        bottomStepper.value = value;
+        
+        
     } else {
         bottomTextField.text = [NSString stringWithFormat:@"%4.2f", bottomStepper.value];
     }
@@ -427,11 +481,22 @@ NSLayoutConstraint *scrollViewBottom;
 {
     PFUnitTableViewController *tableViewController;
     if (sender == bottomButton) {
-        tableViewController = [[PFUnitTableViewController alloc] init:1];
+        tableViewController = [[PFUnitTableViewController alloc] initWithUnitType:1 settingCallback:self fromButton:1];
     } else {
-        tableViewController = [[PFUnitTableViewController alloc] init:0];
+        tableViewController = [[PFUnitTableViewController alloc] initWithUnitType:0 settingCallback:self fromButton:0];
     }
     [self.navigationController pushViewController:tableViewController animated:YES];
+}
+
+- (void) setButtonTitle:(NSString *)title fromIndex:(NSInteger) index {
+    switch (index) {
+        case 0:
+            [topButton setTitle:title forState:UIControlStateNormal];
+            break;
+        case 1:
+            [bottomButton setTitle:title forState:UIControlStateNormal];
+            break;
+    }
 }
 
 - (void)viewDidUnload {

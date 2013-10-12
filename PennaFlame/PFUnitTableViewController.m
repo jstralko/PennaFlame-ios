@@ -16,7 +16,9 @@ NSArray *currentDataSource;
 NSMutableArray *englishUnits;
 NSMutableArray *metricUnits;
 PFMetricViewController *metricViewController;
+NSInteger buttonClicked;
 NSInteger defaultSelectionIndex;
+
 @implementation PFUnitTableViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,40 +32,37 @@ NSInteger defaultSelectionIndex;
     return self;
 }
 
--(id) init:(NSInteger) index {
+-(id)initWithUnitType:(NSInteger)unitType settingCallback:(PFMetricViewController *)controller fromButton:(NSInteger) button {
     self = [super init];
     if (self) {
         englishUnits = [[NSMutableArray alloc] init];
-        [englishUnits addObject:@"Inches"];
-        [englishUnits addObject:@"Feet"];
-        [englishUnits addObject:@"Yards"];
-        [englishUnits addObject:@"Furlongs"];
-        [englishUnits addObject:@"Miles"];
+        [englishUnits addObject:@"Inch"];
+        [englishUnits addObject:@"Foot"];
+        [englishUnits addObject:@"Yard"];
+        [englishUnits addObject:@"Mile"];
         
-        defaultSelectionIndex = index;
+        defaultSelectionIndex = unitType;
         [segmentedControl setSelectedSegmentIndex:defaultSelectionIndex];
         
-        if (index == 0) {
+        if (unitType == 0) {
             currentDataSource = englishUnits;
         } else {
             currentDataSource = metricUnits;
         }
         
         metricUnits = [[NSMutableArray alloc] init];
-        [metricUnits addObject:@"Millimeters"];
-        [metricUnits addObject:@"Centimeters"];
-        [metricUnits addObject:@"Decimeters"];
-        [metricUnits addObject:@"Meters"];
+        [metricUnits addObject:@"Millimeter"];
+        [metricUnits addObject:@"Centimeter"];
+        [metricUnits addObject:@"Meter"];
         [metricUnits addObject:@"Kilometer"];
         
         unitTable.dataSource = self;
         unitTable.delegate = self;
         
         [unitTable reloadData];
-
-        self.view.backgroundColor = [UIColor lightGrayColor];
         
-
+        metricViewController = controller;
+        buttonClicked = button;
     }
     return self;
 }
@@ -115,9 +114,9 @@ NSInteger defaultSelectionIndex;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Signal the main registration controller with the selection
     NSString *selectedItemName = [currentDataSource objectAtIndex:[indexPath row]];
-    
+    [metricViewController setButtonTitle:selectedItemName fromIndex:buttonClicked];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)onSegmentedControlClick:(id)sender {
