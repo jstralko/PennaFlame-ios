@@ -11,18 +11,22 @@
 
 @interface PFMetricViewController ()
 
--(void)onStepChanged:(id)sender;
--(void)textFieldDidChange:(id)sender;
-- (BOOL) isSameUnitClass;
-- (float) convertUnit:(NSString *)convertee withConverter:(NSString *)converter withValue:(float)value;
+- (void)onStepChanged:(id)sender;
+- (void)textFieldDidChange:(id)sender;
+- (BOOL)isSameUnitClass;
+- (BOOL)isEnglishUnitClass:(NSString *)unit;
+- (BOOL)isMetricUnitClass:(NSString *)unit;
+- (float)convertUnit:(NSString *)convertee withConverter:(NSString *)converter withValue:(float)value;
 
 @end
 
 #define ENGLISH_TO_METRIC   @"English"
+#define METRIC_TO_ENGLISH   @"Metric"
 #define MAX_NUMBER          1000000
 
 NSLayoutConstraint *scrollViewBottom;
 NSMutableDictionary *unitConvertDict;
+NSMutableDictionary *metricUnitConvertDict;
 NSMutableDictionary *englishMetricConvertDict;
 
 @implementation PFMetricViewController
@@ -40,17 +44,18 @@ NSMutableDictionary *englishMetricConvertDict;
         [unitConvertDict setObject:[NSNumber numberWithInt:12] forKey:[NSString stringWithFormat:@"Foot"]];
         [unitConvertDict setObject:[NSNumber numberWithInt:36] forKey:[NSString stringWithFormat:@"Yard"]];
         [unitConvertDict setObject:[NSNumber numberWithInt:63360] forKey:[NSString stringWithFormat:@"Mile"]];
+        
+        metricUnitConvertDict = [[NSMutableDictionary alloc]init];
         //metric
-        [unitConvertDict setObject:[NSNumber numberWithInt:1] forKey:[NSString stringWithFormat:@"Centimeter"]];
-        [unitConvertDict setObject:[NSNumber numberWithInt:10] forKey:[NSString stringWithFormat:@"Millimeter"]];
-        [unitConvertDict setObject:[NSNumber numberWithFloat:0.01] forKey:[NSString stringWithFormat:@"Meter"]];
-        [unitConvertDict setObject:[NSNumber numberWithFloat:0.00001] forKey:[NSString stringWithFormat:@"Kilometer"]];
+        [metricUnitConvertDict setObject:[NSNumber numberWithInt:1] forKey:[NSString stringWithFormat:@"Centimeter"]];
+        [metricUnitConvertDict setObject:[NSNumber numberWithFloat:0.1] forKey:[NSString stringWithFormat:@"Millimeter"]];
+        [metricUnitConvertDict setObject:[NSNumber numberWithFloat:100] forKey:[NSString stringWithFormat:@"Meter"]];
+        [metricUnitConvertDict setObject:[NSNumber numberWithFloat:100000] forKey:[NSString stringWithFormat:@"Kilometer"]];
         
         
         englishMetricConvertDict = [[NSMutableDictionary alloc] init];
         [englishMetricConvertDict setObject:[NSNumber numberWithFloat:2.54] forKey:ENGLISH_TO_METRIC];
-        
-        
+        [englishMetricConvertDict setObject:[NSNumber numberWithFloat:0.3937] forKey:METRIC_TO_ENGLISH];
     }
     return self;
 }
@@ -426,18 +431,34 @@ NSMutableDictionary *englishMetricConvertDict;
 }
 
 - (float) convertUnit:(NSString *)convertee withConverter:(NSString *)converter withValue:(float)value {
-    float converteeBase = [[unitConvertDict objectForKey:convertee] floatValue];
-    float converterBase = [[unitConvertDict objectForKey:converter] floatValue];
-    
-    float finalValue;
-    if (![self isSameUnitClass]) {
-        float conversionRate = [[englishMetricConvertDict objectForKey:ENGLISH_TO_METRIC] floatValue];
-        float topValue = converteeBase * topStepper.value * converterBase;
-        finalValue = (topValue * conversionRate);
+    float converteeBase;
+    if ([self isEnglishUnitClass:convertee]) {
+        converteeBase = [[unitConvertDict objectForKey:convertee] floatValue];
     } else {
-        finalValue = (converteeBase * topStepper.value) / converterBase;
+        converteeBase = [[metricUnitConvertDict objectForKey:convertee]floatValue];
     }
-    return finalValue;
+    
+    float converterBase;
+    if ([self isEnglishUnitClass:converter]) {
+        converterBase = [[unitConvertDict objectForKey:converter] floatValue];
+    } else {
+        converterBase = [[metricUnitConvertDict objectForKey:converter] floatValue];
+    }
+    
+    float convertedValue;
+    if (![self isSameUnitClass]) {
+        float conversionRate;
+        if ([self isEnglishUnitClass:convertee]) {
+            conversionRate = [[englishMetricConvertDict objectForKey:ENGLISH_TO_METRIC] floatValue];
+        } else {
+            conversionRate = [[englishMetricConvertDict objectForKey:METRIC_TO_ENGLISH] floatValue];
+        }
+        float baseValue = converteeBase * value * converterBase;
+        convertedValue = (baseValue * conversionRate);
+    } else {
+        convertedValue = (converteeBase * value) / converterBase;
+    }
+    return convertedValue;
 }
 
 -(void) textFieldDidChange:(id)sender {
@@ -453,6 +474,15 @@ NSMutableDictionary *englishMetricConvertDict;
         
     } else {
         bottomStepper.value = [bottomTextField.text floatValue];
+        
+        NSString *convertee = bottomButton.titleLabel.text;
+        NSString *converter = topButton.titleLabel.text;
+        
+        float value = [self convertUnit:convertee withConverter:converter withValue:bottomStepper.value];
+        
+        topTextField.text = [NSString stringWithFormat:@"%4.2f", value];
+        topStepper.value = value;
+        
     }
 }
 
@@ -472,7 +502,35 @@ NSMutableDictionary *englishMetricConvertDict;
         
     } else {
         bottomTextField.text = [NSString stringWithFormat:@"%4.2f", bottomStepper.value];
+        
+        NSString *convertee = bottomButton.titleLabel.text;
+        NSString *converter = topButton.titleLabel.text;
+        
+        float value = [self convertUnit:convertee withConverter:converter withValue:bottomStepper.value];
+        
+        topTextField.text = [NSString stringWithFormat:@"%4.2f", value];
+        topStepper.value = value;
     }
+}
+
+- (BOOL) isEnglishUnitClass:(NSString *)unit {
+    if ([unit isEqualToString:@"Inch"] ||
+        [unit isEqualToString:@"Foot"] ||
+        [unit isEqualToString:@"Yard"] ||
+        [unit isEqualToString:@"Mile"]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL) isMetricUnitClass:(NSString *)unit {
+    if ([unit isEqualToString:@"Millimeter"] ||
+        [unit isEqualToString:@"Centimeter"] ||
+        [unit isEqualToString:@"Meter"] ||
+        [unit isEqualToString:@"Kilometer"]) {
+            return YES;
+    }
+    return NO;
 }
 
 /*
@@ -484,17 +542,11 @@ NSMutableDictionary *englishMetricConvertDict;
     NSString *bottom = bottomButton.titleLabel.text;
     
     BOOL isEnglish = NO;
-    if ([top isEqualToString:@"Inch"] ||
-        [top isEqualToString:@"Foot"] ||
-        [top isEqualToString:@"Yard"] ||
-        [top isEqualToString:@"Mile"]) {
+    if ([self isEnglishUnitClass:top]) {
         isEnglish = YES;
     }
     
-    if ([bottom isEqualToString:@"Inch"] ||
-        [bottom isEqualToString:@"Foot"] ||
-        [bottom isEqualToString:@"Yard"] ||
-        [bottom isEqualToString:@"Mile"]) {
+    if ([self isEnglishUnitClass:bottom]) {
         if (isEnglish) {
             return YES;
         }
@@ -534,12 +586,18 @@ NSMutableDictionary *englishMetricConvertDict;
             bottomStepper.value = value;
         }
             break;
-        case 1:
+        case 1: {
             [bottomButton setTitle:title forState:UIControlStateNormal];
+            bottomStepper.value = [bottomTextField.text floatValue];
+            NSString *converter = topButton.titleLabel.text;
+            
+            float value = [self convertUnit:title withConverter:converter withValue:bottomStepper.value];
+            
+            topTextField.text = [NSString stringWithFormat:@"%4.2f", value];
+            topStepper.value = value;
+        }
             break;
     }
-    
-    
 }
 
 - (void)viewDidUnload {
