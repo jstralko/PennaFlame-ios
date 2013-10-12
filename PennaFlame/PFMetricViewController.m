@@ -13,6 +13,8 @@
 
 -(void)onStepChanged:(id)sender;
 -(void)textFieldDidChange:(id)sender;
+- (BOOL) isSameUnitClass;
+- (float) convertUnit:(NSString *)convertee withConverter:(NSString *)converter withValue:(float)value;
 
 @end
 
@@ -43,6 +45,7 @@ NSMutableDictionary *englishMetricConvertDict;
         [unitConvertDict setObject:[NSNumber numberWithInt:10] forKey:[NSString stringWithFormat:@"Millimeter"]];
         [unitConvertDict setObject:[NSNumber numberWithFloat:0.01] forKey:[NSString stringWithFormat:@"Meter"]];
         [unitConvertDict setObject:[NSNumber numberWithFloat:0.00001] forKey:[NSString stringWithFormat:@"Kilometer"]];
+        
         
         englishMetricConvertDict = [[NSMutableDictionary alloc] init];
         [englishMetricConvertDict setObject:[NSNumber numberWithFloat:2.54] forKey:ENGLISH_TO_METRIC];
@@ -422,21 +425,28 @@ NSMutableDictionary *englishMetricConvertDict;
     }];
 }
 
+- (float) convertUnit:(NSString *)convertee withConverter:(NSString *)converter withValue:(float)value {
+    float converteeBase = [[unitConvertDict objectForKey:convertee] floatValue];
+    float converterBase = [[unitConvertDict objectForKey:converter] floatValue];
+    
+    float finalValue;
+    if (![self isSameUnitClass]) {
+        float conversionRate = [[englishMetricConvertDict objectForKey:ENGLISH_TO_METRIC] floatValue];
+        float topValue = converteeBase * topStepper.value * converterBase;
+        finalValue = (topValue * conversionRate);
+    } else {
+        finalValue = (converteeBase * topStepper.value) / converterBase;
+    }
+    return finalValue;
+}
+
 -(void) textFieldDidChange:(id)sender {
     if (topTextField == sender) {
-        
         topStepper.value = [topTextField.text floatValue];
         NSString *convertee = topButton.titleLabel.text;
         NSString *converter = bottomButton.titleLabel.text;
         
-        float converteeBase = [[unitConvertDict objectForKey:convertee] floatValue];
-        float converterBase = [[unitConvertDict objectForKey:converter] floatValue];
-        
-        float conversionRate = [[englishMetricConvertDict objectForKey:ENGLISH_TO_METRIC] floatValue];
-        float topValue = converteeBase * topStepper.value * converterBase;
-        float value = (topValue * conversionRate);
-        
-        //NSLog(@"topStepper.value %f converterBase: %f and value %f", topStepper.value, converterBase, value);
+        float value = [self convertUnit:convertee withConverter:converter withValue:topStepper.value];
         
         bottomTextField.text = [NSString stringWithFormat:@"%4.2f", value];
         bottomStepper.value = value;
@@ -450,17 +460,11 @@ NSMutableDictionary *englishMetricConvertDict;
     if (sender == topStepper) {
         topTextField.text = [NSString stringWithFormat:@"%4.2f", topStepper.value];
         
-        //TODO: move to a common function so other people can call this.
-        //topStepper.value = [topTextField.text floatValue];
+    
         NSString *convertee = topButton.titleLabel.text;
         NSString *converter = bottomButton.titleLabel.text;
         
-        float converteeBase = [[unitConvertDict objectForKey:convertee] floatValue];
-        float converterBase = [[unitConvertDict objectForKey:converter] floatValue];
-        
-        float conversionRate = [[englishMetricConvertDict objectForKey:ENGLISH_TO_METRIC] floatValue];
-        float topValue = converteeBase * topStepper.value * converterBase;
-        float value = (topValue * conversionRate);
+        float value = [self convertUnit:convertee withConverter:converter withValue:topStepper.value];
         
         bottomTextField.text = [NSString stringWithFormat:@"%4.2f", value];
         bottomStepper.value = value;
@@ -469,6 +473,35 @@ NSMutableDictionary *englishMetricConvertDict;
     } else {
         bottomTextField.text = [NSString stringWithFormat:@"%4.2f", bottomStepper.value];
     }
+}
+
+/*
+   Is it english to english conversion
+   or English to metric that is the question.
+ */
+- (BOOL) isSameUnitClass {
+    NSString *top = topButton.titleLabel.text;
+    NSString *bottom = bottomButton.titleLabel.text;
+    
+    BOOL isEnglish = NO;
+    if ([top isEqualToString:@"Inch"] ||
+        [top isEqualToString:@"Foot"] ||
+        [top isEqualToString:@"Yard"] ||
+        [top isEqualToString:@"Mile"]) {
+        isEnglish = YES;
+    }
+    
+    if ([bottom isEqualToString:@"Inch"] ||
+        [bottom isEqualToString:@"Foot"] ||
+        [bottom isEqualToString:@"Yard"] ||
+        [bottom isEqualToString:@"Mile"]) {
+        if (isEnglish) {
+            return YES;
+        }
+        return NO;
+    }
+    
+    return !isEnglish ? YES : NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -490,13 +523,23 @@ NSMutableDictionary *englishMetricConvertDict;
 
 - (void) setButtonTitle:(NSString *)title fromIndex:(NSInteger) index {
     switch (index) {
-        case 0:
+        case 0: {
             [topButton setTitle:title forState:UIControlStateNormal];
+            topStepper.value = [topTextField.text floatValue];
+            NSString *converter = bottomButton.titleLabel.text;
+            
+            float value = [self convertUnit:title withConverter:converter withValue:topStepper.value];
+            
+            bottomTextField.text = [NSString stringWithFormat:@"%4.2f", value];
+            bottomStepper.value = value;
+        }
             break;
         case 1:
             [bottomButton setTitle:title forState:UIControlStateNormal];
             break;
     }
+    
+    
 }
 
 - (void)viewDidUnload {
