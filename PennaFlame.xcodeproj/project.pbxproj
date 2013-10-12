@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3C1713FE180392DF00C2B817 /* PFUnitTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C1713FD180392DF00C2B817 /* PFUnitTableViewController.xib */; };
 		3C17143F1803AE8F00C2B817 /* PFHardnessChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C17143E1803AE8F00C2B817 /* PFHardnessChartViewController.m */; };
+		3C2F60ED1809F7580088B618 /* HardnessChartData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C2F60EC1809F7580088B618 /* HardnessChartData.plist */; };
 		3C9437C41802067400845209 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C31802067400845209 /* Foundation.framework */; };
 		3C9437C61802067400845209 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C51802067400845209 /* CoreGraphics.framework */; };
 		3C9437C81802067400845209 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C71802067400845209 /* UIKit.framework */; };
@@ -53,6 +54,7 @@
 		3C1713FD180392DF00C2B817 /* PFUnitTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFUnitTableViewController.xib; sourceTree = "<group>"; };
 		3C17143D1803AE8F00C2B817 /* PFHardnessChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFHardnessChartViewController.h; sourceTree = "<group>"; };
 		3C17143E1803AE8F00C2B817 /* PFHardnessChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFHardnessChartViewController.m; sourceTree = "<group>"; };
+		3C2F60EC1809F7580088B618 /* HardnessChartData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HardnessChartData.plist; sourceTree = "<group>"; };
 		3C9437C01802067400845209 /* PennaFlame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PennaFlame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9437C31802067400845209 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3C9437C51802067400845209 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -181,6 +183,7 @@
 				3C9437FD180206C000845209 /* PFWebsiteViewController.xib */,
 				3C9437D51802067400845209 /* Images.xcassets */,
 				3C9437CA1802067400845209 /* Supporting Files */,
+				3C2F60EC1809F7580088B618 /* HardnessChartData.plist */,
 			);
 			path = PennaFlame;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				3C94380E1802073900845209 /* PFMTIViewController.xib in Resources */,
 				3C9437FF180206C000845209 /* PFHardnessCaseDepthViewController.xib in Resources */,
 				3C9438141802083800845209 /* PFContactInfoViewController.xib in Resources */,
+				3C2F60ED1809F7580088B618 /* HardnessChartData.plist in Resources */,
 				3C94381E18020ABF00845209 /* mti_statement.html in Resources */,
 				3C94381B18020ABF00845209 /* hardness_table.html in Resources */,
 				3C9437CE1802067400845209 /* InfoPlist.strings in Resources */,
