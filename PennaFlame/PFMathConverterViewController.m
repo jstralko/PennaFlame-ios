@@ -15,6 +15,8 @@
 + (int)tenRaisedTopower:(int)decimalLength;
 - (void)floatToFraction:(float)decimalNumber;
 - (void)syncSteppers;
+- (void)drawFractionLayout;
+- (void)drawDecimalLayout;
 
 
 @end
@@ -125,6 +127,169 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self drawFractionLayout];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+// The callback for frame-changing of keyboard
+- (void)keyboardWillShow:(NSNotification *)notification {
+    NSDictionary *info = [notification userInfo];
+    NSValue *kbFrame = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardFrame = [kbFrame CGRectValue];
+    
+    BOOL isPortrait = UIDeviceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
+    CGFloat height = isPortrait ? keyboardFrame.size.height : keyboardFrame.size.width;
+    
+    scrollView.frame = CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.frame.size.height - height);
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    NSDictionary *info = [notification userInfo];
+    NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    [UIView animateWithDuration:animationDuration animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)onSegmentedControlChanged:(id)sender
+{
+    
+   switch([sender selectedSegmentIndex]) {
+        case 0: {
+            [self drawFractionLayout];
+        }
+            break;
+        case 1: {
+            [self drawDecimalLayout];
+        }
+           break;
+    }
+}
+
+- (IBAction)steppervalueChanged:(UIStepper *)sender {
+    double value = [sender value];
+    int intValue = (int)value;
+    if (sender == numeratorStepper) {
+        [numeratorTextField setText:[NSString stringWithFormat:@"%d", intValue]];
+        if (denominatorTextField.text.length == 0) {
+            numeratorTextField.text = [NSString stringWithFormat:@"%d", 1];
+        }
+        [self updateDecimal];
+    } else if (sender == denominatorStepper)  {
+        [denominatorTextField setText:[NSString stringWithFormat:@"%d", intValue]];
+        if (numeratorTextField.text.length == 0) {
+            numeratorTextField.text = [NSString stringWithFormat:@"%d", 1];
+        }
+        [self updateDecimal];
+    } else {
+        [decimalTextField setText:[NSString stringWithFormat:@"%4.4f", value]];
+        [self floatToFraction:value];
+        return;
+    }
+    
+    [self syncSteppers];
+    
+}
+
+- (void) updateDecimal {
+    int numInt = [numeratorTextField.text intValue];
+    int demInt = [denominatorTextField.text intValue];
+    
+    if (demInt != 0) {
+        [decimalTextField setText:[NSString stringWithFormat:@"%4.4f", numInt/(demInt*1.0)]];
+    }
+}
+
+- (void) syncSteppers {
+    numeratorStepper.value = [numeratorTextField.text floatValue];
+    denominatorStepper.value = [denominatorTextField.text floatValue];
+    decimalStepper.value = [decimalTextField.text floatValue];
+}
+
+-(void)textFieldDidChange :(UITextField *)theTextField{
+    if (numeratorTextField == theTextField) {
+        if (denominatorTextField.text.length == 0) {
+            denominatorTextField.text = [NSString stringWithFormat:@"%d", 1];
+        }
+        [self updateDecimal];
+    } else if (denominatorTextField == theTextField) {
+        if ([denominatorTextField.text intValue] >= 0) {
+            if (numeratorTextField.text.length == 0) {
+                numeratorTextField.text = [NSString stringWithFormat:@"%d", 1];
+            }
+            [self updateDecimal];
+        }
+    } else {
+        
+        float decimal = [decimalTextField.text floatValue];
+        if (decimal > 0.0f) {
+            [self floatToFraction:[decimalTextField.text floatValue]];
+        }
+    }
+    
+    [self syncSteppers];
+}
+
++ (int)gcdForNumber1:(int) m andNumber2:(int) n
+{
+    while( m!= n) // execute loop until m == n
+    {
+        if( m > n)
+            m= m - n; // large - small , store the results in large variable<br>
+        else
+            n= n - m;
+    }
+    return ( m); // m or n is GCD
+}
+
+
++ (int)tenRaisedTopower:(int)decimalLength {
+    int answer = 10;
+    while (decimalLength!= 1) {
+        answer *= 10;
+        decimalLength -- ;
+    }
+    return answer;
+}
+
+- (void)floatToFraction:(float)decimalNumber
+{
+    NSString *decimalString = [NSString stringWithFormat:@"%f", decimalNumber];
+    NSArray *components = [decimalString componentsSeparatedByString:@"."];
+    int decimalLength = [[components objectAtIndex:1] length];
+    int n = [PFMathConverterViewController tenRaisedTopower:decimalLength];
+    int m = [[components objectAtIndex:1] intValue];
+    if (m != 0) {
+        int gcd = [PFMathConverterViewController gcdForNumber1:m andNumber2:n];
+        int numer = m/gcd;
+        int deno = n/gcd;
+        int fractionnumer = ([[components objectAtIndex:0] intValue] * deno) + numer;
+        numeratorTextField.text = [NSString stringWithFormat:@"%d", fractionnumer];
+        denominatorTextField.text = [NSString stringWithFormat:@"%d", deno];
+        numeratorStepper.value = fractionnumer;
+        denominatorStepper.value = deno;
+    } else {
+        numeratorTextField.text = [components objectAtIndex:0];
+        denominatorTextField.text = [NSString stringWithFormat:@"%d", 1];
+        numeratorStepper.value = (int)decimalNumber;
+        denominatorStepper.value = 1;
+    }
+}
+
+- (void) drawFractionLayout {
+    [self.view removeConstraints:self.view.constraints];
+    [scrollView removeConstraints:scrollView.constraints];
     // Do any additional setup after loading the view from its nib.
     NSLayoutConstraint *myConstraint =[NSLayoutConstraint
                                        constraintWithItem:scrollView
@@ -433,208 +598,315 @@
                    multiplier:1.0
                    constant:0];
     [scrollView addConstraint:myConstraint];
+}
+
+- (void) drawDecimalLayout {
+    [self.view removeConstraints:self.view.constraints];
+    [scrollView removeConstraints:scrollView.constraints];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    // Do any additional setup after loading the view from its nib.
+    NSLayoutConstraint *myConstraint = [NSLayoutConstraint
+                                        constraintWithItem:scrollView
+                                        attribute:NSLayoutAttributeTop
+                                        relatedBy:NSLayoutRelationEqual
+                                        toItem:self.view
+                                        attribute:NSLayoutAttributeTop
+                                        multiplier:1.0
+                                        constant:0];
+    [self.view addConstraint:myConstraint];
     
-}
-
-// The callback for frame-changing of keyboard
-- (void)keyboardWillShow:(NSNotification *)notification {
-    NSDictionary *info = [notification userInfo];
-    NSValue *kbFrame = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardFrame = [kbFrame CGRectValue];
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:scrollView
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:scrollView
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
     
-    BOOL isPortrait = UIDeviceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
-    CGFloat height = isPortrait ? keyboardFrame.size.height : keyboardFrame.size.width;
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:scrollView
+                   attribute:NSLayoutAttributeBottom
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
     
-    scrollView.frame = CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.frame.size.height - height);
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-    NSDictionary *info = [notification userInfo];
-    NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
-    [UIView animateWithDuration:animationDuration animations:^{
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(IBAction)onSegmentedControlChanged:(id)sender
-{
-//    switch([sender selectedSegmentIndex]) {
-//        case 0: {
-//            CGRect frame = CGRectMake(45, 60, 100, 30);
-//            [numeratorTextField setFrame:frame];
-//            
-//            frame = CGRectMake(160, 60, 10, 30);
-//            [fractionBarLabel setFrame:frame];
-//            
-//            frame = CGRectMake(180, 60, 100, 30);
-//            [denominatorTextField setFrame:frame];
-//            
-//            frame = CGRectMake(48, 100, 100, 25);
-//            [numeratorStepper setFrame:frame];
-//            
-//            frame = CGRectMake(183, 100, 100, 25);
-//            [denominatorStepper setFrame:frame];
-//            
-//            frame = CGRectMake(155, 110, 10, 25);
-//            [equalsLabel setFrame:frame];
-//            
-//            frame = CGRectMake(110, 145, 100, 30);
-//            [decimalTextField setFrame:frame];
-//            
-//            frame = CGRectMake(115, 185, 100, 25);
-//            [decimalStepper setFrame:frame];
-//            
-//        }
-//            break;
-//        case 1: {
-//            CGRect frame = CGRectMake(110, 60, 100, 30);
-//            [decimalTextField setFrame:frame];
-//            
-//            frame = CGRectMake(115, 95, 100, 25);
-//            [decimalStepper setFrame:frame];
-//            
-//            frame = CGRectMake(155, 120, 10, 25);
-//            [equalsLabel setFrame:frame];
-//            
-//            //CGRectMake(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
-//            frame = CGRectMake(45, 145, 100, 30);
-//            [numeratorTextField setFrame:frame];
-//            
-//            frame = CGRectMake(180, 145, 100, 30);
-//            [denominatorTextField setFrame:frame];
-//            
-//            frame = CGRectMake(160, 145, 10, 25);
-//            [fractionBarLabel setFrame:frame];
-//            
-//            frame = CGRectMake(48, 180, 100, 25);
-//            [numeratorStepper setFrame:frame];
-//            
-//            frame = CGRectMake(183, 180, 100, 25);
-//            [denominatorStepper setFrame:frame];
-//            
-//            
-//        }
-//    }
-}
-
-- (IBAction)steppervalueChanged:(UIStepper *)sender {
-    double value = [sender value];
-    int intValue = (int)value;
-    if (sender == numeratorStepper) {
-        [numeratorTextField setText:[NSString stringWithFormat:@"%d", intValue]];
-        if (denominatorTextField.text.length == 0) {
-            numeratorTextField.text = [NSString stringWithFormat:@"%d", 1];
-        }
-        [self updateDecimal];
-    } else if (sender == denominatorStepper)  {
-        [denominatorTextField setText:[NSString stringWithFormat:@"%d", intValue]];
-        if (numeratorTextField.text.length == 0) {
-            numeratorTextField.text = [NSString stringWithFormat:@"%d", 1];
-        }
-        [self updateDecimal];
-    } else {
-        [decimalTextField setText:[NSString stringWithFormat:@"%4.4f", value]];
-        [self floatToFraction:value];
-        return;
-    }
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:segmentedControl
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeTop
+                   multiplier:1.0
+                   constant:25];
     
-    [self syncSteppers];
+    [scrollView addConstraint:myConstraint];
     
-}
-
-- (void) updateDecimal {
-    int numInt = [numeratorTextField.text intValue];
-    int demInt = [denominatorTextField.text intValue];
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:segmentedControl
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:175];
+    [scrollView addConstraint:myConstraint];
     
-    if (demInt != 0) {
-        [decimalTextField setText:[NSString stringWithFormat:@"%4.4f", numInt/(demInt*1.0)]];
-    }
-}
-
-- (void) syncSteppers {
-    numeratorStepper.value = [numeratorTextField.text floatValue];
-    denominatorStepper.value = [denominatorTextField.text floatValue];
-    decimalStepper.value = [decimalTextField.text floatValue];
-}
-
--(void)textFieldDidChange :(UITextField *)theTextField{
-    if (numeratorTextField == theTextField) {
-        if (denominatorTextField.text.length == 0) {
-            denominatorTextField.text = [NSString stringWithFormat:@"%d", 1];
-        }
-        [self updateDecimal];
-    } else if (denominatorTextField == theTextField) {
-        if ([denominatorTextField.text intValue] >= 0) {
-            if (numeratorTextField.text.length == 0) {
-                numeratorTextField.text = [NSString stringWithFormat:@"%d", 1];
-            }
-            [self updateDecimal];
-        }
-    } else {
-        
-        float decimal = [decimalTextField.text floatValue];
-        if (decimal > 0.0f) {
-            [self floatToFraction:[decimalTextField.text floatValue]];
-        }
-    }
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:segmentedControl
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeCenterX
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
     
-    [self syncSteppers];
-}
-
-+ (int)gcdForNumber1:(int) m andNumber2:(int) n
-{
-    while( m!= n) // execute loop until m == n
-    {
-        if( m > n)
-            m= m - n; // large - small , store the results in large variable<br>
-        else
-            n= n - m;
-    }
-    return ( m); // m or n is GCD
-}
-
-
-+ (int)tenRaisedTopower:(int)decimalLength {
-    int answer = 10;
-    while (decimalLength!= 1) {
-        answer *= 10;
-        decimalLength -- ;
-    }
-    return answer;
-}
-
-- (void)floatToFraction:(float)decimalNumber
-{
-    NSString *decimalString = [NSString stringWithFormat:@"%f", decimalNumber];
-    NSArray *components = [decimalString componentsSeparatedByString:@"."];
-    int decimalLength = [[components objectAtIndex:1] length];
-    int n = [PFMathConverterViewController tenRaisedTopower:decimalLength];
-    int m = [[components objectAtIndex:1] intValue];
-    if (m != 0) {
-        int gcd = [PFMathConverterViewController gcdForNumber1:m andNumber2:n];
-        int numer = m/gcd;
-        int deno = n/gcd;
-        int fractionnumer = ([[components objectAtIndex:0] intValue] * deno) + numer;
-        numeratorTextField.text = [NSString stringWithFormat:@"%d", fractionnumer];
-        denominatorTextField.text = [NSString stringWithFormat:@"%d", deno];
-        numeratorStepper.value = fractionnumer;
-        denominatorStepper.value = deno;
-    } else {
-        numeratorTextField.text = [components objectAtIndex:0];
-        denominatorTextField.text = [NSString stringWithFormat:@"%d", 1];
-        numeratorStepper.value = (int)decimalNumber;
-        denominatorStepper.value = 1;
-    }
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:decimalTextField
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:segmentedControl
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:25];
+    
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:decimalTextField
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:100];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:decimalTextField
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeCenterX
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:decimalStepper
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:decimalTextField
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:5];
+    
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:decimalStepper
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:100];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:decimalStepper
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeCenterX
+                   multiplier:1.0
+                   constant:3];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:decimalStepper
+                   attribute:NSLayoutAttributeBottom
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:fractionBarLabel
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:decimalStepper
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:25];
+    
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:fractionBarLabel
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:10];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:fractionBarLabel
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeCenterX
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:numeratorTextField
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:decimalStepper
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:23];
+    
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:numeratorTextField
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:100];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:numeratorTextField
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:fractionBarLabel
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:-20];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:denominatorTextField
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:decimalStepper
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:23];
+    
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:denominatorTextField
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:100];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:denominatorTextField
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:fractionBarLabel
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:20];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:numeratorStepper
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:numeratorTextField
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:5];
+    
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:numeratorStepper
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:100];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:numeratorStepper
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:numeratorTextField
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:3];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:denominatorStepper
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:denominatorTextField
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:5];
+    
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:denominatorStepper
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:100];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:denominatorStepper
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:denominatorTextField
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:3];
+    [scrollView addConstraint:myConstraint];
 }
 
 
