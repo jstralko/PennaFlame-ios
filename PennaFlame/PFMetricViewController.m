@@ -13,15 +13,15 @@
 
 - (void)onStepChanged:(id)sender;
 - (void)textFieldDidChange:(id)sender;
-- (BOOL)isSameUnitClass;
+- (BOOL)isSameUnitClass:(NSString *)convertee withUnit:(NSString *)converter;
 - (BOOL)isEnglishUnitClass:(NSString *)unit;
 - (BOOL)isMetricUnitClass:(NSString *)unit;
 - (float)convertUnit:(NSString *)convertee withConverter:(NSString *)converter withValue:(float)value;
 
 @end
 
-#define ENGLISH_TO_METRIC   @"English"
-#define METRIC_TO_ENGLISH   @"Metric"
+#define METRIC_TO_ENGLISH   @"English"
+#define ENGLISH_TO_METRIC   @"Metric"
 #define MAX_NUMBER          1000000
 
 NSLayoutConstraint *scrollViewBottom;
@@ -45,6 +45,12 @@ NSMutableDictionary *englishMetricConvertDict;
         [unitConvertDict setObject:[NSNumber numberWithInt:36] forKey:[NSString stringWithFormat:@"Yard"]];
         [unitConvertDict setObject:[NSNumber numberWithInt:63360] forKey:[NSString stringWithFormat:@"Mile"]];
         
+        [unitConvertDict setObject:[NSNumber numberWithInt:1] forKey:[NSString stringWithFormat:@"Centimeter"]];
+        [unitConvertDict setObject:[NSNumber numberWithFloat:10] forKey:[NSString stringWithFormat:@"Millimeter"]];
+        [unitConvertDict setObject:[NSNumber numberWithFloat:0.01] forKey:[NSString stringWithFormat:@"Meter"]];
+        [unitConvertDict setObject:[NSNumber numberWithFloat:0.00001] forKey:[NSString stringWithFormat:@"Kilometer"]];
+        
+        
         metricUnitConvertDict = [[NSMutableDictionary alloc]init];
         //metric
         [metricUnitConvertDict setObject:[NSNumber numberWithInt:1] forKey:[NSString stringWithFormat:@"Centimeter"]];
@@ -52,10 +58,15 @@ NSMutableDictionary *englishMetricConvertDict;
         [metricUnitConvertDict setObject:[NSNumber numberWithFloat:100] forKey:[NSString stringWithFormat:@"Meter"]];
         [metricUnitConvertDict setObject:[NSNumber numberWithFloat:100000] forKey:[NSString stringWithFormat:@"Kilometer"]];
         
+        //english
+        [metricUnitConvertDict setObject:[NSNumber numberWithInt:1] forKey:[NSString stringWithFormat:@"Inch"]];
+        [metricUnitConvertDict setObject:[NSNumber numberWithFloat:12] forKey:[NSString stringWithFormat:@"Foot"]];
+        [metricUnitConvertDict setObject:[NSNumber numberWithFloat:36] forKey:[NSString stringWithFormat:@"Yard"]];
+        [metricUnitConvertDict setObject:[NSNumber numberWithFloat:.63360] forKey:[NSString stringWithFormat:@"Mile"]];
         
         englishMetricConvertDict = [[NSMutableDictionary alloc] init];
-        [englishMetricConvertDict setObject:[NSNumber numberWithFloat:2.54] forKey:ENGLISH_TO_METRIC];
-        [englishMetricConvertDict setObject:[NSNumber numberWithFloat:0.3937] forKey:METRIC_TO_ENGLISH];
+        [englishMetricConvertDict setObject:[NSNumber numberWithFloat:2.54] forKey:METRIC_TO_ENGLISH];
+        [englishMetricConvertDict setObject:[NSNumber numberWithFloat:0.3937] forKey:ENGLISH_TO_METRIC];
     }
     return self;
 }
@@ -430,33 +441,48 @@ NSMutableDictionary *englishMetricConvertDict;
     }];
 }
 
+/*
+ * This probably should be cleanup in the future.
+ * Its working now, but seem alittle sloppy, but I was getting pissed 
+ * and was spending too much time on it.  Need to revisit when I'm 
+ * calmer.
+ */
 - (float) convertUnit:(NSString *)convertee withConverter:(NSString *)converter withValue:(float)value {
     float converteeBase;
-    if ([self isEnglishUnitClass:convertee]) {
-        converteeBase = [[unitConvertDict objectForKey:convertee] floatValue];
-    } else {
-        converteeBase = [[metricUnitConvertDict objectForKey:convertee]floatValue];
-    }
-    
     float converterBase;
-    if ([self isEnglishUnitClass:converter]) {
-        converterBase = [[unitConvertDict objectForKey:converter] floatValue];
-    } else {
-        converterBase = [[metricUnitConvertDict objectForKey:converter] floatValue];
-    }
-    
     float convertedValue;
-    if (![self isSameUnitClass]) {
+    
+    if (![self isSameUnitClass:convertee withUnit:converter]) {
+        converterBase = [[unitConvertDict objectForKey:converter] floatValue];
+        
+        if ([self isMetricUnitClass:convertee]) {
+            converteeBase = [[metricUnitConvertDict objectForKey:convertee] floatValue];
+        } else {
+            converteeBase = [[unitConvertDict objectForKey:convertee] floatValue];
+        }
+        
         float conversionRate;
-        if ([self isEnglishUnitClass:convertee]) {
+        if ([self isEnglishUnitClass:converter]) {
             conversionRate = [[englishMetricConvertDict objectForKey:ENGLISH_TO_METRIC] floatValue];
         } else {
             conversionRate = [[englishMetricConvertDict objectForKey:METRIC_TO_ENGLISH] floatValue];
         }
-        float baseValue = converteeBase * value * converterBase;
+
+        float baseValue;
+        if ([self isMetricUnitClass:converter]) {
+            baseValue = converteeBase * value * converterBase;
+        } else {
+            baseValue = converteeBase * value / converterBase;
+        }
         convertedValue = (baseValue * conversionRate);
+        
+        //NSLog(@"DIFFUNITS: converting %@ to %@ %f value converteeBase %f converterBase %f convertedValue %f conversionRate %f",
+        //      convertee, converter, value, converteeBase, converterBase, convertedValue, conversionRate);
     } else {
+        converterBase = [[metricUnitConvertDict objectForKey:converter] floatValue];
+        converteeBase = [[metricUnitConvertDict objectForKey:convertee]floatValue];
         convertedValue = (converteeBase * value) / converterBase;
+        //NSLog(@"SAMEUNITS: %f value converteeBase %f converterBase %f convertedValue %f", value, converteeBase, converterBase, convertedValue);
     }
     return convertedValue;
 }
@@ -537,16 +563,14 @@ NSMutableDictionary *englishMetricConvertDict;
    Is it english to english conversion
    or English to metric that is the question.
  */
-- (BOOL) isSameUnitClass {
-    NSString *top = topButton.titleLabel.text;
-    NSString *bottom = bottomButton.titleLabel.text;
+- (BOOL) isSameUnitClass:(NSString *)convertee withUnit:(NSString *)converter {
     
     BOOL isEnglish = NO;
-    if ([self isEnglishUnitClass:top]) {
+    if ([self isEnglishUnitClass:convertee]) {
         isEnglish = YES;
     }
     
-    if ([self isEnglishUnitClass:bottom]) {
+    if ([self isEnglishUnitClass:converter]) {
         if (isEnglish) {
             return YES;
         }
