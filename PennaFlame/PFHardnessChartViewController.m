@@ -137,7 +137,32 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
         NSString *metal = [[hardnessChartDict allKeys] objectAtIndex:metalIndex];
         NSString *range = [[hardnessChartDict objectForKey:metal] objectAtIndex:[rangePicker selectedRowInComponent:0]];
         
-        NSString *html = [NSString stringWithFormat:@"<html><head></head><body><table><tr><td>%@></td></tr><tr><td>%@/td></tr></table></body></html>", metal, range];
+        /*
+         <html>
+         <head>
+         </head>
+         <body style="background-color:#BDBBBB;">
+         <table width="90%" border="1" align="center" cellpadding="3" cellspacing="0" bordercolor="#CCCCCC">
+         <tbody><tr bgcolor="lightgrey" align="center">
+         <td bgcolor="#FF0000"><span style="font-weight:bold">MATERIAL (ASM)</span></td>
+         <td bgcolor="#FF0000"><span style="font-weight:bold">HARDNESS (Rc)</span></td>
+         <td bgcolor="#FF0000"><span style="font-weight:bold">Case Depth Inches</span></td>
+         </tr>
+         <tr bgcolor="white">
+         <td><div align="center" class="style25">1045</div></td>
+         <td><div align="center" class="style25">50/60</div></td>
+         <td><div align="center" class="style25">1/8</div></td>
+         </tr>
+         */
+        NSString *html = [NSString stringWithFormat:@"<html><head></head><body style=\"background-color:#BDBBBB;\">"
+                          "<table width=\"90%%\" border=\"1\" align=\"center\" cellpadding=\"3\" cellspacing=\"0\" bordercolor=\"#CCCCC\">"
+                          "<tbody><tr bgcolor=\"lightgrey\" align=\"center\">"
+                          "<td bgcolor=\"#FF0000\"><span style=\"font-weight:bold\">%@</span></td>"
+                          "</tr>"
+                          "<tr bgcolor=\"white\">"
+                          "<td><div align=\"center\">%@</div></td>"
+                          "</tr>"
+                          "</table></body></html>", metal, range];
         NSLog(@"%@", html);
         [hardnessChartWebView loadHTMLString:html baseURL:nil];
         [hardnessChartWebView setHidden:NO];
