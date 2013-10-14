@@ -135,6 +135,7 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     } else {
         NSInteger metalIndex = [metalPicker selectedRowInComponent:0];
         NSString *metal = [[hardnessChartDict allKeys] objectAtIndex:metalIndex];
+        NSArray *metals = [hardnessChartDict allKeys];
         NSString *range = [[hardnessChartDict objectForKey:metal] objectAtIndex:[rangePicker selectedRowInComponent:0]];
         
         /*
@@ -154,15 +155,20 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
          <td><div align="center" class="style25">1/8</div></td>
          </tr>
          */
-        NSString *html = [NSString stringWithFormat:@"<html><head></head><body style=\"background-color:#BDBBBB;\">"
+        NSMutableString *html = [NSMutableString stringWithFormat:@"<html><head></head><body style=\"background-color:#BDBBBB;\">"
                           "<table width=\"90%%\" border=\"1\" align=\"center\" cellpadding=\"3\" cellspacing=\"0\" bordercolor=\"#CCCCC\">"
-                          "<tbody><tr bgcolor=\"lightgrey\" align=\"center\">"
-                          "<td bgcolor=\"#FF0000\"><span style=\"font-weight:bold\">%@</span></td>"
-                          "</tr>"
-                          "<tr bgcolor=\"white\">"
-                          "<td><div align=\"center\">%@</div></td>"
-                          "</tr>"
-                          "</table></body></html>", metal, range];
+                          "<tbody>"
+                          "<tr bgcolor=\"lightgrey\" align=\"center\">" ];
+        
+        for (NSString *key in metals) {
+            [html appendFormat:@"<td bgcolor=\"#FF0000\"><span style=\"font-weight:bold\">%@</span></td>", key];
+        }
+        [html appendFormat:@"</tr><tr bgcolor=\"white\">"];
+        for (NSString *key in metals) {
+            [html appendFormat:@"<td><div align=\"center\">%@</div></td>", [[hardnessChartDict objectForKey:key] objectAtIndex:[rangePicker selectedRowInComponent:0]]];
+        }
+        [html appendFormat:@"</tr></table></body></html>"];
+        
         NSLog(@"%@", html);
         [hardnessChartWebView loadHTMLString:html baseURL:nil];
         [hardnessChartWebView setHidden:NO];
@@ -419,7 +425,8 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
                    constant:0];
     [scrollView addConstraint:myConstraint];
     
-    hardnessWebViewHeightConstraint =[NSLayoutConstraint
+    if ([hardnessChartWebView isHidden]) {
+        hardnessWebViewHeightConstraint =[NSLayoutConstraint
                    constraintWithItem:hardnessChartWebView
                    attribute:NSLayoutAttributeHeight
                    relatedBy:NSLayoutRelationEqual
@@ -427,6 +434,8 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
                    attribute:NSLayoutAttributeNotAnAttribute
                    multiplier:1.0
                    constant:1];
+    }
+    
     [scrollView addConstraint:hardnessWebViewHeightConstraint];
     
     /*
