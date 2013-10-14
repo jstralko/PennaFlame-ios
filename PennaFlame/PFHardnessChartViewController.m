@@ -18,6 +18,7 @@
 @implementation PFHardnessChartViewController
 
 NSMutableDictionary *hardnessChartDict;
+NSLayoutConstraint *hardnessWebViewHeightConstraint;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,7 +77,15 @@ NSMutableDictionary *hardnessChartDict;
     if(!generateChart) generateChart = [[UIButton alloc] initWithFrame:CGRectZero];
     [generateChart setTranslatesAutoresizingMaskIntoConstraints:NO];
     [generateChart setTitle:@"Generate Chart" forState:UIControlStateNormal];
+    [generateChart addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:generateChart];
+    
+    if (!hardnessChartWebView) hardnessChartWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    [hardnessChartWebView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [hardnessChartWebView setHidden:YES];
+    hardnessChartWebView.delegate = self;
+    
+    [scrollView addSubview:hardnessChartWebView];
     
     metalPicker.dataSource = self;
     metalPicker.delegate = self;
@@ -119,10 +128,21 @@ NSMutableDictionary *hardnessChartDict;
 - (void) buttonClicked:(id)sender {
     if (sender == showMetalPickerButton) {
         [metalPicker setHidden:![metalPicker isHidden]];
-    } else {
+        [self drawLayout];
+    } else  if(sender == showRangePickerButton) {
         [rangePicker setHidden:![rangePicker isHidden]];
+        [self drawLayout];
+    } else {
+        NSInteger metalIndex = [metalPicker selectedRowInComponent:0];
+        NSString *metal = [[hardnessChartDict allKeys] objectAtIndex:metalIndex];
+        NSString *range = [[hardnessChartDict objectForKey:metal] objectAtIndex:[rangePicker selectedRowInComponent:0]];
+        
+        NSString *html = [NSString stringWithFormat:@"<html><head></head><body><table><tr><td>%@></td></tr><tr><td>%@/td></tr></table></body></html>", metal, range];
+        NSLog(@"%@", html);
+        [hardnessChartWebView loadHTMLString:html baseURL:nil];
+        [hardnessChartWebView setHidden:NO];
     }
-    [self drawLayout];
+    
 }
 
 - (void) drawLayout {
@@ -342,8 +362,64 @@ NSMutableDictionary *hardnessChartDict;
                    constant:250];
     [scrollView addConstraint:myConstraint];
     
+    //
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:generateChart
+                   constraintWithItem:hardnessChartWebView
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationGreaterThanOrEqual
+                   toItem:generateChart
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:5];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:hardnessChartWebView
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeCenterX
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:hardnessChartWebView
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    hardnessWebViewHeightConstraint =[NSLayoutConstraint
+                   constraintWithItem:hardnessChartWebView
+                   attribute:NSLayoutAttributeHeight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:1];
+    [scrollView addConstraint:hardnessWebViewHeightConstraint];
+    
+    /*
+     * These two contraints below makes the
+     * scrollview scroll in all directions
+     */
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:hardnessChartWebView
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:hardnessChartWebView
                    attribute:NSLayoutAttributeBottom
                    relatedBy:NSLayoutRelationEqual
                    toItem:scrollView
@@ -352,7 +428,11 @@ NSMutableDictionary *hardnessChartDict;
                    constant:0];
     [scrollView addConstraint:myConstraint];
     
-    
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [webView sizeToFit];
+    hardnessWebViewHeightConstraint.constant = webView.frame.size.height;
 }
 
 // returns the number of 'columns' to display.
@@ -393,6 +473,7 @@ NSMutableDictionary *hardnessChartDict;
         NSArray *array = [hardnessChartDict allKeys];
         NSString *title = [array objectAtIndex:row];
         [showMetalPickerButton setTitle:title forState:UIControlStateNormal];
+        [rangePicker reloadComponent:0];
     } else {
         NSArray *array = [hardnessChartDict objectForKey:showMetalPickerButton.titleLabel.text];
         [showRangePickerButton setTitle:[array objectAtIndex:row] forState:UIControlStateNormal];

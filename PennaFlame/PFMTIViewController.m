@@ -19,7 +19,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        // Custom initialization
         self.navigationItem.title = @"MTI Statement";
         self.view.backgroundColor = [UIColor lightGrayColor];
         [self.view addSubview:mtiWebView];
