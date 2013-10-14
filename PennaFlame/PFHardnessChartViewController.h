@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PFHardnessChartViewController : UIViewController {
+@interface PFHardnessChartViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>{
     IBOutlet UIWebView *pdfWrapper;
+    UIPickerView *metalPicker;
+    UIPickerView *rangePicker;
+    UIScrollView *scrollView;
 }
 @end
