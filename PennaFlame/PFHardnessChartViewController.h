@@ -10,8 +10,11 @@
 
 @interface PFHardnessChartViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>{
     IBOutlet UIWebView *pdfWrapper;
+    UIButton *showMetalPickerButton;
+    UIButton *showRangePickerButton;
     UIPickerView *metalPicker;
     UIPickerView *rangePicker;
     UIScrollView *scrollView;
+    UIButton *generateChart;
 }
 @end
