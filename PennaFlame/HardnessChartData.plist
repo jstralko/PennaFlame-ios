@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>EQUI TIP-Ld</key>
+	<key>EQUO TIP Ld</key>
 	<array>
 		<string>890</string>
 		<string>878</string>
@@ -71,9 +71,23 @@
         <string>24.1</string>
         <string>21.7</string>
         <string>20.0</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
     </array>
     <key>BRINELL BHN</key>
 	<array>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
 		<string>635</string>
 		<string>599</string>
 		<string>576</string>
@@ -101,8 +115,9 @@
         <string>194</string>
         <string>185</string>
         <string>177</string>
+        
     </array>
-    <key>VICKERS HV-DPH</key>
+    <key>VICKERS HV/DPH</key>
 	<array>
 		<string>940</string>
 		<string>899</string>
@@ -140,7 +155,7 @@
         <string>192</string>
         <string>183</string>
 	</array>
-    <key>SHORE C-HSC</key>
+    <key>SHORE C HSc</key>
 	<array>
 		<string>100</string>
 		<string>97</string>
@@ -167,8 +182,18 @@
         <string>46</string>
         <string>45</string>
         <string>43</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
     </array>
-    <key>SHORE C-HFRSC</key>
+    <key>SHORE C HFRSc</key>
 	<array>
 		<string>105</string>
 		<string>102</string>
@@ -195,6 +220,16 @@
         <string>49</string>
         <string>47</string>
         <string>45</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
+        <string>-----</string>
     </array>
 </dict>
 </plist>

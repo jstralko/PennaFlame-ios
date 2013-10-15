@@ -161,7 +161,12 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
                           "<tr bgcolor=\"lightgrey\" align=\"center\">" ];
         
         for (NSString *key in metals) {
-            [html appendFormat:@"<td bgcolor=\"#FF0000\"><span style=\"font-weight:bold\">%@</span></td>", key];
+            if ([metal isEqualToString:key]) {
+              [html appendFormat:@"<td bgcolor=\"#FF0000\"><span style=\"font-weight:bold\">%@</span></td>", key];
+                
+            } else {
+                [html appendFormat:@"<td bgcolor=\"#FF0000\"><span style=\"font-weight:bold\">%@</span></td>", key];
+            }
         }
         [html appendFormat:@"</tr><tr bgcolor=\"white\">"];
         for (NSString *key in metals) {
@@ -169,7 +174,8 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
         }
         [html appendFormat:@"</tr></table></body></html>"];
         
-        NSLog(@"%@", html);
+        //NSLog(@"%@", html);
+        
         [hardnessChartWebView loadHTMLString:html baseURL:nil];
         [hardnessChartWebView setHidden:NO];
     }
