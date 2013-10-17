@@ -611,14 +611,21 @@ NSMutableDictionary *englishMetricConvertDict;
     switch (index) {
         case 0: {
             [topButton setTitle:title forState:UIControlStateNormal];
+            break;
+        }
+        case 1: {
+            [bottomButton setTitle:title forState:UIControlStateNormal];
+            break;
+        }
+    }
             topStepper.value = [topTextField.text floatValue];
             NSString *converter = bottomButton.titleLabel.text;
             
-            float value = [self convertUnit:title withConverter:converter withValue:topStepper.value];
+            float value = [self convertUnit:topButton.titleLabel.text withConverter:converter withValue:topStepper.value];
             
             bottomTextField.text = [NSString stringWithFormat:@"%4.2f", value];
             bottomStepper.value = value;
-        }
+   /*     }
             break;
         case 1: {
             [bottomButton setTitle:title forState:UIControlStateNormal];
@@ -631,7 +638,7 @@ NSMutableDictionary *englishMetricConvertDict;
             topStepper.value = value;
         }
             break;
-    }
+    }*/
 }
 
 - (void)viewDidUnload {
