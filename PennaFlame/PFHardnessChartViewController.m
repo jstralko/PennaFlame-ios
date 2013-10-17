@@ -26,11 +26,12 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     
     if (self) {
         // Custom initialization
-        self.navigationItem.title = @"Penna Flame";
+        self.navigationItem.title = @"Hardness Chart";
         self.view.backgroundColor = [UIColor grayColor];
 
-        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"HardnessChartData" ofType:@"plist"];
-        hardnessChartDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+
+        
+
         
         //old way
         //pdfWrapper = [[UIWebView alloc]initWithFrame:self.view.frame];
@@ -45,6 +46,12 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
 
 - (void) loadView {
     [super loadView];
+    
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"HardnessChartData" ofType:@"plist"];
+    hardnessChartDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+    NSInteger halfIndex = [hardnessChartDict allKeys].count/2;
+    NSString *half = [[hardnessChartDict allKeys] objectAtIndex:halfIndex];
+    
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView setBounces:YES];
@@ -64,7 +71,7 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     
     if (!showMetalPickerButton) showMetalPickerButton = [[UIButton alloc] initWithFrame:CGRectZero];
     [showMetalPickerButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [showMetalPickerButton setTitle:@"Select One" forState:UIControlStateNormal];
+    [showMetalPickerButton setTitle:half forState:UIControlStateNormal];
     [showMetalPickerButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:showMetalPickerButton];
     
@@ -86,12 +93,15 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     hardnessChartWebView.delegate = self;
     
     [scrollView addSubview:hardnessChartWebView];
+        
     
     metalPicker.dataSource = self;
     metalPicker.delegate = self;
     
     rangePicker.dataSource = self;
     rangePicker.delegate = self;
+    
+    [metalPicker selectRow:halfIndex inComponent:0 animated:NO];
     
     //[metalPicker selectRow:3 inComponent:1 animated:NO];
 }
