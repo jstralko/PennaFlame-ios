@@ -29,10 +29,6 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
         self.navigationItem.title = @"Hardness Chart";
         self.view.backgroundColor = [UIColor grayColor];
 
-
-        
-
-        
         //old way
         //pdfWrapper = [[UIWebView alloc]initWithFrame:self.view.frame];
         //[self.view addSubview:pdfWrapper];
@@ -91,19 +87,15 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     [hardnessChartWebView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [hardnessChartWebView setHidden:YES];
     hardnessChartWebView.delegate = self;
-    
     [scrollView addSubview:hardnessChartWebView];
         
     
     metalPicker.dataSource = self;
     metalPicker.delegate = self;
-    
     rangePicker.dataSource = self;
     rangePicker.delegate = self;
     
     [metalPicker selectRow:halfIndex inComponent:0 animated:NO];
-    
-    //[metalPicker selectRow:3 inComponent:1 animated:NO];
 }
 
 - (void)viewDidLoad
