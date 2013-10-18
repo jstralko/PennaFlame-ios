@@ -36,21 +36,22 @@
 
 - (void) loadView {
     
-    //iPhone
-   UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(125, 100);
-    layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    layout.minimumInteritemSpacing = 10.0f;  //spacing between cells
-    layout.minimumLineSpacing = 15.0f;       //space between cells vertical
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        //iPad
+        layout.itemSize = CGSizeMake(200, 200);
+        layout.sectionInset = UIEdgeInsetsMake(150, 20, 10, 20);
+        layout.minimumInteritemSpacing = 25.0f;  //spacing between cells
+        layout.minimumLineSpacing = 25.0f;       //space between cells vertical
+        
+    } else {
+        //iPhone
+        layout.itemSize = CGSizeMake(125, 100);
+        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+        layout.minimumInteritemSpacing = 10.0f;  //spacing between cells
+        layout.minimumLineSpacing = 15.0f;       //space between cells vertical
+    }
     
-    //iPad
-//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-//    layout.itemSize = CGSizeMake(125, 100);
-//    layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-//    layout.minimumInteritemSpacing = 10.0f;  //spacing between cells
-//    layout.minimumLineSpacing = 15.0f;       //space between cells vertical
-    
-
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor lightGrayColor];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:HOME_CELL];
