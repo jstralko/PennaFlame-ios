@@ -35,14 +35,22 @@
 }
 
 - (void) loadView {
+    
+    //iPhone
    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(125, 100);
-    layout.sectionInset = UIEdgeInsetsMake(50, 10, 10, 10);
+    layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
     layout.minimumInteritemSpacing = 10.0f;  //spacing between cells
     layout.minimumLineSpacing = 15.0f;       //space between cells vertical
     
+    //iPad
+//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//    layout.itemSize = CGSizeMake(125, 100);
+//    layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+//    layout.minimumInteritemSpacing = 10.0f;  //spacing between cells
+//    layout.minimumLineSpacing = 15.0f;       //space between cells vertical
     
-    
+
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor lightGrayColor];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:HOME_CELL];
@@ -64,22 +72,38 @@
 }
 
 #pragma mark - UICollectionView Datasource
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionReusableView *cell = nil;
-    if (kind == UICollectionElementKindSectionHeader) {
-        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SUPPLEMENTARY_VIEW_CELL forIndexPath:indexPath];
-        UIImage *headerImage = [UIImage imageNamed:@"layer11.png"];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:headerImage];
-        [headerView addSubview:imageView];
-        cell = headerView;
-    }
-    
-    return cell;
+
+//TODO: add header or footer
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+//{
+//    UICollectionReusableView *cell = nil;
+//    if (kind == UICollectionElementKindSectionHeader) {
+//        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SUPPLEMENTARY_VIEW_CELL forIndexPath:indexPath];
+//        UIImage *headerImage = [UIImage imageNamed:@"layer11.png"];
+//        UIImageView *imageView = [[UIImageView alloc] initWithImage:headerImage];
+//        [headerView addSubview:imageView];
+//        cell = headerView;
+//    }
+//    
+//    return cell;
+//}
+
+- (void)collectionView:(UICollectionView *)colView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell* cell = [colView cellForItemAtIndexPath:indexPath];
+    cell.contentView.backgroundColor = nil;
 }
 
 
+- (void)collectionView:(UICollectionView *)colView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell* cell = [colView cellForItemAtIndexPath:indexPath];
+    cell.contentView.backgroundColor = [UIColor lightGrayColor];
+}
+
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
@@ -129,12 +153,6 @@
     [cell.contentView addSubview:label];
     return cell;
 }
-// 4
-/*- (UICollectionReusableView *)collectionView:
- (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
- {
- return [[UICollectionReusableView alloc] init];
- }*/
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
