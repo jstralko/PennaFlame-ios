@@ -48,7 +48,7 @@
         //iPhone
         layout.itemSize = CGSizeMake(125, 100);
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-        layout.minimumInteritemSpacing = 10.0f;  //spacing between cells
+        layout.minimumInteritemSpacing = 15.0f;  //spacing between cells
         layout.minimumLineSpacing = 15.0f;       //space between cells vertical
     }
     
