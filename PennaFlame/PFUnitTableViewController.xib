@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="13A598" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -17,8 +17,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Nkw-Ow-TAm">
-                    <rect key="frame" x="99" y="85" width="123" height="29"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Nkw-Ow-TAm">
+                    <rect key="frame" x="108" y="94" width="117" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="English"/>
@@ -30,15 +30,15 @@
                     </connections>
                 </segmentedControl>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VJy-I2-YPX">
-                    <rect key="frame" x="0.0" y="132" width="320" height="431"/>
+                    <rect key="frame" x="0.0" y="193" width="320" height="370"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="VJy-I2-YPX" firstAttribute="top" secondItem="Nkw-Ow-TAm" secondAttribute="bottom" constant="80" id="8HQ-AJ-r9U"/>
                 <constraint firstItem="VJy-I2-YPX" firstAttribute="leading" secondItem="ItF-Ia-BYy" secondAttribute="leading" id="9Mq-cI-s89"/>
-                <constraint firstItem="VJy-I2-YPX" firstAttribute="top" secondItem="Nkw-Ow-TAm" secondAttribute="bottom" constant="19" id="Gzn-KG-vjs"/>
                 <constraint firstItem="Nkw-Ow-TAm" firstAttribute="top" secondItem="ItF-Ia-BYy" secondAttribute="top" constant="85" id="V9e-RE-Pgv"/>
                 <constraint firstAttribute="trailing" secondItem="VJy-I2-YPX" secondAttribute="trailing" id="awU-To-e1m"/>
                 <constraint firstAttribute="bottom" secondItem="VJy-I2-YPX" secondAttribute="bottom" constant="5" id="cZe-G0-71f"/>

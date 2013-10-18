@@ -8,6 +8,7 @@
 
 #import "PFAppDelegate.h"
 #import "PFMasterViewController.h"
+#import "PFHomeViewController.h"
 
 @implementation PFAppDelegate
 
@@ -18,8 +19,13 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    PFMasterViewController *master = [[PFMasterViewController alloc] init];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:master];
+//    TableView Layout
+//    PFMasterViewController *master = [[PFMasterViewController alloc] init];
+//    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:master];
+    
+    //New UICollectionViewController - new and shiney!
+    PFHomeViewController *home = [[PFHomeViewController alloc] init];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:home];
     
     return YES;
 }

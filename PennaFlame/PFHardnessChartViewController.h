@@ -17,5 +17,6 @@
     UIPickerView *rangePicker;
     UIScrollView *scrollView;
     UIButton *generateChart;
+    UIButton *showFullChart;
 }
 @end

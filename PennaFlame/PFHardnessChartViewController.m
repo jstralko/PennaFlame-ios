@@ -79,7 +79,7 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     
     if(!generateChart) generateChart = [[UIButton alloc] initWithFrame:CGRectZero];
     [generateChart setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [generateChart setTitle:@"Show Chart" forState:UIControlStateNormal];
+    [generateChart setTitle:@"Show  Chart" forState:UIControlStateNormal];
     [generateChart addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:generateChart];
     
