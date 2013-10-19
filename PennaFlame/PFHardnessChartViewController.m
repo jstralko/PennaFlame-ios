@@ -129,7 +129,6 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
 - (void) buttonClicked:(id)sender {
     if (sender == showMetalPickerButton) {
         [metalPicker setHidden:![metalPicker isHidden]];
-        [self drawLayout];
     } else  if(sender == showRangePickerButton) {
         if ([showRangePickerButton.titleLabel.text isEqualToString:@"Select Range"]) {
             //set a default - pick middle value
@@ -140,8 +139,10 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
             [rangePicker selectRow:array.count/2 inComponent:0 animated:NO];
         }
         [rangePicker setHidden:![rangePicker isHidden]];
-        [self drawLayout];
     } else {
+        [metalPicker setHidden:YES];
+        [rangePicker setHidden:YES];
+        
         NSInteger metalIndex = [metalPicker selectedRowInComponent:0];
         NSString *metal = [[hardnessChartDict allKeys] objectAtIndex:metalIndex];
         NSArray *metals = [hardnessChartDict allKeys];
@@ -188,6 +189,8 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
         [hardnessChartWebView loadHTMLString:html baseURL:nil];
         [hardnessChartWebView setHidden:NO];
     }
+    
+    [self drawLayout];
     
 }
 

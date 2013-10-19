@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PFHardnessCaseDepthViewController : UIViewController {
-    IBOutlet UIWebView *hardnessWebView;
+@interface PFHardnessCaseDepthViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UIWebViewDelegate> {
+   // IBOutlet UIWebView *hardnessWebView;
+    UIWebView *hardnessChartWebView;
+    UIButton *showMetalPickerButton;
+    UIButton *showRangePickerButton;
+    UIPickerView *metalPicker;
+    UIPickerView *rangePicker;
+    UIScrollView *scrollView;
+    UIButton *generateChart;
+    UIButton *showFullChart;
 }
 
 @end

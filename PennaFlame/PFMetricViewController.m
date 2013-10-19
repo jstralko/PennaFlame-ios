@@ -608,37 +608,25 @@ NSMutableDictionary *englishMetricConvertDict;
 }
 
 - (void) setButtonTitle:(NSString *)title fromIndex:(NSInteger) index {
+    
+    float value = 0.0f;
+    topStepper.value = [topTextField.text floatValue];
+    //NSString *converter = bottomButton.titleLabel.text;
     switch (index) {
         case 0: {
             [topButton setTitle:title forState:UIControlStateNormal];
+            value = [self convertUnit:title withConverter:bottomButton.titleLabel.text withValue:topStepper.value];
             break;
         }
         case 1: {
             [bottomButton setTitle:title forState:UIControlStateNormal];
+            value = [self convertUnit:topButton.titleLabel.text withConverter:title withValue:topStepper.value];
             break;
         }
     }
-            topStepper.value = [topTextField.text floatValue];
-            NSString *converter = bottomButton.titleLabel.text;
-            
-            float value = [self convertUnit:topButton.titleLabel.text withConverter:converter withValue:topStepper.value];
-            
-            bottomTextField.text = [NSString stringWithFormat:@"%4.2f", value];
-            bottomStepper.value = value;
-   /*     }
-            break;
-        case 1: {
-            [bottomButton setTitle:title forState:UIControlStateNormal];
-            bottomStepper.value = [bottomTextField.text floatValue];
-            NSString *converter = topButton.titleLabel.text;
-            
-            float value = [self convertUnit:title withConverter:converter withValue:bottomStepper.value];
-            
-            topTextField.text = [NSString stringWithFormat:@"%4.2f", value];
-            topStepper.value = value;
-        }
-            break;
-    }*/
+
+    bottomTextField.text = [NSString stringWithFormat:@"%4.2f", value];
+    bottomStepper.value = value;
 }
 
 - (void)viewDidUnload {

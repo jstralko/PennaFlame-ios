@@ -47,9 +47,9 @@
     } else {
         //iPhone
         layout.itemSize = CGSizeMake(125, 100);
-        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-        layout.minimumInteritemSpacing = 15.0f;  //spacing between cells
-        layout.minimumLineSpacing = 15.0f;       //space between cells vertical
+        layout.sectionInset = UIEdgeInsetsMake(20, 20, 10, 20);
+        layout.minimumInteritemSpacing = 20.0f;  //spacing between cells
+        layout.minimumLineSpacing = 20.0f;       //space between cells vertical
     }
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
@@ -75,19 +75,18 @@
 #pragma mark - UICollectionView Datasource
 
 //TODO: add header or footer
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//{
-//    UICollectionReusableView *cell = nil;
-//    if (kind == UICollectionElementKindSectionHeader) {
-//        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SUPPLEMENTARY_VIEW_CELL forIndexPath:indexPath];
-//        UIImage *headerImage = [UIImage imageNamed:@"layer11.png"];
-//        UIImageView *imageView = [[UIImageView alloc] initWithImage:headerImage];
-//        [headerView addSubview:imageView];
-//        cell = headerView;
-//    }
-//    
-//    return cell;
-//}
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *cell = nil;
+    if (kind == UICollectionElementKindSectionHeader) {
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SUPPLEMENTARY_VIEW_CELL forIndexPath:indexPath];
+        UIImage *headerImage = [UIImage imageNamed:@"layer11.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:headerImage];
+        [headerView addSubview:imageView];
+        cell = headerView;
+    }
+    return cell;
+}
 
 - (void)collectionView:(UICollectionView *)colView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell* cell = [colView cellForItemAtIndexPath:indexPath];

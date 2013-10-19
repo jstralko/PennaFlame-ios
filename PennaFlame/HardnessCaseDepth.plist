@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>MATERIAL (ASM)</key>
+	<array>
+        <string>1045</string>
+        <string>1055</string>
+        <string>1060</string>
+        <string>4130</string>
+        <string>4140</string>
+        <string>4150</string>
+        <string>4340</string>
+        <string>6150</string>
+        <string>52100</string>
+    </array>
+    <key>HARDNESS (Rc)</key>
+    <array>
+        <string>50/60</string>
+        <string>55/62</string>
+        <string>58/65</string>
+        <string>40/48</string>
+        <string>50/55</string>
+        <string>56/60</string>
+        <string>50/55</string>
+        <string>55/60</string>
+    </array>
+    <key>Case Depth Inches</key>
+    <array>
+        <string>1/8</string>
+        <string>1/8</string>
+        <string>1/8</string>
+        <string>3/16</string>
+        <string>3/16</string>
+        <string>3/16</string>
+        <string>1/4</string>
+        <string>3/16</string>
+        <string>1/4</string>
+    </array>
+</dict>
+</plist>
