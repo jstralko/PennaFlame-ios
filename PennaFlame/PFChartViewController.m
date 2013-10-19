@@ -90,6 +90,11 @@ NSLayoutConstraint *webViewHeightConstraint;
     chartWebView.delegate = self;
     [scrollView addSubview:chartWebView];
     
+    if(!showFullChart) showFullChart = [[UIButton alloc] initWithFrame:CGRectZero];
+    [showFullChart setTitle:@"Show Full Chart" forState:UIControlStateNormal];
+    [showFullChart setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [scrollView addSubview:showFullChart];
+    
     topPicker.dataSource = self;
     topPicker.delegate = self;
     rangePicker.dataSource = self;
@@ -471,8 +476,42 @@ NSLayoutConstraint *webViewHeightConstraint;
                    constant:0];
     [scrollView addConstraint:myConstraint];
     
+
+    //
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:chartWebView
+                   constraintWithItem:showFullChart
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationGreaterThanOrEqual
+                   toItem:chartWebView
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:showFullChart
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeCenterX
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:showFullChart
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:250];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:showFullChart
                    attribute:NSLayoutAttributeBottom
                    relatedBy:NSLayoutRelationEqual
                    toItem:scrollView
@@ -480,6 +519,9 @@ NSLayoutConstraint *webViewHeightConstraint;
                    multiplier:1.0
                    constant:0];
     [scrollView addConstraint:myConstraint];
+    
+    
+
     
 }
 
