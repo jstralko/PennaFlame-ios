@@ -527,6 +527,8 @@ NSLayoutConstraint *webViewHeightConstraint;
         NSString *title = [array objectAtIndex:row];
         [showTopPickerButton setTitle:title forState:UIControlStateNormal];
         [rangePicker reloadComponent:0];
+        NSString *range = [[chartDictionary objectForKey:title] objectAtIndex:[rangePicker selectedRowInComponent:0]];
+        [showRangePickerButton setTitle:range forState:UIControlStateNormal];
     } else {
         NSArray *array = [chartDictionary objectForKey:showTopPickerButton.titleLabel.text];
         [showRangePickerButton setTitle:[array objectAtIndex:row] forState:UIControlStateNormal];
