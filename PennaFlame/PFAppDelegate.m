@@ -7,7 +7,6 @@
 //
 
 #import "PFAppDelegate.h"
-#import "PFMasterViewController.h"
 #import "PFHomeViewController.h"
 
 @implementation PFAppDelegate
@@ -18,10 +17,6 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
-//    TableView Layout
-//    PFMasterViewController *master = [[PFMasterViewController alloc] init];
-//    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:master];
     
     //New UICollectionViewController - new and shiney!
     PFHomeViewController *home = [[PFHomeViewController alloc] init];

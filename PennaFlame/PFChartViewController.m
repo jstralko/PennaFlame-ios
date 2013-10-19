@@ -6,24 +6,24 @@
 //  Copyright (c) 2013 Gerald Stralko. All rights reserved.
 //
 
-#import "PFHardnessCaseDepthViewController.h"
+#import "PFChartViewController.h"
 
-@interface PFHardnessCaseDepthViewController ()
+@interface PFChartViewController ()
     
 @end
 
-@implementation PFHardnessCaseDepthViewController
+@implementation PFChartViewController
 
-NSMutableDictionary *hardnessChartDict;
-NSLayoutConstraint *hardnessWebViewHeightConstraint;
+NSMutableDictionary *chartDictionary;
+NSLayoutConstraint *webViewHeightConstraint;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.navigationItem.title = @"Hardness Case Depth";
-        self.view.backgroundColor = [UIColor lightGrayColor];
+        //self.navigationItem.title = @"Hardness Case Depth";
+        //self.view.backgroundColor = [UIColor lightGrayColor];
         
         //NSURL *url = [[NSBundle mainBundle] URLForResource:@"hardness_table" withExtension:@"html"];
         //NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
@@ -32,13 +32,22 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     return self;
 }
 
+-(id)initWithDict:(NSMutableDictionary *)chartDict withTitle:(NSString *)title {
+    self = [super init];
+    if (self) {
+        chartDictionary = chartDict;
+        self.navigationItem.title = @"Hardness Case Depth";
+        self.view.backgroundColor = [UIColor lightGrayColor];
+    }
+    return self;
+}
+
 - (void) loadView {
     [super loadView];
     
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"HardnessCaseDepth" ofType:@"plist"];
-    hardnessChartDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
-    NSInteger halfIndex = [hardnessChartDict allKeys].count/2;
-    NSString *half = [[hardnessChartDict allKeys] objectAtIndex:halfIndex];
+
+    NSInteger halfIndex = [chartDictionary allKeys].count/2;
+    NSString *half = [[chartDictionary allKeys] objectAtIndex:halfIndex];
     
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -46,10 +55,10 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     [scrollView setScrollEnabled:YES];
     [self.view addSubview:scrollView];
     
-    if (!metalPicker) metalPicker = [[UIPickerView alloc]initWithFrame:CGRectZero];
-    [metalPicker setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [metalPicker setHidden:YES];
-    [scrollView addSubview:metalPicker];
+    if (!topPicker) topPicker = [[UIPickerView alloc]initWithFrame:CGRectZero];
+    [topPicker setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [topPicker setHidden:YES];
+    [scrollView addSubview:topPicker];
     
     
     if (!rangePicker) rangePicker = [[UIPickerView alloc]initWithFrame:CGRectZero];
@@ -57,11 +66,11 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     [rangePicker setHidden:YES];
     [scrollView addSubview:rangePicker];
     
-    if (!showMetalPickerButton) showMetalPickerButton = [[UIButton alloc] initWithFrame:CGRectZero];
-    [showMetalPickerButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [showMetalPickerButton setTitle:half forState:UIControlStateNormal];
-    [showMetalPickerButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:showMetalPickerButton];
+    if (!showTopPickerButton) showTopPickerButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    [showTopPickerButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [showTopPickerButton setTitle:half forState:UIControlStateNormal];
+    [showTopPickerButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [scrollView addSubview:showTopPickerButton];
     
     if(!showRangePickerButton) showRangePickerButton = [[UIButton alloc] initWithFrame:CGRectZero];
     [showRangePickerButton setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -75,18 +84,18 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     [generateChart addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:generateChart];
     
-    if (!hardnessChartWebView) hardnessChartWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    [hardnessChartWebView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [hardnessChartWebView setHidden:YES];
-    hardnessChartWebView.delegate = self;
-    [scrollView addSubview:hardnessChartWebView];
+    if (!chartWebView) chartWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    [chartWebView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [chartWebView setHidden:YES];
+    chartWebView.delegate = self;
+    [scrollView addSubview:chartWebView];
     
-    metalPicker.dataSource = self;
-    metalPicker.delegate = self;
+    topPicker.dataSource = self;
+    topPicker.delegate = self;
     rangePicker.dataSource = self;
     rangePicker.delegate = self;
     
-    [metalPicker selectRow:halfIndex inComponent:0 animated:NO];
+    [topPicker selectRow:halfIndex inComponent:0 animated:NO];
 }
 
 - (void)viewDidLoad
@@ -119,25 +128,25 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
 }
 
 - (void) buttonClicked:(id)sender {
-    if (sender == showMetalPickerButton) {
-        [metalPicker setHidden:![metalPicker isHidden]];
+    if (sender == showTopPickerButton) {
+        [topPicker setHidden:![topPicker isHidden]];
     } else  if(sender == showRangePickerButton) {
         if ([showRangePickerButton.titleLabel.text isEqualToString:@"Select Range"]) {
             //set a default - pick middle value
-            NSInteger metalIndex = [metalPicker selectedRowInComponent:0];
-            NSString *metal = [[hardnessChartDict allKeys] objectAtIndex:metalIndex];
-            NSArray *array = [hardnessChartDict objectForKey:metal];
+            NSInteger metalIndex = [topPicker selectedRowInComponent:0];
+            NSString *metal = [[chartDictionary allKeys] objectAtIndex:metalIndex];
+            NSArray *array = [chartDictionary objectForKey:metal];
             [showRangePickerButton setTitle:[array objectAtIndex:array.count/2] forState:UIControlStateNormal];
             [rangePicker selectRow:array.count/2 inComponent:0 animated:NO];
         }
         [rangePicker setHidden:![rangePicker isHidden]];
     } else {
-        [metalPicker setHidden:YES];
+        [topPicker setHidden:YES];
         [rangePicker setHidden:YES];
         
-        NSInteger metalIndex = [metalPicker selectedRowInComponent:0];
-        NSString *metal = [[hardnessChartDict allKeys] objectAtIndex:metalIndex];
-        NSArray *metals = [hardnessChartDict allKeys];
+        NSInteger metalIndex = [topPicker selectedRowInComponent:0];
+        NSString *metal = [[chartDictionary allKeys] objectAtIndex:metalIndex];
+        NSArray *metals = [chartDictionary allKeys];
         //NSString *range = [[hardnessChartDict objectForKey:metal] objectAtIndex:[rangePicker selectedRowInComponent:0]];
         
         /*
@@ -172,14 +181,14 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
         }
         [html appendFormat:@"</tr><tr bgcolor=\"white\">"];
         for (NSString *key in metals) {
-            [html appendFormat:@"<td><div align=\"center\">%@</div></td>", [[hardnessChartDict objectForKey:key] objectAtIndex:[rangePicker selectedRowInComponent:0]]];
+            [html appendFormat:@"<td><div align=\"center\">%@</div></td>", [[chartDictionary objectForKey:key] objectAtIndex:[rangePicker selectedRowInComponent:0]]];
         }
         [html appendFormat:@"</tr></table></body></html>"];
         
         //NSLog(@"%@", html);
         
-        [hardnessChartWebView loadHTMLString:html baseURL:nil];
-        [hardnessChartWebView setHidden:NO];
+        [chartWebView loadHTMLString:html baseURL:nil];
+        [chartWebView setHidden:NO];
     }
     
     [self drawLayout];
@@ -231,7 +240,7 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     [self.view addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:showMetalPickerButton
+                   constraintWithItem:showTopPickerButton
                    attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationGreaterThanOrEqual
                    toItem:scrollView
@@ -242,7 +251,7 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     
     
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:showMetalPickerButton
+                   constraintWithItem:showTopPickerButton
                    attribute:NSLayoutAttributeCenterX
                    relatedBy:NSLayoutRelationEqual
                    toItem:scrollView
@@ -253,7 +262,7 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     
     
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:showMetalPickerButton
+                   constraintWithItem:showTopPickerButton
                    attribute:NSLayoutAttributeWidth
                    relatedBy:NSLayoutRelationEqual
                    toItem:nil
@@ -263,13 +272,13 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     [scrollView addConstraint:myConstraint];
     
     id toItem = nil;
-    if (![metalPicker isHidden]) {
+    if (![topPicker isHidden]) {
         
         myConstraint =[NSLayoutConstraint
-                       constraintWithItem:metalPicker
+                       constraintWithItem:topPicker
                        attribute:NSLayoutAttributeTop
                        relatedBy:NSLayoutRelationGreaterThanOrEqual
-                       toItem:showMetalPickerButton
+                       toItem:showTopPickerButton
                        attribute:NSLayoutAttributeBottom
                        multiplier:1.0
                        constant:0];
@@ -277,7 +286,7 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
         
         
         myConstraint =[NSLayoutConstraint
-                       constraintWithItem:metalPicker
+                       constraintWithItem:topPicker
                        attribute:NSLayoutAttributeCenterX
                        relatedBy:NSLayoutRelationEqual
                        toItem:scrollView
@@ -287,7 +296,7 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
         [scrollView addConstraint:myConstraint];
         
         myConstraint =[NSLayoutConstraint
-                       constraintWithItem:metalPicker
+                       constraintWithItem:topPicker
                        attribute:NSLayoutAttributeWidth
                        relatedBy:NSLayoutRelationEqual
                        toItem:nil
@@ -296,9 +305,9 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
                        constant:250];
         [scrollView addConstraint:myConstraint];
         
-        toItem = metalPicker;
+        toItem = topPicker;
     } else {
-        toItem = showMetalPickerButton;;
+        toItem = showTopPickerButton;;
     }
     
     myConstraint =[NSLayoutConstraint
@@ -405,7 +414,7 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     
     //
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:hardnessChartWebView
+                   constraintWithItem:chartWebView
                    attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationGreaterThanOrEqual
                    toItem:generateChart
@@ -416,7 +425,7 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     
     
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:hardnessChartWebView
+                   constraintWithItem:chartWebView
                    attribute:NSLayoutAttributeCenterX
                    relatedBy:NSLayoutRelationEqual
                    toItem:scrollView
@@ -426,7 +435,7 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     [scrollView addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:hardnessChartWebView
+                   constraintWithItem:chartWebView
                    attribute:NSLayoutAttributeWidth
                    relatedBy:NSLayoutRelationEqual
                    toItem:scrollView
@@ -435,9 +444,9 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
                    constant:0];
     [scrollView addConstraint:myConstraint];
     
-    if ([hardnessChartWebView isHidden]) {
-        hardnessWebViewHeightConstraint =[NSLayoutConstraint
-                                          constraintWithItem:hardnessChartWebView
+    if ([chartWebView isHidden]) {
+        webViewHeightConstraint =[NSLayoutConstraint
+                                          constraintWithItem:chartWebView
                                           attribute:NSLayoutAttributeHeight
                                           relatedBy:NSLayoutRelationEqual
                                           toItem:nil
@@ -446,14 +455,14 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
                                           constant:1];
     }
     
-    [scrollView addConstraint:hardnessWebViewHeightConstraint];
+    [scrollView addConstraint:webViewHeightConstraint];
     
     /*
      * These two contraints below makes the
      * scrollview scroll in all directions
      */
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:hardnessChartWebView
+                   constraintWithItem:chartWebView
                    attribute:NSLayoutAttributeRight
                    relatedBy:NSLayoutRelationEqual
                    toItem:scrollView
@@ -463,7 +472,7 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
     [scrollView addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:hardnessChartWebView
+                   constraintWithItem:chartWebView
                    attribute:NSLayoutAttributeBottom
                    relatedBy:NSLayoutRelationEqual
                    toItem:scrollView
@@ -476,7 +485,7 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [webView sizeToFit];
-    hardnessWebViewHeightConstraint.constant = webView.frame.size.height;
+    webViewHeightConstraint.constant = webView.frame.size.height;
 }
 
 // returns the number of 'columns' to display.
@@ -488,38 +497,38 @@ NSLayoutConstraint *hardnessWebViewHeightConstraint;
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
 {
-    if (pickerView == metalPicker) {
-        return hardnessChartDict.count;
+    if (pickerView == topPicker) {
+        return chartDictionary.count;
     }
-    NSInteger index = [metalPicker selectedRowInComponent:0];
-    NSString *key = [[hardnessChartDict allKeys] objectAtIndex:index];
-    NSArray *array = [hardnessChartDict objectForKey:key];
+    NSInteger index = [topPicker selectedRowInComponent:0];
+    NSString *key = [[chartDictionary allKeys] objectAtIndex:index];
+    NSArray *array = [chartDictionary objectForKey:key];
     return [array count];
     
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
 {
-    if (pickerView == metalPicker) {
-        NSArray *array = [hardnessChartDict allKeys];
+    if (pickerView == topPicker) {
+        NSArray *array = [chartDictionary allKeys];
         return [array objectAtIndex:row];
     }
     
-    NSInteger index = [metalPicker selectedRowInComponent:0];
-    NSString *key = [[hardnessChartDict allKeys] objectAtIndex:index];
-    NSArray *array = [hardnessChartDict objectForKey:key];
+    NSInteger index = [topPicker selectedRowInComponent:0];
+    NSString *key = [[chartDictionary allKeys] objectAtIndex:index];
+    NSArray *array = [chartDictionary objectForKey:key];
     return [array objectAtIndex:row];
     
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component{
-    if (pickerView == metalPicker) {
-        NSArray *array = [hardnessChartDict allKeys];
+    if (pickerView == topPicker) {
+        NSArray *array = [chartDictionary allKeys];
         NSString *title = [array objectAtIndex:row];
-        [showMetalPickerButton setTitle:title forState:UIControlStateNormal];
+        [showTopPickerButton setTitle:title forState:UIControlStateNormal];
         [rangePicker reloadComponent:0];
     } else {
-        NSArray *array = [hardnessChartDict objectForKey:showMetalPickerButton.titleLabel.text];
+        NSArray *array = [chartDictionary objectForKey:showTopPickerButton.titleLabel.text];
         [showRangePickerButton setTitle:[array objectAtIndex:row] forState:UIControlStateNormal];
     }
 }

@@ -8,16 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PFHardnessCaseDepthViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UIWebViewDelegate> {
+@interface PFChartViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UIWebViewDelegate> {
    // IBOutlet UIWebView *hardnessWebView;
-    UIWebView *hardnessChartWebView;
-    UIButton *showMetalPickerButton;
+    UIWebView *chartWebView;
+    UIButton *showTopPickerButton;
     UIButton *showRangePickerButton;
-    UIPickerView *metalPicker;
+    UIPickerView *topPicker;
     UIPickerView *rangePicker;
     UIScrollView *scrollView;
     UIButton *generateChart;
     UIButton *showFullChart;
 }
+
+-(id)initWithDict:(NSMutableDictionary *)chartDict withTitle:(NSString *)title;
 
 @end

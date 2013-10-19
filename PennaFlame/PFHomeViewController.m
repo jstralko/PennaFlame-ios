@@ -10,9 +10,8 @@
 #import "PFMetricViewController.h"
 #import "PFContactInfoViewController.h"
 #import "PFMathConverterViewController.h"
-#import "PFHardnessCaseDepthViewController.h"
+#import "PFChartViewController.h"
 #import "PFMTIViewController.h"
-#import "PFHardnessChartViewController.h"
 
 #define HOME_CELL               @"HOME_CELL"
 #define SUPPLEMENTARY_VIEW_CELL @"SUPPLEMENTARY_VIEW_CELL"
@@ -23,6 +22,9 @@
 
 @implementation PFHomeViewController
 
+NSMutableDictionary *hardnessCaseDepthChartDict;
+NSMutableDictionary *hardnessChartDict;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,6 +32,11 @@
         // Custom initialization
         self.navigationController.navigationBar.tintColor = [UIColor blackColor];
         self.navigationItem.title = @"Penna Flame";
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"HardnessCaseDepth" ofType:@"plist"];
+        hardnessCaseDepthChartDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+        
+        plistPath = [[NSBundle mainBundle] pathForResource:@"HardnessChartData" ofType:@"plist"];
+        hardnessChartDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     }
     return self;
 }
@@ -168,7 +175,7 @@
         }
             break;
         case 2: {
-            PFHardnessCaseDepthViewController *pfhcdc = [[PFHardnessCaseDepthViewController alloc]init];
+            PFChartViewController *pfhcdc = [[PFChartViewController alloc]initWithDict:hardnessCaseDepthChartDict withTitle:@"Hardness Case Depth"];
             [self.navigationController pushViewController:pfhcdc animated:YES];
         }
             break;
@@ -178,7 +185,7 @@
         }
             break;
         case 4: {
-            PFHardnessChartViewController *pfhcvc = [[PFHardnessChartViewController alloc] init];
+            PFChartViewController *pfhcvc = [[PFChartViewController alloc]initWithDict:hardnessChartDict withTitle:@"Hardness Chart"];
             [self.navigationController pushViewController:pfhcvc animated:YES];
         }
             break;
