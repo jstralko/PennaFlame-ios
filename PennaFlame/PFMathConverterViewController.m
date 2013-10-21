@@ -55,7 +55,6 @@
     [segmentedControl setFrame:CGRectZero];
     [segmentedControl setTintColor:[UIColor blackColor]];
     [segmentedControl addTarget:self action:@selector(onSegmentedControlChanged:) forControlEvents:UIControlEventValueChanged];
-    [segmentedControl setTintColor:[UIColor blackColor]];
     [segmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:segmentedControl];
     

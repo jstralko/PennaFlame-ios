@@ -67,17 +67,90 @@ NSInteger defaultSelectionIndex;
     return self;
 }
 
+- (void) loadView {
+    
+    [super loadView];
+    
+    if (!segmentedControl) segmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectZero];
+    [segmentedControl insertSegmentWithTitle:@"English" atIndex:0 animated:NO];
+    [segmentedControl insertSegmentWithTitle:@"Metric" atIndex:1 animated:NO];
+    [segmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [segmentedControl setTintColor:[UIColor blackColor]];
+    [segmentedControl addTarget:self action:@selector(onSegmentedControlClick:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:segmentedControl];
+    
+    if (!unitTable) unitTable = [[UITableView alloc] initWithFrame:CGRectZero];
+    [unitTable setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:unitTable];
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.view removeConstraints:self.view.constraints];
+    
+    NSLayoutConstraint *myConstraint =[NSLayoutConstraint
+                                       constraintWithItem:segmentedControl
+                                       attribute:NSLayoutAttributeTop
+                                       relatedBy:NSLayoutRelationEqual
+                                       toItem:self.view
+                                       attribute:NSLayoutAttributeTop
+                                       multiplier:1.0
+                                       constant:70];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:segmentedControl
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeCenterX
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:unitTable
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:segmentedControl
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:10];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:unitTable
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:unitTable
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:unitTable
+                   attribute:NSLayoutAttributeBottom
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
 }
 
 - (void)didReceiveMemoryWarning
