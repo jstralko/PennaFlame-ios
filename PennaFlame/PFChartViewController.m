@@ -609,6 +609,9 @@ NSLayoutConstraint *webViewHeightConstraint;
         NSArray *array = [chartDictionary objectForKey:showTopPickerButton.titleLabel.text];
         [showRangePickerButton setTitle:[array objectAtIndex:row] forState:UIControlStateNormal];
     }
+    
+    [generateChart setEnabled:YES];
+    generateChart.alpha = 1.0f;
 }
 
 - (void)didReceiveMemoryWarning
