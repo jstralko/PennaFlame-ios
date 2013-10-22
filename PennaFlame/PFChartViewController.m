@@ -23,12 +23,6 @@ NSLayoutConstraint *webViewHeightConstraint;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        //self.navigationItem.title = @"Hardness Case Depth";
-        //self.view.backgroundColor = [UIColor lightGrayColor];
-        
-        //NSURL *url = [[NSBundle mainBundle] URLForResource:@"hardness_table" withExtension:@"html"];
-        //NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-        //[hardnessWebView loadRequest:request];
     }
     return self;
 }
@@ -83,6 +77,8 @@ NSLayoutConstraint *webViewHeightConstraint;
     [generateChart setTranslatesAutoresizingMaskIntoConstraints:NO];
     [generateChart setTitle:@"Show  Chart" forState:UIControlStateNormal];
     [generateChart addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [generateChart setEnabled:NO];
+    generateChart.alpha = .5f;
     [scrollView addSubview:generateChart];
     
     if (!chartWebView) chartWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
@@ -145,6 +141,8 @@ NSLayoutConstraint *webViewHeightConstraint;
             NSArray *array = [chartDictionary objectForKey:metal];
             [showRangePickerButton setTitle:[array objectAtIndex:array.count/2] forState:UIControlStateNormal];
             [rangePicker selectRow:array.count/2 inComponent:0 animated:NO];
+            [generateChart setEnabled:YES];
+            generateChart.alpha = 1.0f;
         }
         [rangePicker setHidden:![rangePicker isHidden]];
     } else if (sender == showFullChart) {
