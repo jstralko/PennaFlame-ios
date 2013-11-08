@@ -77,7 +77,7 @@
     extra.textAlignment = NSTextAlignmentCenter;
     extra.lineBreakMode = NSLineBreakByWordWrapping;
     extra.numberOfLines = 0;
-    extra.text = @"Penna Flame Industrics\r1856 State Route 588\rZelienople, PA 16063-3902";
+    extra.text = @"Penna Flame Industries\r1856 State Route 588\rZelienople, PA 16063-3902";
     [extra setBackgroundColor:[UIColor clearColor]];
     [extra setTextColor:[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0]];
     [extra setTranslatesAutoresizingMaskIntoConstraints:NO];
