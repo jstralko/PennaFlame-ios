@@ -65,7 +65,9 @@ NSMutableDictionary *hardnessChartDict;
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor lightGrayColor];
-
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:HOME_CELL];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SUPPLEMENTARY_VIEW_CELL];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL];
     self.collectionView .dataSource = self;
     self.collectionView .delegate = self;
 }
@@ -74,9 +76,6 @@ NSMutableDictionary *hardnessChartDict;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:HOME_CELL];
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SUPPLEMENTARY_VIEW_CELL];
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,7 +86,6 @@ NSMutableDictionary *hardnessChartDict;
 
 #pragma mark - UICollectionView Datasource
 
-//TODO: add header or footer
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *cell = nil;
