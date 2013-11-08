@@ -62,7 +62,7 @@ NSMutableDictionary *englishMetricConvertDict;
         [metricUnitConvertDict setObject:[NSNumber numberWithInt:1] forKey:[NSString stringWithFormat:@"Inch"]];
         [metricUnitConvertDict setObject:[NSNumber numberWithFloat:12] forKey:[NSString stringWithFormat:@"Foot"]];
         [metricUnitConvertDict setObject:[NSNumber numberWithFloat:36] forKey:[NSString stringWithFormat:@"Yard"]];
-        [metricUnitConvertDict setObject:[NSNumber numberWithFloat:.63360] forKey:[NSString stringWithFormat:@"Mile"]];
+        [metricUnitConvertDict setObject:[NSNumber numberWithFloat:63360] forKey:[NSString stringWithFormat:@"Mile"]];
         
         englishMetricConvertDict = [[NSMutableDictionary alloc] init];
         [englishMetricConvertDict setObject:[NSNumber numberWithFloat:2.54] forKey:METRIC_TO_ENGLISH];
