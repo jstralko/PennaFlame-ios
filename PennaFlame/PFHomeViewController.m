@@ -13,8 +13,9 @@
 #import "PFChartViewController.h"
 #import "PFMTIViewController.h"
 
-#define HOME_CELL               @"HOME_CELL"
-#define SUPPLEMENTARY_VIEW_CELL @"SUPPLEMENTARY_VIEW_CELL"
+#define HOME_CELL                       @"HOME_CELL"
+#define SUPPLEMENTARY_VIEW_CELL         @"SUPPLEMENTARY_VIEW_CELL"
+#define SUPPLEMENTARY_FOOTER_VIEW_CELL  @"SUPPLEMENTARY_FOOTER_VIEW_CELL"
 
 @interface PFHomeViewController ()
 
@@ -59,10 +60,12 @@ NSMutableDictionary *hardnessChartDict;
         layout.minimumLineSpacing = 20.0f;       //space between cells vertical
     }
     
+    layout.headerReferenceSize = CGSizeMake(0, 10);
+    layout.footerReferenceSize = CGSizeMake(0, 50);
+    
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor lightGrayColor];
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:HOME_CELL];
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SUPPLEMENTARY_VIEW_CELL];
+
     self.collectionView .dataSource = self;
     self.collectionView .delegate = self;
 }
@@ -71,6 +74,9 @@ NSMutableDictionary *hardnessChartDict;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:HOME_CELL];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SUPPLEMENTARY_VIEW_CELL];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,10 +93,14 @@ NSMutableDictionary *hardnessChartDict;
     UICollectionReusableView *cell = nil;
     if (kind == UICollectionElementKindSectionHeader) {
         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SUPPLEMENTARY_VIEW_CELL forIndexPath:indexPath];
-        UIImage *headerImage = [UIImage imageNamed:@"layer11.png"];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:headerImage];
-        [headerView addSubview:imageView];
+        headerView.backgroundColor = [UIColor redColor];
         cell = headerView;
+    } else if (kind == UICollectionElementKindSectionFooter) {
+        UICollectionReusableView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL forIndexPath:indexPath];
+        UIImage *image = [UIImage imageNamed:@"layer12nomerge.gif"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        [footerView addSubview:imageView];
+        cell = footerView;
     }
     return cell;
 }
@@ -158,6 +168,11 @@ NSMutableDictionary *hardnessChartDict;
     label.numberOfLines = 2;
     label.adjustsFontSizeToFitWidth = YES;
     [cell.contentView addSubview:label];
+    //drop shadow
+    cell.layer.shadowColor = [UIColor blackColor].CGColor;
+    cell.layer.shadowRadius = 3.0f;
+    cell.layer.shadowOffset = CGSizeMake(4.0f, 5.0f);
+    cell.layer.shadowOpacity = 0.8f;
     return cell;
 }
 
