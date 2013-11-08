@@ -20,6 +20,7 @@
     IBOutlet UITextField *decimalTextField;
 //    IBOutlet UIButton *clearButton;
     UIScrollView *scrollView;
+    UIView *redPadding;
     
 }
 

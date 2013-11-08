@@ -48,6 +48,11 @@
     [scrollView setScrollEnabled:YES];
     [self.view addSubview:scrollView];
     
+    redPadding = [[UIView alloc] initWithFrame:CGRectZero];
+    [redPadding setTranslatesAutoresizingMaskIntoConstraints:NO];
+    redPadding.backgroundColor = [UIColor redColor];
+    [scrollView addSubview:redPadding];
+    
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"Fraction", @"Decimal", nil];
     segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
@@ -329,16 +334,67 @@
                    constant:0];
     [self.view addConstraint:myConstraint];
     
+    //
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redPadding
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeTop
+                   multiplier:1.0
+                   constant:0];
+    
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redPadding
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redPadding
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redPadding
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redPadding
+                   attribute:NSLayoutAttributeHeight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:10];
+    [scrollView addConstraint:myConstraint];
     
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:segmentedControl
                    attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationEqual
-                   toItem:scrollView
-                   attribute:NSLayoutAttributeTop
+                   toItem:redPadding
+                   attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:25];
+                   constant:15];
     
     [scrollView addConstraint:myConstraint];
     
@@ -643,15 +699,66 @@
                    constant:0];
     [self.view addConstraint:myConstraint];
     
-    
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:segmentedControl
+                   constraintWithItem:redPadding
                    attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationEqual
                    toItem:scrollView
                    attribute:NSLayoutAttributeTop
                    multiplier:1.0
-                   constant:25];
+                   constant:0];
+    
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redPadding
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redPadding
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redPadding
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redPadding
+                   attribute:NSLayoutAttributeHeight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:10];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:segmentedControl
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:redPadding
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:15];
     
     [scrollView addConstraint:myConstraint];
     
