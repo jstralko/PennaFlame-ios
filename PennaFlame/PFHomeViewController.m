@@ -70,6 +70,7 @@ NSMutableDictionary *hardnessChartDict;
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL];
     self.collectionView .dataSource = self;
     self.collectionView .delegate = self;
+    
 }
 
 - (void)viewDidLoad
@@ -162,6 +163,7 @@ NSMutableDictionary *hardnessChartDict;
     }
     
     label.textAlignment = NSTextAlignmentCenter;
+    [label setFont:[UIFont systemFontOfSize:12]];
     label.minimumScaleFactor = .2f;
     label.numberOfLines = 2;
     label.adjustsFontSizeToFitWidth = YES;
