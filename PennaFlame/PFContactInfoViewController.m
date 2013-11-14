@@ -21,7 +21,7 @@
     if (self) {
         // Custom initialization
         self.navigationItem.title = @"Contact Info";
-        self.view.backgroundColor = [UIColor lightGrayColor];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
         
     }
     return self;
@@ -54,21 +54,21 @@
     
     if(!websiteButton) websiteButton = [[UIButton alloc] initWithFrame:CGRectZero];
 	[websiteButton setTitle:@"Website" forState:UIControlStateNormal];
-    [websiteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [websiteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [websiteButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [websiteButton addTarget:self action:@selector(websiteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	[scrollView addSubview:websiteButton];
     
     if(!callButton) callButton = [[UIButton alloc] initWithFrame:CGRectZero];
 	[callButton setTitle:@"Call" forState:UIControlStateNormal];
-    [callButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [callButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [callButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [callButton addTarget:self action:@selector(callButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	[scrollView addSubview:callButton];
     
     if(!emailButton) emailButton = [[UIButton alloc] initWithFrame:CGRectZero];
 	[emailButton setTitle:@"Email" forState:UIControlStateNormal];
-    [emailButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [emailButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [emailButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [emailButton addTarget:self action:@selector(emailButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	[scrollView addSubview:emailButton];

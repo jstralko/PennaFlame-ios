@@ -1,0 +1,43 @@
+{
+  "images" : [
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 18,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 1,
+          "top" : 36,
+          "right" : 24,
+          "left" : 6
+        }
+      },
+      "idiom" : "iphone",
+      "filename" : "main_buttons_w-o_shadow_1.jpg",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1
+        },
+        "capInsets" : {
+          "right" : 4,
+          "left" : 3
+        }
+      },
+      "idiom" : "ipad",
+      "filename" : "main_buttons_w-o_shadow_HighRes_1.jpg",
+      "scale" : "1x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

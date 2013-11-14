@@ -30,7 +30,7 @@ NSString *chartHtml;
     if (self) {
         chartHtml = html;
         self.navigationItem.title = @"Full Chart";
-        self.view.backgroundColor = [UIColor lightGrayColor];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
     }
     
     return self;

@@ -37,7 +37,7 @@ NSMutableDictionary *englishMetricConvertDict;
     if (self) {
         // Custom initialization
         self.navigationItem.title = @"Metric Converter";
-        self.view.backgroundColor = [UIColor lightGrayColor];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
         unitConvertDict = [[NSMutableDictionary alloc]init];
         //english
         [unitConvertDict setObject:[NSNumber numberWithInt:1] forKey:[NSString stringWithFormat:@"Inch"]];

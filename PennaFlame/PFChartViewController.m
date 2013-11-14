@@ -32,7 +32,7 @@ NSLayoutConstraint *webViewHeightConstraint;
     if (self) {
         chartDictionary = chartDict;
         self.navigationItem.title = title;
-        self.view.backgroundColor = [UIColor lightGrayColor];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
     }
     return self;
 }

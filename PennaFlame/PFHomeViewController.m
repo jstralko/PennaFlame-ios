@@ -64,7 +64,7 @@ NSMutableDictionary *hardnessChartDict;
     layout.footerReferenceSize = CGSizeMake(0, 50);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-    self.collectionView.backgroundColor = [UIColor lightGrayColor];
+    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:HOME_CELL];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SUPPLEMENTARY_VIEW_CELL];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL];
@@ -87,6 +87,12 @@ NSMutableDictionary *hardnessChartDict;
 
 #pragma mark - UICollectionView Datasource
 
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UICollectionViewCell *datasetCell =[collectionView cellForItemAtIndexPath:indexPath];
+    datasetCell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImage"]];
+}
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *cell = nil;
@@ -96,7 +102,7 @@ NSMutableDictionary *hardnessChartDict;
         cell = headerView;
     } else if (kind == UICollectionElementKindSectionFooter) {
         UICollectionReusableView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL forIndexPath:indexPath];
-        UIImage *image = [UIImage imageNamed:@"layer12nomerge.gif"];
+        UIImage *image = [UIImage imageNamed:@"PFILogo"];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         [footerView addSubview:imageView];
         cell = footerView;
@@ -106,13 +112,13 @@ NSMutableDictionary *hardnessChartDict;
 
 - (void)collectionView:(UICollectionView *)colView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell* cell = [colView cellForItemAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = nil;
+    cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImage"]];
 }
 
 
 - (void)collectionView:(UICollectionView *)colView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell* cell = [colView cellForItemAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor lightGrayColor];
+    cell.contentView.backgroundColor = [UIColor redColor];
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -135,33 +141,60 @@ NSMutableDictionary *hardnessChartDict;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:HOME_CELL forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImage"]];
     UILabel *label = [[UILabel alloc] initWithFrame:cell.bounds];
     
     switch (indexPath.item) {
-        case 0:
+        case 0: {
             label.text = @"English/Metric Converter";
+            UIImage *img = [UIImage imageNamed:@"EnglishMetric"];
+            UIImageView *iv = [[UIImageView alloc] initWithImage:img];
+            [cell.contentView addSubview:iv];
+        }
             break;
-        case 1:
+        case 1: {
             label.text = @"Fraction/Decimal Converter";
+            label.text = @"English/Metric Converter";
+            UIImage *img = [UIImage imageNamed:@"FractionDecimal"];
+            UIImageView *iv = [[UIImageView alloc] initWithImage:img];
+            [cell.contentView addSubview:iv];
+        }
             break;
-        case 2:
+        case 2: {
             label.text = @"Hardness Case Depth";
+            UIImage *img = [UIImage imageNamed:@"CaseDepthButton"];
+            UIImageView *iv = [[UIImageView alloc] initWithImage:img];
+            [cell.contentView addSubview:iv];
+        }
             break;
-        case 3:
-            label.text = @"MTI Statement";
-            break;
-        case 4:
+        case 3: {
             label.text = @"Hardness Chart";
+            UIImage *img = [UIImage imageNamed:@"HardnessChartButton"];
+            UIImageView *iv = [[UIImageView alloc] initWithImage:img];
+            [cell.contentView addSubview:iv];
+        }
             break;
-        case 5:
+        case 4: {
+            label.text = @"MTI Statement";
+            UIImage *img = [UIImage imageNamed:@"MTIStatementButton"];
+            UIImageView *iv = [[UIImageView alloc] initWithImage:img];
+            [cell.contentView addSubview:iv];
+        }
+            break;
+        case 5: {
+            UIImage *img = [UIImage imageNamed:@"ContactButton"];
+            UIImageView *iv = [[UIImageView alloc] initWithImage:img];
+            [cell.contentView addSubview:iv];
             label.text = @"Contact Us";
+            
+        }
             break;
         default:
             label.text = @"UNKNOWN";
             break;
     }
-    
+
+    [label setTextColor:[UIColor whiteColor]];
     label.textAlignment = NSTextAlignmentCenter;
     [label setFont:[UIFont systemFontOfSize:12]];
     label.minimumScaleFactor = .2f;
@@ -177,7 +210,6 @@ NSMutableDictionary *hardnessChartDict;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     switch (indexPath.row) {
         case 0: {
             PFMetricViewController *pfvc = [[PFMetricViewController alloc]init];
@@ -195,13 +227,14 @@ NSMutableDictionary *hardnessChartDict;
         }
             break;
         case 3: {
-            PFMTIViewController *pfmvc = [[PFMTIViewController alloc] init];
-            [self.navigationController pushViewController:pfmvc animated:YES];
+            PFChartViewController *pfhcvc = [[PFChartViewController alloc]initWithDict:hardnessChartDict withTitle:@"Hardness Chart"];
+            [self.navigationController pushViewController:pfhcvc animated:YES];
         }
             break;
         case 4: {
-            PFChartViewController *pfhcvc = [[PFChartViewController alloc]initWithDict:hardnessChartDict withTitle:@"Hardness Chart"];
-            [self.navigationController pushViewController:pfhcvc animated:YES];
+            PFMTIViewController *pfmvc = [[PFMTIViewController alloc] init];
+            [self.navigationController pushViewController:pfmvc animated:YES];
+
         }
             break;
         case 5: {

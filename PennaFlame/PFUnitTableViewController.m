@@ -27,7 +27,7 @@ NSInteger defaultSelectionIndex;
     if (self) {
         // Custom initialization
         self.navigationItem.title = @"Units";
-        self.view.backgroundColor = [UIColor lightGrayColor];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
     }
     return self;
 }
@@ -81,6 +81,7 @@ NSInteger defaultSelectionIndex;
     
     if (!unitTable) unitTable = [[UITableView alloc] initWithFrame:CGRectZero];
     [unitTable setTranslatesAutoresizingMaskIntoConstraints:NO];
+    unitTable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
     [self.view addSubview:unitTable];
 
 }
