@@ -12,6 +12,7 @@
 #import "PFMathConverterViewController.h"
 #import "PFChartViewController.h"
 #import "PFMTIViewController.h"
+#import "PFHomeCollectionViewCell.h"
 
 #define HOME_CELL                       @"HOME_CELL"
 #define SUPPLEMENTARY_VIEW_CELL         @"SUPPLEMENTARY_VIEW_CELL"
@@ -65,7 +66,8 @@ NSMutableDictionary *hardnessChartDict;
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:HOME_CELL];
+    self.collectionView.contentMode = UIViewContentModeScaleToFill;
+    [self.collectionView registerClass:[PFHomeCollectionViewCell class] forCellWithReuseIdentifier:HOME_CELL];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SUPPLEMENTARY_VIEW_CELL];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL];
     self.collectionView .dataSource = self;
@@ -140,72 +142,48 @@ NSMutableDictionary *hardnessChartDict;
 // 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:HOME_CELL forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImage"]];
-    UILabel *label = [[UILabel alloc] initWithFrame:cell.bounds];
+    PFHomeCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:HOME_CELL forIndexPath:indexPath];
     
     switch (indexPath.item) {
         case 0: {
-            label.text = @"English/Metric Converter";
+            cell.title.text = @"English / Metric Converter";
             UIImage *img = [UIImage imageNamed:@"EnglishMetric"];
-            UIImageView *iv = [[UIImageView alloc] initWithImage:img];
-            [cell.contentView addSubview:iv];
+            [cell setImageViewFrame:img];
         }
             break;
         case 1: {
-            label.text = @"Fraction/Decimal Converter";
-            label.text = @"English/Metric Converter";
+            cell.title.text = @"Fraction / Decimal Converter";
             UIImage *img = [UIImage imageNamed:@"FractionDecimal"];
-            UIImageView *iv = [[UIImageView alloc] initWithImage:img];
-            [cell.contentView addSubview:iv];
+            [cell setImageViewFrame:img];
         }
             break;
         case 2: {
-            label.text = @"Hardness Case Depth";
+            cell.title.text = @"Hardness Case Depth";
             UIImage *img = [UIImage imageNamed:@"CaseDepthButton"];
-            UIImageView *iv = [[UIImageView alloc] initWithImage:img];
-            [cell.contentView addSubview:iv];
+            [cell setImageViewFrame:img];
         }
             break;
         case 3: {
-            label.text = @"Hardness Chart";
+            cell.title.text = @"Hardness Chart";
             UIImage *img = [UIImage imageNamed:@"HardnessChartButton"];
-            UIImageView *iv = [[UIImageView alloc] initWithImage:img];
-            [cell.contentView addSubview:iv];
+            [cell setImageViewFrame:img];
         }
             break;
         case 4: {
-            label.text = @"MTI Statement";
+            cell.title.text = @"MTI Statement of Liability";
             UIImage *img = [UIImage imageNamed:@"MTIStatementButton"];
-            UIImageView *iv = [[UIImageView alloc] initWithImage:img];
-            [cell.contentView addSubview:iv];
+            [cell setImageViewFrame:img];
         }
             break;
         case 5: {
+            cell.title.text = @"Contact Us";
             UIImage *img = [UIImage imageNamed:@"ContactButton"];
-            UIImageView *iv = [[UIImageView alloc] initWithImage:img];
-            [cell.contentView addSubview:iv];
-            label.text = @"Contact Us";
-            
+            [cell setImageViewFrame:img];
         }
             break;
         default:
-            label.text = @"UNKNOWN";
             break;
     }
-
-    [label setTextColor:[UIColor whiteColor]];
-    label.textAlignment = NSTextAlignmentCenter;
-    [label setFont:[UIFont systemFontOfSize:12]];
-    label.minimumScaleFactor = .2f;
-    label.numberOfLines = 2;
-    label.adjustsFontSizeToFitWidth = YES;
-    [cell.contentView addSubview:label];
-    //drop shadow
-    cell.layer.shadowColor = [UIColor blackColor].CGColor;
-    cell.layer.shadowRadius = 3.0f;
-    cell.layer.shadowOffset = CGSizeMake(4.0f, 5.0f);
-    cell.layer.shadowOpacity = 0.8f;
     return cell;
 }
 

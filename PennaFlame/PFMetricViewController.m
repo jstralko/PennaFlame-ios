@@ -84,6 +84,11 @@ NSMutableDictionary *englishMetricConvertDict;
     [scrollView setScrollEnabled:YES];
     [self.view addSubview:scrollView];
     
+    redBanner = [[UIView alloc] initWithFrame:CGRectZero];
+    [redBanner setTranslatesAutoresizingMaskIntoConstraints:NO];
+    redBanner.backgroundColor = [UIColor redColor];
+    [scrollView addSubview:redBanner];
+    
     //CGRect frame = CGRectMake(45, 20, 100, 30);
     topTextField = [[UITextField alloc] initWithFrame:CGRectZero];
     [topTextField setBorderStyle:UITextBorderStyleBezel];
@@ -194,12 +199,35 @@ NSMutableDictionary *englishMetricConvertDict;
                        multiplier:1.0
                        constant:0];
     
+    //start of redbanner
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeTop
+                   multiplier:1.0
+                   constant:25];
+    
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:1.0
+                   constant:100];
+    [scrollView addConstraint:myConstraint];
+    //end of redbanner
+    
     myConstraint =[NSLayoutConstraint
                     constraintWithItem:topTextField
                     attribute:NSLayoutAttributeTop
                     relatedBy:NSLayoutRelationEqual
-                    toItem:scrollView
-                    attribute:NSLayoutAttributeTop
+                    toItem:redBanner
+                    attribute:NSLayoutAttributeBottom
                     multiplier:1.0
                      constant:25];
                    

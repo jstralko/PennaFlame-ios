@@ -12,12 +12,13 @@
 @interface PFContactInfoViewController: UIViewController <MFMailComposeViewControllerDelegate> {
     
     UILabel *label;
-    IBOutlet UIImageView *logo;
+    //IBOutlet UIImageView *logo;
     IBOutlet UIButton *emailButton;
     IBOutlet UIButton *callButton;
     IBOutlet UIButton *websiteButton;
     UIScrollView *scrollView;
     UILabel *extra;
+    UIView *redBanner;
     
 }
 

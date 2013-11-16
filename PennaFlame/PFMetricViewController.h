@@ -16,6 +16,7 @@
     IBOutlet UITextField *topTextField;
     IBOutlet UITextField *bottomTextField;
     UIScrollView *scrollView;
+    UIView *redBanner;
 
 }
 

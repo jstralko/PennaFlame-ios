@@ -37,10 +37,15 @@
     [scrollView setScrollEnabled:YES];
     [self.view addSubview:scrollView];
     
-    if(!logo)logo = [[UIImageView alloc] initWithFrame:CGRectZero];
-    [logo setImage:[UIImage imageNamed:@"layer12nomerge.gif"]];
-    [logo setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [scrollView addSubview:logo];
+    redBanner = [[UIView alloc] initWithFrame:CGRectZero];
+    [redBanner setTranslatesAutoresizingMaskIntoConstraints:NO];
+    redBanner.backgroundColor = [UIColor redColor];
+    [scrollView addSubview:redBanner];
+    
+//    if(!logo)logo = [[UIImageView alloc] initWithFrame:CGRectZero];
+//    [logo setImage:[UIImage imageNamed:@"layer12nomerge.gif"]];
+//    [logo setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [scrollView addSubview:logo];
     
     if(!label) label = [[UILabel alloc] initWithFrame:CGRectZero];
     [label setText:@"\"Pursuing Excellence\""];
@@ -128,56 +133,79 @@
                            multiplier:1.0
                            constant:0];
         [self.view addConstraint:myConstraint];
-        
-        
-        myConstraint =[NSLayoutConstraint
-                       constraintWithItem:logo
-                       attribute:NSLayoutAttributeTop
-                       relatedBy:NSLayoutRelationGreaterThanOrEqual
-                       toItem:scrollView
-                       attribute:NSLayoutAttributeTop
-                       multiplier:1.0
-                       constant:5];
-        [scrollView addConstraint:myConstraint];
-        
-        
-        myConstraint =[NSLayoutConstraint
-                       constraintWithItem:logo
-                       attribute:NSLayoutAttributeCenterX
-                       relatedBy:NSLayoutRelationEqual
-                       toItem:scrollView
-                       attribute:NSLayoutAttributeCenterX
-                       multiplier:1.0
-                       constant:0];
-        [scrollView addConstraint:myConstraint];
-        
-        
-        myConstraint =[NSLayoutConstraint
-                       constraintWithItem:logo
-                       attribute:NSLayoutAttributeHeight
-                       relatedBy:NSLayoutRelationEqual
-                       toItem:nil
-                       attribute:NSLayoutAttributeNotAnAttribute
-                       multiplier:1.0
-                       constant:55];
-        [scrollView addConstraint:myConstraint];
-        
-        myConstraint =[NSLayoutConstraint
-                       constraintWithItem:logo
-                       attribute:NSLayoutAttributeWidth
-                       relatedBy:NSLayoutRelationEqual
-                       toItem:nil
-                       attribute:NSLayoutAttributeNotAnAttribute
-                       multiplier:1.0
-                       constant:scrollView.frame.size.width - 10];
-        [scrollView addConstraint:myConstraint];
-        
+    
+    //start of redbanner
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeTop
+                   multiplier:1.0
+                   constant:25];
+    
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:1.0
+                   constant:100];
+    [scrollView addConstraint:myConstraint];
+    //end of redbanner
+    
+//        
+//        myConstraint =[NSLayoutConstraint
+//                       constraintWithItem:logo
+//                       attribute:NSLayoutAttributeTop
+//                       relatedBy:NSLayoutRelationGreaterThanOrEqual
+//                       toItem:redBanner
+//                       attribute:NSLayoutAttributeBottom
+//                       multiplier:1.0
+//                       constant:5];
+//        [scrollView addConstraint:myConstraint];
+//        
+//        
+//        myConstraint =[NSLayoutConstraint
+//                       constraintWithItem:logo
+//                       attribute:NSLayoutAttributeCenterX
+//                       relatedBy:NSLayoutRelationEqual
+//                       toItem:scrollView
+//                       attribute:NSLayoutAttributeCenterX
+//                       multiplier:1.0
+//                       constant:0];
+//        [scrollView addConstraint:myConstraint];
+//        
+//        
+//        myConstraint =[NSLayoutConstraint
+//                       constraintWithItem:logo
+//                       attribute:NSLayoutAttributeHeight
+//                       relatedBy:NSLayoutRelationEqual
+//                       toItem:nil
+//                       attribute:NSLayoutAttributeNotAnAttribute
+//                       multiplier:1.0
+//                       constant:55];
+//        [scrollView addConstraint:myConstraint];
+//        
+//        myConstraint =[NSLayoutConstraint
+//                       constraintWithItem:logo
+//                       attribute:NSLayoutAttributeWidth
+//                       relatedBy:NSLayoutRelationEqual
+//                       toItem:nil
+//                       attribute:NSLayoutAttributeNotAnAttribute
+//                       multiplier:1.0
+//                       constant:scrollView.frame.size.width - 10];
+//        [scrollView addConstraint:myConstraint];
+    
         
         myConstraint =[NSLayoutConstraint
                        constraintWithItem:label
                        attribute:NSLayoutAttributeTop
                        relatedBy:NSLayoutRelationEqual
-                       toItem:logo
+                       toItem:redBanner
                        attribute:NSLayoutAttributeBottom
                        multiplier:1.0
                        constant:20];

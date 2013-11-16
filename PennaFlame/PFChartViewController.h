@@ -18,6 +18,7 @@
     UIScrollView *scrollView;
     UIButton *generateChart;
     UIButton *showFullChart;
+    UIView *redBanner;
 }
 
 -(id)initWithDict:(NSMutableDictionary *)chartDict withTitle:(NSString *)title;

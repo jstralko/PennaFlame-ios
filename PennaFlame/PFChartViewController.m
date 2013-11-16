@@ -93,6 +93,11 @@ NSLayoutConstraint *webViewHeightConstraint;
     [showFullChart addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:showFullChart];
     
+    redBanner = [[UIView alloc] initWithFrame:CGRectZero];
+    [redBanner setTranslatesAutoresizingMaskIntoConstraints:NO];
+    redBanner.backgroundColor = [UIColor redColor];
+    [scrollView addSubview:redBanner];
+    
     topPicker.dataSource = self;
     topPicker.delegate = self;
     rangePicker.dataSource = self;
@@ -278,11 +283,34 @@ NSLayoutConstraint *webViewHeightConstraint;
                    constant:0];
     [self.view addConstraint:myConstraint];
     
+    //start of redbanner
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeTop
+                   multiplier:1.0
+                   constant:25];
+    
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:1.0
+                   constant:100];
+    [scrollView addConstraint:myConstraint];
+    //end of redbanner
+    
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:showTopPickerButton
                    attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationGreaterThanOrEqual
-                   toItem:scrollView
+                   toItem:redBanner
                    attribute:NSLayoutAttributeTop
                    multiplier:1.0
                    constant:0];

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13F057CC1836DAE700B45092 /* PFHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F057CB1836DAE700B45092 /* PFHomeCollectionViewCell.m */; };
 		3C2F60ED1809F7580088B618 /* HardnessChartData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C2F60EC1809F7580088B618 /* HardnessChartData.plist */; };
 		3C9437C41802067400845209 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C31802067400845209 /* Foundation.framework */; };
 		3C9437C61802067400845209 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C51802067400845209 /* CoreGraphics.framework */; };
@@ -50,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13F057CA1836DAE700B45092 /* PFHomeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFHomeCollectionViewCell.h; sourceTree = "<group>"; };
+		13F057CB1836DAE700B45092 /* PFHomeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFHomeCollectionViewCell.m; sourceTree = "<group>"; };
 		3C2F60EC1809F7580088B618 /* HardnessChartData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HardnessChartData.plist; sourceTree = "<group>"; };
 		3C9437C01802067400845209 /* PennaFlame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PennaFlame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9437C31802067400845209 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -176,6 +179,8 @@
 				3C9437FC180206C000845209 /* PFWebsiteViewController.m */,
 				3C9437FD180206C000845209 /* PFWebsiteViewController.xib */,
 				3C9437D51802067400845209 /* Images.xcassets */,
+				13F057CA1836DAE700B45092 /* PFHomeCollectionViewCell.h */,
+				13F057CB1836DAE700B45092 /* PFHomeCollectionViewCell.m */,
 				3C9437CA1802067400845209 /* Supporting Files */,
 				3C2F60EC1809F7580088B618 /* HardnessChartData.plist */,
 				64E26DE9181236A90056519F /* HardnessCaseDepth.plist */,
@@ -344,6 +349,7 @@
 				3C943803180206C000845209 /* PFWebsiteViewController.m in Sources */,
 				3C9438161802084600845209 /* PFMetricViewController.m in Sources */,
 				3C9437D41802067400845209 /* PFAppDelegate.m in Sources */,
+				13F057CC1836DAE700B45092 /* PFHomeCollectionViewCell.m in Sources */,
 				3C9437D01802067400845209 /* main.m in Sources */,
 				64E26DED18135CAD0056519F /* PFFullChartViewController.m in Sources */,
 				3C943802180206C000845209 /* PFUnitTableViewController.m in Sources */,
