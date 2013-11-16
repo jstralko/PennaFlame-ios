@@ -71,6 +71,11 @@ NSInteger defaultSelectionIndex;
     
     [super loadView];
     
+    redBanner = [[UIView alloc] initWithFrame:CGRectZero];
+    [redBanner setTranslatesAutoresizingMaskIntoConstraints:NO];
+    redBanner.backgroundColor = [UIColor redColor];
+    [self.view addSubview:redBanner];
+    
     if (!segmentedControl) segmentedControl = [[UISegmentedControl alloc] initWithFrame:CGRectZero];
     [segmentedControl insertSegmentWithTitle:@"English" atIndex:0 animated:NO];
     [segmentedControl insertSegmentWithTitle:@"Metric" atIndex:1 animated:NO];
@@ -92,14 +97,67 @@ NSInteger defaultSelectionIndex;
     
     [self.view removeConstraints:self.view.constraints];
     
+    //start of redbanner
     NSLayoutConstraint *myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeTop
+                   multiplier:1.0
+                   constant:65];
+    
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeHeight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:10];
+    [self.view addConstraint:myConstraint];
+    //end of redbanner
+    
+     myConstraint =[NSLayoutConstraint
                                        constraintWithItem:segmentedControl
                                        attribute:NSLayoutAttributeTop
                                        relatedBy:NSLayoutRelationEqual
-                                       toItem:self.view
-                                       attribute:NSLayoutAttributeTop
+                                       toItem:redBanner
+                                       attribute:NSLayoutAttributeBottom
                                        multiplier:1.0
-                                       constant:70];
+                                       constant:25];
     [self.view addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint

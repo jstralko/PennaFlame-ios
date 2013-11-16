@@ -10,6 +10,7 @@
 
 @interface PFFullChartViewController : UIViewController {
     UIWebView *chart;
+    UIView *redBanner;
 }
 
 -(id) initWithString:(NSString *)html;

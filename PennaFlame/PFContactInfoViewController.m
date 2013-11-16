@@ -42,11 +42,6 @@
     redBanner.backgroundColor = [UIColor redColor];
     [scrollView addSubview:redBanner];
     
-//    if(!logo)logo = [[UIImageView alloc] initWithFrame:CGRectZero];
-//    [logo setImage:[UIImage imageNamed:@"layer12nomerge.gif"]];
-//    [logo setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    [scrollView addSubview:logo];
-    
     if(!label) label = [[UILabel alloc] initWithFrame:CGRectZero];
     [label setText:@"\"Pursuing Excellence\""];
     [label setLineBreakMode:NSLineBreakByWordWrapping];
@@ -142,7 +137,7 @@
                    toItem:scrollView
                    attribute:NSLayoutAttributeTop
                    multiplier:1.0
-                   constant:25];
+                   constant:0];
     
     [scrollView addConstraint:myConstraint];
     
@@ -153,53 +148,39 @@
                    toItem:scrollView
                    attribute:NSLayoutAttributeWidth
                    multiplier:1.0
-                   constant:100];
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeHeight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:10];
     [scrollView addConstraint:myConstraint];
     //end of redbanner
-    
-//        
-//        myConstraint =[NSLayoutConstraint
-//                       constraintWithItem:logo
-//                       attribute:NSLayoutAttributeTop
-//                       relatedBy:NSLayoutRelationGreaterThanOrEqual
-//                       toItem:redBanner
-//                       attribute:NSLayoutAttributeBottom
-//                       multiplier:1.0
-//                       constant:5];
-//        [scrollView addConstraint:myConstraint];
-//        
-//        
-//        myConstraint =[NSLayoutConstraint
-//                       constraintWithItem:logo
-//                       attribute:NSLayoutAttributeCenterX
-//                       relatedBy:NSLayoutRelationEqual
-//                       toItem:scrollView
-//                       attribute:NSLayoutAttributeCenterX
-//                       multiplier:1.0
-//                       constant:0];
-//        [scrollView addConstraint:myConstraint];
-//        
-//        
-//        myConstraint =[NSLayoutConstraint
-//                       constraintWithItem:logo
-//                       attribute:NSLayoutAttributeHeight
-//                       relatedBy:NSLayoutRelationEqual
-//                       toItem:nil
-//                       attribute:NSLayoutAttributeNotAnAttribute
-//                       multiplier:1.0
-//                       constant:55];
-//        [scrollView addConstraint:myConstraint];
-//        
-//        myConstraint =[NSLayoutConstraint
-//                       constraintWithItem:logo
-//                       attribute:NSLayoutAttributeWidth
-//                       relatedBy:NSLayoutRelationEqual
-//                       toItem:nil
-//                       attribute:NSLayoutAttributeNotAnAttribute
-//                       multiplier:1.0
-//                       constant:scrollView.frame.size.width - 10];
-//        [scrollView addConstraint:myConstraint];
-    
         
         myConstraint =[NSLayoutConstraint
                        constraintWithItem:label

@@ -105,7 +105,8 @@ NSMutableDictionary *hardnessChartDict;
     } else if (kind == UICollectionElementKindSectionFooter) {
         UICollectionReusableView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL forIndexPath:indexPath];
         UIImage *image = [UIImage imageNamed:@"PFILogo"];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:footerView.bounds];
+        [imageView setImage:image];
         [footerView addSubview:imageView];
         cell = footerView;
     }

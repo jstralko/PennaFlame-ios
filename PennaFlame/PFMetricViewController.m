@@ -73,10 +73,7 @@ NSMutableDictionary *englishMetricConvertDict;
 
 -(void)loadView {
     // Set up main view
-    UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
-    view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    [view setBackgroundColor:[UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1.0]];
-    self.view = view;
+    [super loadView];
     
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -87,9 +84,8 @@ NSMutableDictionary *englishMetricConvertDict;
     redBanner = [[UIView alloc] initWithFrame:CGRectZero];
     [redBanner setTranslatesAutoresizingMaskIntoConstraints:NO];
     redBanner.backgroundColor = [UIColor redColor];
-    [scrollView addSubview:redBanner];
+    [scrollView addSubview:redBanner];    
     
-    //CGRect frame = CGRectMake(45, 20, 100, 30);
     topTextField = [[UITextField alloc] initWithFrame:CGRectZero];
     [topTextField setBorderStyle:UITextBorderStyleBezel];
     [topTextField setKeyboardType:UIKeyboardTypeDecimalPad];
@@ -99,7 +95,6 @@ NSMutableDictionary *englishMetricConvertDict;
     [topTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [scrollView addSubview:topTextField];
     
-//    //frame = CGRectMake(160, 22, 125, 30);
     topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [topButton setFrame:CGRectZero];
     [topButton setTitle:@"Inch" forState:UIControlStateNormal];
@@ -108,16 +103,14 @@ NSMutableDictionary *englishMetricConvertDict;
     // Set the target, action and event for the button
     [topButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:topButton];
-//
-//    //frame = CGRectMake(48, 55, 100, 25);
+
     topStepper = [[UIStepper alloc] initWithFrame:CGRectZero];
     [topStepper addTarget:self action:@selector(onStepChanged:) forControlEvents:UIControlEventValueChanged];
     [topStepper setTranslatesAutoresizingMaskIntoConstraints:NO];
     [topStepper setTintColor:[UIColor blackColor]];
     topStepper.maximumValue = MAX_NUMBER;
     [scrollView addSubview:topStepper];
-//
-//    //frame = CGRectMake(45, 105, 100, 30);
+
     bottomTextField = [[UITextField alloc]initWithFrame:CGRectZero];
     bottomTextField.textAlignment = NSTextAlignmentCenter;
     [bottomTextField setKeyboardType:UIKeyboardTypeDecimalPad];
@@ -126,8 +119,7 @@ NSMutableDictionary *englishMetricConvertDict;
     [bottomTextField setTranslatesAutoresizingMaskIntoConstraints:NO];
     [bottomTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [scrollView addSubview:bottomTextField];
-//
-//    //frame = CGRectMake(160, 127, 125, 30);
+
     bottomButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [bottomButton setFrame:CGRectZero];
     [bottomButton setTitle:@"Centimeter" forState:UIControlStateNormal];
@@ -135,8 +127,7 @@ NSMutableDictionary *englishMetricConvertDict;
     [bottomButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [bottomButton setTintColor:[UIColor blackColor]];
     [scrollView addSubview:bottomButton];
-//
-//    //frame = CGRectMake(48, 145, 100, 25);
+
     bottomStepper = [[UIStepper alloc] initWithFrame:CGRectZero];
     [bottomStepper addTarget:self action:@selector(onStepChanged:) forControlEvents:UIControlEventValueChanged];
     [bottomStepper setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -207,7 +198,7 @@ NSMutableDictionary *englishMetricConvertDict;
                    toItem:scrollView
                    attribute:NSLayoutAttributeTop
                    multiplier:1.0
-                   constant:25];
+                   constant:0];
     
     [scrollView addConstraint:myConstraint];
     
@@ -218,7 +209,37 @@ NSMutableDictionary *englishMetricConvertDict;
                    toItem:scrollView
                    attribute:NSLayoutAttributeWidth
                    multiplier:1.0
-                   constant:100];
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:redBanner
+                   attribute:NSLayoutAttributeHeight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:10];
     [scrollView addConstraint:myConstraint];
     //end of redbanner
     
@@ -258,8 +279,8 @@ NSMutableDictionary *englishMetricConvertDict;
                    constraintWithItem:topButton
                    attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationEqual
-                   toItem:scrollView
-                   attribute:NSLayoutAttributeTop
+                   toItem:redBanner
+                   attribute:NSLayoutAttributeBottom
                    multiplier:1.0
                    constant:20];
     

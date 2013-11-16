@@ -18,6 +18,7 @@
 @interface PFUnitTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     IBOutlet UISegmentedControl *segmentedControl;
     IBOutlet UITableView *unitTable;
+    UIView *redBanner;
 }
 
 -(id)initWithUnitType:(NSInteger)unitType settingCallback:(PFMetricViewController *)controller fromButton:(NSInteger) button;
