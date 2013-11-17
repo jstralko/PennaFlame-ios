@@ -20,6 +20,10 @@
       "scale" : "1x"
     },
     {
+      "idiom" : "iphone",
+      "scale" : "2x"
+    },
+    {
       "resizing" : {
         "mode" : "3-part-horizontal",
         "center" : {
@@ -34,6 +38,10 @@
       "idiom" : "ipad",
       "filename" : "main_buttons_w-o_shadow_HighRes_1.jpg",
       "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "scale" : "2x"
     }
   ],
   "info" : {

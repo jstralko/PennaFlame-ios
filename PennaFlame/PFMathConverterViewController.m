@@ -36,11 +36,7 @@
 
 - (void)loadView
 {
-    // Set up main view
-    UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
-    view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    [view setBackgroundColor:[UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1.0]];
-    self.view = view;
+    [super loadView];
     
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -63,8 +59,6 @@
     [segmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:segmentedControl];
     
-//CGRectMake(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
-    //frame = CGRectMake(45, 60, 100, 30);
     numeratorTextField = [[UITextField alloc] initWithFrame:CGRectZero];
     [numeratorTextField setBorderStyle:UITextBorderStyleBezel];
     [numeratorTextField setBackgroundColor:[UIColor whiteColor]];
@@ -75,14 +69,11 @@
     //[numeratorTextField becomeFirstResponder];
     [scrollView addSubview:numeratorTextField];
 
-    //frame = CGRectMake(160, 60, 10, 30);
     fractionBarLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     fractionBarLabel.text = @"/";
-    fractionBarLabel.backgroundColor = [UIColor lightGrayColor];
     [fractionBarLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:fractionBarLabel];
 
-//    frame = CGRectMake(180, 60, 100, 30);
     denominatorTextField = [[UITextField alloc] initWithFrame:CGRectZero];
     [denominatorTextField setBorderStyle:UITextBorderStyleBezel];
     [denominatorTextField setBackgroundColor:[UIColor whiteColor]];
@@ -92,7 +83,6 @@
     [denominatorTextField setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:denominatorTextField];
     
-//    frame = CGRectMake(48, 100, 100, 25);
     numeratorStepper = [[UIStepper alloc] initWithFrame:CGRectZero];
     [numeratorStepper addTarget:self action:@selector(steppervalueChanged:) forControlEvents:UIControlEventValueChanged];
     numeratorStepper.maximumValue = 100000;
@@ -100,7 +90,6 @@
     [numeratorStepper setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:numeratorStepper];
 
-    //frame = CGRectMake(183, 100, 100, 25);
     denominatorStepper = [[UIStepper alloc] initWithFrame:CGRectZero];
     [denominatorStepper addTarget:self action:@selector(steppervalueChanged:) forControlEvents:UIControlEventValueChanged];
     denominatorStepper.maximumValue = 100000;
@@ -108,7 +97,6 @@
     [denominatorStepper setTintColor:[UIColor blackColor]];
     [scrollView addSubview:denominatorStepper];
     
-//    frame = CGRectMake(110, 145, 100, 30);
     decimalTextField = [[UITextField alloc] initWithFrame:CGRectZero];
     [decimalTextField setBorderStyle:UITextBorderStyleBezel];
     [decimalTextField setKeyboardType:UIKeyboardTypeDecimalPad];
@@ -117,8 +105,7 @@
     [decimalTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [decimalTextField setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:decimalTextField];
-//
-//    frame = CGRectMake(115, 185, 100, 25);
+
     decimalStepper = [[UIStepper alloc] initWithFrame:CGRectZero];
     decimalStepper.minimumValue = 0.00f;
     decimalStepper.stepValue = 0.0001f;

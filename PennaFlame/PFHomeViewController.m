@@ -66,7 +66,6 @@ NSMutableDictionary *hardnessChartDict;
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
-    self.collectionView.contentMode = UIViewContentModeScaleToFill;
     [self.collectionView registerClass:[PFHomeCollectionViewCell class] forCellWithReuseIdentifier:HOME_CELL];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SUPPLEMENTARY_VIEW_CELL];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL];
@@ -104,6 +103,10 @@ NSMutableDictionary *hardnessChartDict;
         cell = headerView;
     } else if (kind == UICollectionElementKindSectionFooter) {
         UICollectionReusableView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL forIndexPath:indexPath];
+        
+        [[footerView subviews]
+         makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        
         UIImage *image = [UIImage imageNamed:@"PFILogo"];
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:footerView.bounds];
         [imageView setImage:image];
@@ -111,6 +114,12 @@ NSMutableDictionary *hardnessChartDict;
         cell = footerView;
     }
     return cell;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    /* resize the image at the footer */
+    [self.collectionView reloadData];
 }
 
 - (void)collectionView:(UICollectionView *)colView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
