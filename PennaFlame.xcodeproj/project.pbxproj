@@ -33,8 +33,6 @@
 		3C9438141802083800845209 /* PFContactInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9438111802083800845209 /* PFContactInfoViewController.xib */; };
 		3C9438161802084600845209 /* PFMetricViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9438151802084600845209 /* PFMetricViewController.m */; };
 		3C94381B18020ABF00845209 /* hardness_table.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381718020ABF00845209 /* hardness_table.html */; };
-		3C94381C18020ABF00845209 /* layer11.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381818020ABF00845209 /* layer11.gif */; };
-		3C94381D18020ABF00845209 /* layer12nomerge.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381918020ABF00845209 /* layer12nomerge.gif */; };
 		3C94381E18020ABF00845209 /* mti_statement.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381A18020ABF00845209 /* mti_statement.html */; };
 		64E26DE8181076A20056519F /* PFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E26DE7181076A20056519F /* PFHomeViewController.m */; };
 		64E26DEA181236A90056519F /* HardnessCaseDepth.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64E26DE9181236A90056519F /* HardnessCaseDepth.plist */; };
@@ -91,8 +89,6 @@
 		3C9438121802083800845209 /* PFMetricViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMetricViewController.h; sourceTree = "<group>"; };
 		3C9438151802084600845209 /* PFMetricViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMetricViewController.m; sourceTree = "<group>"; };
 		3C94381718020ABF00845209 /* hardness_table.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = hardness_table.html; sourceTree = "<group>"; };
-		3C94381818020ABF00845209 /* layer11.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layer11.gif; sourceTree = "<group>"; };
-		3C94381918020ABF00845209 /* layer12nomerge.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = layer12nomerge.gif; sourceTree = "<group>"; };
 		3C94381A18020ABF00845209 /* mti_statement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mti_statement.html; sourceTree = "<group>"; };
 		64E26DE6181076A20056519F /* PFHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFHomeViewController.h; sourceTree = "<group>"; };
 		64E26DE7181076A20056519F /* PFHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFHomeViewController.m; sourceTree = "<group>"; };
@@ -162,7 +158,6 @@
 				134F04A5183961FE009E0420 /* PFTabView.m */,
 				64E26DE6181076A20056519F /* PFHomeViewController.h */,
 				64E26DE7181076A20056519F /* PFHomeViewController.m */,
-				3C94382018020CEF00845209 /* images */,
 				3C94381F18020CD900845209 /* html */,
 				3C94380F1802083800845209 /* PFContactInfoViewController.h */,
 				3C9438101802083800845209 /* PFContactInfoViewController.m */,
@@ -231,15 +226,6 @@
 				3C94381718020ABF00845209 /* hardness_table.html */,
 			);
 			name = html;
-			sourceTree = "<group>";
-		};
-		3C94382018020CEF00845209 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				3C94381818020ABF00845209 /* layer11.gif */,
-				3C94381918020ABF00845209 /* layer12nomerge.gif */,
-			);
-			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,7 +304,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C94381D18020ABF00845209 /* layer12nomerge.gif in Resources */,
 				3C943804180206C000845209 /* PFWebsiteViewController.xib in Resources */,
 				3C94380E1802073900845209 /* PFMTIViewController.xib in Resources */,
 				3C9438141802083800845209 /* PFContactInfoViewController.xib in Resources */,
@@ -326,7 +311,6 @@
 				3C94381E18020ABF00845209 /* mti_statement.html in Resources */,
 				3C94381B18020ABF00845209 /* hardness_table.html in Resources */,
 				3C9437CE1802067400845209 /* InfoPlist.strings in Resources */,
-				3C94381C18020ABF00845209 /* layer11.gif in Resources */,
 				3C9437D61802067400845209 /* Images.xcassets in Resources */,
 				64E26DEA181236A90056519F /* HardnessCaseDepth.plist in Resources */,
 			);
