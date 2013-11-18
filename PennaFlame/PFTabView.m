@@ -7,6 +7,7 @@
 //
 
 #import "PFTabView.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define TAB_BUTTON_TITLE_FONT_SIZE  6
 #define TAB_PADDING                 2
@@ -26,6 +27,12 @@
         // Initialization code
         [self setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         self.backgroundColor = [UIColor blackColor];
+        
+        //gradient magic - NOT WORKING
+//        CAGradientLayer *gradient = [CAGradientLayer layer];
+//        gradient.frame = frame;
+//        gradient.colors = [NSArray arrayWithObjects:(id) [[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
+//        [self.layer insertSublayer:gradient atIndex:0];
         
         int centerX = (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2);
         UIButton *metricTabButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -53,8 +60,14 @@
         int h = frame.size.height - 5;
         int x = title.frame.origin.x + title.frame.size.width + 2;
         UIView *groupView = [[UIView alloc] initWithFrame:CGRectMake(x, 5, w, h)];
-        groupView.backgroundColor = [UIColor redColor];
         [groupView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+        
+        //gradient magic
+        CAGradientLayer *nonSelectedTabGradient = [CAGradientLayer layer];
+        nonSelectedTabGradient.frame = CGRectMake(0, 0, groupView.bounds.size.width, groupView.bounds.size.height);
+        nonSelectedTabGradient.colors = [NSArray arrayWithObjects:(id) [[UIColor redColor] CGColor], (id)[[UIColor blackColor] CGColor], nil];
+        [groupView.layer insertSublayer:nonSelectedTabGradient atIndex:0];
+        
         [self addSubview:groupView];
         
         UIButton *fractionTabButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -181,8 +194,6 @@
         [title setText:@"Contact Us"];
         [title setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:title];
-        
-        
     }
     return self;
 }

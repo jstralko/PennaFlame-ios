@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		134F04A6183961FE009E0420 /* PFTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 134F04A5183961FE009E0420 /* PFTabView.m */; };
 		13F057CC1836DAE700B45092 /* PFHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F057CB1836DAE700B45092 /* PFHomeCollectionViewCell.m */; };
+		13F6D4A71839C34B00CB7082 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13F6D4A61839C34B00CB7082 /* QuartzCore.framework */; };
 		3C2F60ED1809F7580088B618 /* HardnessChartData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C2F60EC1809F7580088B618 /* HardnessChartData.plist */; };
 		3C9437C41802067400845209 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C31802067400845209 /* Foundation.framework */; };
 		3C9437C61802067400845209 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C51802067400845209 /* CoreGraphics.framework */; };
@@ -54,6 +55,7 @@
 		134F04A5183961FE009E0420 /* PFTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFTabView.m; sourceTree = "<group>"; };
 		13F057CA1836DAE700B45092 /* PFHomeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFHomeCollectionViewCell.h; sourceTree = "<group>"; };
 		13F057CB1836DAE700B45092 /* PFHomeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFHomeCollectionViewCell.m; sourceTree = "<group>"; };
+		13F6D4A61839C34B00CB7082 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3C2F60EC1809F7580088B618 /* HardnessChartData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HardnessChartData.plist; sourceTree = "<group>"; };
 		3C9437C01802067400845209 /* PennaFlame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PennaFlame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9437C31802067400845209 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -102,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13F6D4A71839C34B00CB7082 /* QuartzCore.framework in Frameworks */,
 				3C9437C61802067400845209 /* CoreGraphics.framework in Frameworks */,
 				3C9437C81802067400845209 /* UIKit.framework in Frameworks */,
 				3C9437C41802067400845209 /* Foundation.framework in Frameworks */,
@@ -143,6 +146,7 @@
 		3C9437C21802067400845209 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				13F6D4A61839C34B00CB7082 /* QuartzCore.framework */,
 				3C9437C31802067400845209 /* Foundation.framework */,
 				3C9437C51802067400845209 /* CoreGraphics.framework */,
 				3C9437C71802067400845209 /* UIKit.framework */,
