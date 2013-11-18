@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PFTabView.h"
 
 @interface PFMetricViewController : UIViewController {
     IBOutlet UIButton *topButton;
@@ -17,6 +18,9 @@
     IBOutlet UITextField *bottomTextField;
     UIScrollView *scrollView;
     UIView *redBanner;
+    
+    //bottom tabbar
+    PFTabView *tabBar;
 
 }
 

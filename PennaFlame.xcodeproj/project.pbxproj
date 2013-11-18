@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		134F04A6183961FE009E0420 /* PFTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 134F04A5183961FE009E0420 /* PFTabView.m */; };
 		13F057CC1836DAE700B45092 /* PFHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F057CB1836DAE700B45092 /* PFHomeCollectionViewCell.m */; };
 		3C2F60ED1809F7580088B618 /* HardnessChartData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C2F60EC1809F7580088B618 /* HardnessChartData.plist */; };
 		3C9437C41802067400845209 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9437C31802067400845209 /* Foundation.framework */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		134F04A4183961FE009E0420 /* PFTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFTabView.h; sourceTree = "<group>"; };
+		134F04A5183961FE009E0420 /* PFTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFTabView.m; sourceTree = "<group>"; };
 		13F057CA1836DAE700B45092 /* PFHomeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFHomeCollectionViewCell.h; sourceTree = "<group>"; };
 		13F057CB1836DAE700B45092 /* PFHomeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFHomeCollectionViewCell.m; sourceTree = "<group>"; };
 		3C2F60EC1809F7580088B618 /* HardnessChartData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HardnessChartData.plist; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 		3C9437C91802067400845209 /* PennaFlame */ = {
 			isa = PBXGroup;
 			children = (
+				134F04A4183961FE009E0420 /* PFTabView.h */,
+				134F04A5183961FE009E0420 /* PFTabView.m */,
 				64E26DE6181076A20056519F /* PFHomeViewController.h */,
 				64E26DE7181076A20056519F /* PFHomeViewController.m */,
 				3C94382018020CEF00845209 /* images */,
@@ -354,6 +359,7 @@
 				64E26DED18135CAD0056519F /* PFFullChartViewController.m in Sources */,
 				3C943802180206C000845209 /* PFUnitTableViewController.m in Sources */,
 				64E26DE8181076A20056519F /* PFHomeViewController.m in Sources */,
+				134F04A6183961FE009E0420 /* PFTabView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

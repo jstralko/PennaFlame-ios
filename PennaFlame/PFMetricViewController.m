@@ -134,6 +134,14 @@ NSMutableDictionary *englishMetricConvertDict;
     [bottomStepper setTintColor:[UIColor blackColor]];
     bottomStepper.maximumValue = MAX_NUMBER;
     [scrollView addSubview:bottomStepper];
+    
+    tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
+                                                     self.view.bounds.size.height - 65,
+                                                     self.view.bounds.size.width,
+                                                     65)];
+    //tabBar.backgroundColor = [UIColor blackColor];
+    [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
+    [self.view addSubview:tabBar];
 }
 
 - (void)viewDidLoad
