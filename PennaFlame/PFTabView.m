@@ -24,7 +24,7 @@
         
         int tabButtonWidth = (frame.size.width / NUMBER_OF_TABS) - TAB_PADDING;
         // Initialization code
-        [self setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin];
+        [self setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         self.backgroundColor = [UIColor blackColor];
         
         int centerX = (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2);
@@ -34,6 +34,7 @@
         metricTabButton.frame = CGRectMake(centerX, 5, 40, 40);
         UIImage *img = [UIImage imageNamed:@"EnglishMetric"];
         [metricTabButton setBackgroundImage:img forState:UIControlStateNormal];
+        [metricTabButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [self addSubview:metricTabButton];
 
         int y = metricTabButton.frame.size.height - 5;
@@ -45,6 +46,7 @@
         title.numberOfLines = 2;
         [title setTextAlignment:NSTextAlignmentCenter];
         [title setText:@"English/Metric Converter"];
+        [title setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [self addSubview:title];
         
         int w = frame.size.width - title.frame.size.width;
@@ -52,12 +54,14 @@
         int x = title.frame.origin.x + title.frame.size.width + 2;
         UIView *groupView = [[UIView alloc] initWithFrame:CGRectMake(x, 5, w, h)];
         groupView.backgroundColor = [UIColor redColor];
+        [groupView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [self addSubview:groupView];
         
         UIButton *fractionTabButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         centerX = (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2);
         fractionTabButton.frame = CGRectMake(centerX, 0, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
         img = [UIImage imageNamed:@"FractionDecimal"];
+        [fractionTabButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [fractionTabButton setBackgroundImage:img forState:UIControlStateNormal];
         [groupView addSubview:fractionTabButton];
         
@@ -69,18 +73,21 @@
         title.numberOfLines = 2;
         [title setTextAlignment:NSTextAlignmentCenter];
         [title setText:@"Fraction/Decimal Converter"];
+        [title setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:title];
         
         UIView *wedge = [[UIView alloc] initWithFrame:CGRectMake(title.frame.size.width, 0,2,h)];
         wedge.backgroundColor = [UIColor blackColor];
+        [wedge setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:wedge];
         
         x = wedge.frame.origin.x + 2;
         centerX = x + (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2);
         UIButton *hardnessCaseDepthButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        hardnessCaseDepthButton.frame = CGRectMake(centerX, 0, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
+        hardnessCaseDepthButton.frame = CGRectMake(centerX, 3, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
         img = [UIImage imageNamed:@"CaseDepthButton"];
         [hardnessCaseDepthButton setBackgroundImage:img forState:UIControlStateNormal];
+        [hardnessCaseDepthButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:hardnessCaseDepthButton];
         
         y = hardnessCaseDepthButton.frame.size.height - 10;
@@ -91,19 +98,22 @@
         title.numberOfLines = 2;
         [title setTextAlignment:NSTextAlignmentCenter];
         [title setText:@"Hardness Case Depth"];
+        [title setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:title];
         
         x = title.frame.origin.x + title.frame.size.width;
         wedge = [[UIView alloc] initWithFrame:CGRectMake(x, 0, 2, h)];
         wedge.backgroundColor = [UIColor blackColor];
+        [wedge setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:wedge];
         
         x = wedge.frame.origin.x + 2;
         centerX = x + (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2);
         UIButton *hardnessChart = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        hardnessChart.frame = CGRectMake(centerX, 0, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
+        hardnessChart.frame = CGRectMake(centerX, 3, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
         img = [UIImage imageNamed:@"HardnessChartButton"];
         [hardnessChart setBackgroundImage:img forState:UIControlStateNormal];
+        [hardnessChart setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:hardnessChart];
         
         y = hardnessChart.frame.size.height - 10;
@@ -114,22 +124,25 @@
         title.numberOfLines = 2;
         [title setTextAlignment:NSTextAlignmentCenter];
         [title setText:@"Hardness Chart"];
+        [title setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:title];
         
         
         x = title.frame.origin.x + title.frame.size.width;
         wedge = [[UIView alloc] initWithFrame:CGRectMake(x, 0, 2, h)];
         wedge.backgroundColor = [UIColor blackColor];
+        [wedge setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:wedge];
         
         x = wedge.frame.origin.x + 2;
-        centerX = x + (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2);
+        centerX = x + (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2) - 2;
         UIButton *mtiButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         //mtiButton.frame = CGRectMake(centerX, 0, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
         //custom - adjust for the image size
-        mtiButton.frame = CGRectMake(centerX, 0, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
+        mtiButton.frame = CGRectMake(centerX, 0, 40, 40);
         img = [UIImage imageNamed:@"MTIStatementButton"];
         [mtiButton setBackgroundImage:img forState:UIControlStateNormal];
+        [mtiButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:mtiButton];
         
         y = mtiButton.frame.size.height - 10;
@@ -140,19 +153,22 @@
         title.numberOfLines = 2;
         [title setTextAlignment:NSTextAlignmentCenter];
         [title setText:@"MTI Statement of Liability"];
+        [title setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:title];
         
         x = title.frame.origin.x + title.frame.size.width;
         wedge = [[UIView alloc] initWithFrame:CGRectMake(x, 0, 2, h)];
         wedge.backgroundColor = [UIColor blackColor];
+        [wedge setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:wedge];
         
         x = wedge.frame.origin.x + 2;
         centerX = x + (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2);
         UIButton *contactButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        contactButton.frame = CGRectMake(centerX, 0, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
+        contactButton.frame = CGRectMake(centerX, 3, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
         img = [UIImage imageNamed:@"ContactButton"];
         [contactButton setBackgroundImage:img forState:UIControlStateNormal];
+        [contactButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:contactButton];
         
         y = contactButton.frame.size.height - 10;
@@ -163,6 +179,7 @@
         title.numberOfLines = 2;
         [title setTextAlignment:NSTextAlignmentCenter];
         [title setText:@"Contact Us"];
+        [title setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:title];
         
         

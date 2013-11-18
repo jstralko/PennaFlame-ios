@@ -135,11 +135,13 @@ NSMutableDictionary *englishMetricConvertDict;
     bottomStepper.maximumValue = MAX_NUMBER;
     [scrollView addSubview:bottomStepper];
     
+    //UIImage logoImage = [UIImage imageNamed:@"PFILogo"];
+    //logoImageView = [UIImageView alloc] initWithFrame:<#(CGRect)#>
+    
     tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
                                                      self.view.bounds.size.height - 65,
                                                      self.view.bounds.size.width,
                                                      65)];
-    //tabBar.backgroundColor = [UIColor blackColor];
     [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:tabBar];
 }

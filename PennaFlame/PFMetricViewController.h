@@ -18,10 +18,8 @@
     IBOutlet UITextField *bottomTextField;
     UIScrollView *scrollView;
     UIView *redBanner;
-    
-    //bottom tabbar
+    UIImageView *logoImageView;
     PFTabView *tabBar;
-
 }
 
 - (void) buttonClicked:(id)sender;
