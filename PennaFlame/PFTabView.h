@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PFTabView : UIView
+@protocol PFTabViewDelegate <NSObject>
+
+@required
+
+- (void) tabBarButtonClicked:(id) sender withIndex:(NSInteger) buttonIndex;
+
+@end
+
+@interface PFTabView : UIView {
+    UIButton *metricTabButton;
+}
+
+@property (nonatomic, assign) id <PFTabViewDelegate> delegate;
 
 @end

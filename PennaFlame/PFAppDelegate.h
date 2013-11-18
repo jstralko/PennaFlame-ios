@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PFTabView.h"
 
-@class PFMasterViewController;
-
-@interface PFAppDelegate : UIResponder <UIApplicationDelegate>
+@interface PFAppDelegate : UIResponder <UIApplicationDelegate, PFTabViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

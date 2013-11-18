@@ -52,4 +52,8 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void) tabBarButtonClicked:(id) sender withIndex:(NSInteger) buttonIndex {
+    NSLog(@"buttonIndex: %d was clicked", buttonIndex);
+}
+
 @end

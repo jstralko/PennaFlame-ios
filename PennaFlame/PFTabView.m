@@ -16,7 +16,14 @@
 #define TAB_TOP_PADDING             5
 #define NUMBER_OF_TABS              6
 
+@interface PFTabView ()
+
+@end
+
 @implementation PFTabView
+
+@synthesize delegate;
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -35,13 +42,14 @@
 //        [self.layer insertSublayer:gradient atIndex:0];
         
         int centerX = (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2);
-        UIButton *metricTabButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        metricTabButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         //metricTabButton.frame = CGRectMake(centerX, 5, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
         //custom - adjust for the image size
         metricTabButton.frame = CGRectMake(centerX, 5, 40, 40);
         UIImage *img = [UIImage imageNamed:@"EnglishMetric"];
         [metricTabButton setBackgroundImage:img forState:UIControlStateNormal];
         [metricTabButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+        [metricTabButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:metricTabButton];
 
         int y = metricTabButton.frame.size.height - 5;
@@ -196,6 +204,16 @@
         [groupView addSubview:title];
     }
     return self;
+}
+
+- (void)setDelegate:(id <PFTabViewDelegate>)aDelegate {
+    if (delegate != aDelegate) {
+        delegate = aDelegate;
+    }
+}
+
+- (void) buttonClicked:(id) sender {
+    NSLog(@"buttonClicked");
 }
 
 /*

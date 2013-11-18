@@ -8,6 +8,7 @@
 
 #import "PFMetricViewController.h"
 #import "PFUnitTableViewController.h"
+#import "PFAppDelegate.h"
 
 @interface PFMetricViewController ()
 
@@ -143,6 +144,7 @@ NSMutableDictionary *englishMetricConvertDict;
                                                      self.view.bounds.size.width,
                                                      65)];
     [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
+    tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
     [self.view addSubview:tabBar];
 }
 
