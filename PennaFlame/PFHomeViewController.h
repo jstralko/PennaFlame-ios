@@ -10,5 +10,6 @@
 
 @interface PFHomeViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource> {
     UIImageView *logo;
+    UIImageView *backgroundImage;
 }
 @end

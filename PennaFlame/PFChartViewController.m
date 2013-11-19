@@ -32,7 +32,6 @@ NSLayoutConstraint *webViewHeightConstraint;
     if (self) {
         chartDictionary = chartDict;
         self.navigationItem.title = title;
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
     }
     return self;
 }
@@ -49,6 +48,11 @@ NSLayoutConstraint *webViewHeightConstraint;
     [scrollView setBounces:YES];
     [scrollView setScrollEnabled:YES];
     [self.view addSubview:scrollView];
+    
+    backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackgroundImage"]];
+    [backgroundImage setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+    backgroundImage.frame = self.view.frame;
+    [scrollView addSubview:backgroundImage];
     
     redBanner = [[UIView alloc] initWithFrame:CGRectZero];
     [redBanner setTranslatesAutoresizingMaskIntoConstraints:NO];

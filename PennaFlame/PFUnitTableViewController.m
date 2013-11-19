@@ -27,7 +27,6 @@ NSInteger defaultSelectionIndex;
     if (self) {
         // Custom initialization
         self.navigationItem.title = @"Units";
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
     }
     return self;
 }
@@ -70,6 +69,11 @@ NSInteger defaultSelectionIndex;
 - (void) loadView {
     
     [super loadView];
+    
+    backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackgroundImage"]];
+    [backgroundImage setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+    backgroundImage.frame = self.view.frame;
+    [self.view addSubview:backgroundImage];
     
     redBanner = [[UIView alloc] initWithFrame:CGRectZero];
     [redBanner setTranslatesAutoresizingMaskIntoConstraints:NO];

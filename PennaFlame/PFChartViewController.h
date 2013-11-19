@@ -19,6 +19,7 @@
     UIButton *generateChart;
     UIButton *showFullChart;
     UIView *redBanner;
+    UIImageView *backgroundImage;
 }
 
 -(id)initWithDict:(NSMutableDictionary *)chartDict withTitle:(NSString *)title;

@@ -28,8 +28,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.navigationItem.title = @"Converter";
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
-        
     }
     return self;
 }
@@ -43,6 +41,11 @@
     [scrollView setBounces:YES];
     [scrollView setScrollEnabled:YES];
     [self.view addSubview:scrollView];
+    
+    backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackgroundImage"]];
+    [backgroundImage setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+    backgroundImage.frame = self.view.frame;
+    [scrollView addSubview:backgroundImage];
     
     redPadding = [[UIView alloc] initWithFrame:CGRectZero];
     [redPadding setTranslatesAutoresizingMaskIntoConstraints:NO];

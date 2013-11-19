@@ -20,6 +20,7 @@
     UIView *redBanner;
     UIImageView *logoImageView;
     PFTabView *tabBar;
+    UIImageView *backgroundImage;
 }
 
 - (void) buttonClicked:(id)sender;

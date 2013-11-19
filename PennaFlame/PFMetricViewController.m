@@ -38,7 +38,6 @@ NSMutableDictionary *englishMetricConvertDict;
     if (self) {
         // Custom initialization
         self.navigationItem.title = @"Metric Converter";
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
         unitConvertDict = [[NSMutableDictionary alloc]init];
         //english
         [unitConvertDict setObject:[NSNumber numberWithInt:1] forKey:[NSString stringWithFormat:@"Inch"]];
@@ -81,6 +80,11 @@ NSMutableDictionary *englishMetricConvertDict;
     [scrollView setBounces:YES];
     [scrollView setScrollEnabled:YES];
     [self.view addSubview:scrollView];
+    
+    backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackgroundImage"]];
+    [backgroundImage setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+    backgroundImage.frame = self.view.frame;
+    [scrollView addSubview:backgroundImage];
     
     redBanner = [[UIView alloc] initWithFrame:CGRectZero];
     [redBanner setTranslatesAutoresizingMaskIntoConstraints:NO];

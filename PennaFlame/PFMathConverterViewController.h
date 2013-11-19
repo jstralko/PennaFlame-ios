@@ -21,6 +21,7 @@
 //    IBOutlet UIButton *clearButton;
     UIScrollView *scrollView;
     UIView *redPadding;
+    UIImageView *backgroundImage;
     
 }
 

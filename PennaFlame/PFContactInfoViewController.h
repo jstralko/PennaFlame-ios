@@ -19,6 +19,7 @@
     UIScrollView *scrollView;
     UILabel *extra;
     UIView *redBanner;
+    UIImageView *backgroundImage;
     
 }
 

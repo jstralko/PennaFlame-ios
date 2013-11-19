@@ -21,7 +21,6 @@
     if (self) {
         // Custom initialization
         self.navigationItem.title = @"Contact Info";
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
         
     }
     return self;
@@ -30,12 +29,18 @@
 - (void) loadView {
     [super loadView];
     //[self setEdgesForExtendedLayout:UIRectEdgeNone];
+
     
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView setBounces:YES];
     [scrollView setScrollEnabled:YES];
     [self.view addSubview:scrollView];
+    
+    backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackgroundImage"]];
+    [backgroundImage setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+    backgroundImage.frame = self.view.frame;
+    [scrollView addSubview:backgroundImage];
     
     redBanner = [[UIView alloc] initWithFrame:CGRectZero];
     [redBanner setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -88,7 +93,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     //scrolling constrains
         NSLayoutConstraint *myConstraint =[NSLayoutConstraint
                                            constraintWithItem:scrollView

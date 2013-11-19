@@ -64,8 +64,9 @@ NSMutableDictionary *hardnessChartDict;
     layout.headerReferenceSize = CGSizeMake(0, 10);
     layout.footerReferenceSize = CGSizeMake(0, 50);
     
+
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
+    self.collectionView.backgroundColor = nil;
     [self.collectionView registerClass:[PFHomeCollectionViewCell class] forCellWithReuseIdentifier:HOME_CELL];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SUPPLEMENTARY_VIEW_CELL];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL];
@@ -77,7 +78,9 @@ NSMutableDictionary *hardnessChartDict;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackgroundImage"]];
+    [backgroundImage setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+    self.collectionView.backgroundView = backgroundImage;
 }
 
 - (void)didReceiveMemoryWarning
