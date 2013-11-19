@@ -78,7 +78,9 @@
         
         [self addSubview:groupView];
         
-        UIButton *fractionTabButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        fractionTabButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [fractionTabButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
         centerX = (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2);
         fractionTabButton.frame = CGRectMake(centerX, 0, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
         img = [UIImage imageNamed:@"FractionDecimal"];
@@ -213,6 +215,8 @@
 }
 
 - (void) buttonClicked:(id) sender {
+    [delegate tabBarButtonClicked:sender withIndex:1];
+    
     NSLog(@"buttonClicked");
 }
 

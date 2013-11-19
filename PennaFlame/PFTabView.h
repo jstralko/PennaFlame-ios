@@ -18,6 +18,7 @@
 
 @interface PFTabView : UIView {
     UIButton *metricTabButton;
+    UIButton *fractionTabButton;
 }
 
 @property (nonatomic, assign) id <PFTabViewDelegate> delegate;
