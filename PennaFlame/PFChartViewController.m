@@ -8,6 +8,7 @@
 
 #import "PFChartViewController.h"
 #import "PFFullChartViewController.h"
+#import "PFAppDelegate.h"
 
 @interface PFChartViewController ()
     
@@ -113,6 +114,21 @@ NSLayoutConstraint *webViewHeightConstraint;
     rangePicker.delegate = self;
     
     [topPicker selectRow:halfIndex inComponent:0 animated:NO];
+    
+    int index;
+    if ([self.navigationItem.title isEqualToString:HARDNESS_CASE_DEPTH_TITLE]) {
+        index = 2;
+    } else {
+        index = 3;
+    }
+    
+    tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
+                                                         self.view.bounds.size.height - 65,
+                                                         self.view.bounds.size.width,
+                                                         65) withIndex:index];
+    [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
+    tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
+    [self.view addSubview:tabBar];
 }
 
 - (void)viewDidLoad

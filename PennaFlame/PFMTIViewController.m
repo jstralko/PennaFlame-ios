@@ -7,6 +7,7 @@
 //
 
 #import "PFMTIViewController.h"
+#import "PFAppDelegate.h"
 
 @interface PFMTIViewController ()
 
@@ -25,6 +26,14 @@
         NSURL *url = [[NSBundle mainBundle] URLForResource:@"mti_statement" withExtension:@"html"];
         NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
         [mtiWebView loadRequest:request];
+        
+        tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
+                                                             self.view.bounds.size.height - 65,
+                                                             self.view.bounds.size.width,
+                                                             65) withIndex:4];
+        [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
+        tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
+        [self.view addSubview:tabBar];
     }
     return self;
 }

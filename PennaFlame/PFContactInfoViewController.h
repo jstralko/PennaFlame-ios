@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+#import "PFTabView.h"
 
 @interface PFContactInfoViewController: UIViewController <MFMailComposeViewControllerDelegate> {
     
@@ -20,6 +21,7 @@
     UILabel *extra;
     UIView *redBanner;
     UIImageView *backgroundImage;
+    PFTabView *tabBar;
     
 }
 

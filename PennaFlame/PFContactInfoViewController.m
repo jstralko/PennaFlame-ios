@@ -8,6 +8,7 @@
 
 #import "PFContactInfoViewController.h"
 #import "PFWebsiteViewController.h"
+#import "PFAppDelegate.h"
 
 @interface PFContactInfoViewController ()
 
@@ -87,6 +88,14 @@
     [extra setTextColor:[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0]];
     [extra setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:extra];
+    
+    tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
+                                                         self.view.bounds.size.height - 65,
+                                                         self.view.bounds.size.width,
+                                                         65) withIndex:5];
+    [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
+    tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
+    [self.view addSubview:tabBar];
 }
 
 - (void)viewDidLoad

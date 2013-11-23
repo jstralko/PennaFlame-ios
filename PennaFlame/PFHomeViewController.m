@@ -13,6 +13,7 @@
 #import "PFChartViewController.h"
 #import "PFMTIViewController.h"
 #import "PFHomeCollectionViewCell.h"
+#import "PFAppDelegate.h"
 
 #define HOME_CELL                       @"HOME_CELL"
 #define SUPPLEMENTARY_VIEW_CELL         @"SUPPLEMENTARY_VIEW_CELL"
@@ -24,9 +25,6 @@
 
 @implementation PFHomeViewController
 
-NSMutableDictionary *hardnessCaseDepthChartDict;
-NSMutableDictionary *hardnessChartDict;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,11 +32,6 @@ NSMutableDictionary *hardnessChartDict;
         // Custom initialization
         self.navigationController.navigationBar.tintColor = [UIColor blackColor];
         self.navigationItem.title = @"Penna Flame";
-        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"HardnessCaseDepth" ofType:@"plist"];
-        hardnessCaseDepthChartDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
-        
-        plistPath = [[NSBundle mainBundle] pathForResource:@"HardnessChartData" ofType:@"plist"];
-        hardnessChartDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     }
     return self;
 }
@@ -213,12 +206,14 @@ NSMutableDictionary *hardnessChartDict;
         }
             break;
         case 2: {
-            PFChartViewController *pfhcdc = [[PFChartViewController alloc]initWithDict:hardnessCaseDepthChartDict withTitle:@"Hardness Case Depth"];
+            PFAppDelegate *appDelegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
+            PFChartViewController *pfhcdc = [[PFChartViewController alloc]initWithDict:appDelegate.hardnessCaseDepthChartDict withTitle:HARDNESS_CASE_DEPTH_TITLE];
             [self.navigationController pushViewController:pfhcdc animated:YES];
         }
             break;
         case 3: {
-            PFChartViewController *pfhcvc = [[PFChartViewController alloc]initWithDict:hardnessChartDict withTitle:@"Hardness Chart"];
+            PFAppDelegate *appDelegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
+            PFChartViewController *pfhcvc = [[PFChartViewController alloc]initWithDict:appDelegate.hardnessChartDict withTitle:HARDNESS_CHART_TITLE];
             [self.navigationController pushViewController:pfhcvc animated:YES];
         }
             break;

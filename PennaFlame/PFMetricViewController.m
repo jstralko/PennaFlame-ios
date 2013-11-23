@@ -146,7 +146,7 @@ NSMutableDictionary *englishMetricConvertDict;
     tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
                                                      self.view.bounds.size.height - 65,
                                                      self.view.bounds.size.width,
-                                                     65)];
+                                                         65) withIndex:0];
     [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
     tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
     [self.view addSubview:tabBar];

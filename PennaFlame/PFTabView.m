@@ -23,9 +23,15 @@
 @implementation PFTabView
 
 @synthesize delegate;
+@synthesize metricTabButton;
+@synthesize fractionTabButton;
+@synthesize hardnessCaseDepthButton;
+@synthesize hardnessChart;
+@synthesize mtiButton;
+@synthesize contactButton;
 
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame withIndex:(NSInteger)index
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -34,6 +40,27 @@
         // Initialization code
         [self setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         self.backgroundColor = [UIColor blackColor];
+        
+        int w = frame.size.width;
+        int h = frame.size.height - 5;
+        int y = 5;
+        int x = 0;
+        UIView *groupView = [[UIView alloc] initWithFrame:CGRectMake(x, y, w, h)];
+        [groupView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+        
+        w = index == NUMBER_OF_TABS ? tabButtonWidth+2 : tabButtonWidth+4;
+        UIView *selectedView = [[UIView alloc] init];
+        selectedView.backgroundColor = [UIColor blackColor];
+        [selectedView setAutoresizingMask:UIViewAutoresizingNone];
+        [selectedView setFrame:CGRectMake((tabButtonWidth*index + (index*TAB_PADDING)), 0, w, frame.size.height)];
+        [groupView addSubview:selectedView];
+        
+        //gradient magic
+        CAGradientLayer *nonSelectedTabGradient = [CAGradientLayer layer];
+        nonSelectedTabGradient.frame = CGRectMake(0, 0, groupView.bounds.size.width, groupView.bounds.size.height);
+        nonSelectedTabGradient.colors = [NSArray arrayWithObjects:(id) [[UIColor redColor] CGColor], (id)[[UIColor blackColor] CGColor], nil];
+        [groupView.layer insertSublayer:nonSelectedTabGradient atIndex:0];
+        [self addSubview:groupView];
         
         //gradient magic - NOT WORKING
 //        CAGradientLayer *gradient = [CAGradientLayer layer];
@@ -45,52 +72,45 @@
         metricTabButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         //metricTabButton.frame = CGRectMake(centerX, 5, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
         //custom - adjust for the image size
-        metricTabButton.frame = CGRectMake(centerX, 5, 40, 40);
+        metricTabButton.frame = CGRectMake(2, 0, 40, 40);
         UIImage *img = [UIImage imageNamed:@"EnglishMetric"];
         [metricTabButton setBackgroundImage:img forState:UIControlStateNormal];
         [metricTabButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [metricTabButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:metricTabButton];
+        [groupView addSubview:metricTabButton];
 
-        int y = metricTabButton.frame.size.height - 5;
+        y = metricTabButton.frame.size.height - 10;
         int height = frame.size.height - metricTabButton.frame.size.height + 10;
-        UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(3, y, tabButtonWidth, height)];
+        UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, y, tabButtonWidth, height)];
         [title setTextColor:[UIColor whiteColor]];
         [title setFont:[UIFont boldSystemFontOfSize:TAB_BUTTON_TITLE_FONT_SIZE]];
-        
         title.numberOfLines = 2;
         [title setTextAlignment:NSTextAlignmentCenter];
         [title setText:@"English/Metric Converter"];
         [title setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
-        [self addSubview:title];
+        [groupView addSubview:title];
         
-        int w = frame.size.width - title.frame.size.width;
-        int h = frame.size.height - 5;
-        int x = title.frame.origin.x + title.frame.size.width + 2;
-        UIView *groupView = [[UIView alloc] initWithFrame:CGRectMake(x, 5, w, h)];
-        [groupView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
-        
-        //gradient magic
-        CAGradientLayer *nonSelectedTabGradient = [CAGradientLayer layer];
-        nonSelectedTabGradient.frame = CGRectMake(0, 0, groupView.bounds.size.width, groupView.bounds.size.height);
-        nonSelectedTabGradient.colors = [NSArray arrayWithObjects:(id) [[UIColor redColor] CGColor], (id)[[UIColor blackColor] CGColor], nil];
-        [groupView.layer insertSublayer:nonSelectedTabGradient atIndex:0];
-        
-        [self addSubview:groupView];
+        x = title.frame.origin.x + title.frame.size.width;
+        UIView *wedge = [[UIView alloc] initWithFrame:CGRectMake(x, 0,2,h)];
+        wedge.backgroundColor = [UIColor blackColor];
+        [wedge setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+        [groupView addSubview:wedge];
         
         fractionTabButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [fractionTabButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         centerX = (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2);
-        fractionTabButton.frame = CGRectMake(centerX, 0, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
+        fractionTabButton.frame = CGRectMake(title.frame.size.width + centerX, 0, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
         img = [UIImage imageNamed:@"FractionDecimal"];
         [fractionTabButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [fractionTabButton setBackgroundImage:img forState:UIControlStateNormal];
+        [fractionTabButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [groupView addSubview:fractionTabButton];
         
+        x = title.frame.origin.x + title.frame.size.width + 2;
         y = fractionTabButton.frame.size.height - 10;
         height = frame.size.height - fractionTabButton.frame.size.height + 10;
-        title = [[UILabel alloc]initWithFrame:CGRectMake(0, y, tabButtonWidth, height)];
+        title = [[UILabel alloc]initWithFrame:CGRectMake(x, y, tabButtonWidth, height)];
         [title setTextColor:[UIColor whiteColor]];
         [title setFont:[UIFont boldSystemFontOfSize:TAB_BUTTON_TITLE_FONT_SIZE]];
         title.numberOfLines = 2;
@@ -99,18 +119,20 @@
         [title setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:title];
         
-        UIView *wedge = [[UIView alloc] initWithFrame:CGRectMake(title.frame.size.width, 0,2,h)];
+        x = title.frame.origin.x + title.frame.size.width;
+        wedge = [[UIView alloc] initWithFrame:CGRectMake(x, 0,2,h)];
         wedge.backgroundColor = [UIColor blackColor];
         [wedge setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         [groupView addSubview:wedge];
         
         x = wedge.frame.origin.x + 2;
         centerX = x + (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2);
-        UIButton *hardnessCaseDepthButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        hardnessCaseDepthButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         hardnessCaseDepthButton.frame = CGRectMake(centerX, 3, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
         img = [UIImage imageNamed:@"CaseDepthButton"];
         [hardnessCaseDepthButton setBackgroundImage:img forState:UIControlStateNormal];
         [hardnessCaseDepthButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+        [hardnessCaseDepthButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [groupView addSubview:hardnessCaseDepthButton];
         
         y = hardnessCaseDepthButton.frame.size.height - 10;
@@ -132,11 +154,12 @@
         
         x = wedge.frame.origin.x + 2;
         centerX = x + (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2);
-        UIButton *hardnessChart = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        hardnessChart = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         hardnessChart.frame = CGRectMake(centerX, 3, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
         img = [UIImage imageNamed:@"HardnessChartButton"];
         [hardnessChart setBackgroundImage:img forState:UIControlStateNormal];
         [hardnessChart setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+        [hardnessChart addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [groupView addSubview:hardnessChart];
         
         y = hardnessChart.frame.size.height - 10;
@@ -159,13 +182,14 @@
         
         x = wedge.frame.origin.x + 2;
         centerX = x + (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2) - 2;
-        UIButton *mtiButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        mtiButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         //mtiButton.frame = CGRectMake(centerX, 0, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
         //custom - adjust for the image size
         mtiButton.frame = CGRectMake(centerX, 0, 40, 40);
         img = [UIImage imageNamed:@"MTIStatementButton"];
         [mtiButton setBackgroundImage:img forState:UIControlStateNormal];
         [mtiButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+        [mtiButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [groupView addSubview:mtiButton];
         
         y = mtiButton.frame.size.height - 10;
@@ -187,11 +211,12 @@
         
         x = wedge.frame.origin.x + 2;
         centerX = x + (tabButtonWidth / 2) - (TAB_IMAGE_WIDTH / 2);
-        UIButton *contactButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        contactButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         contactButton.frame = CGRectMake(centerX, 3, TAB_IMAGE_WIDTH, TAB_IMAGE_HEIGHT);
         img = [UIImage imageNamed:@"ContactButton"];
         [contactButton setBackgroundImage:img forState:UIControlStateNormal];
         [contactButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+        [contactButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [groupView addSubview:contactButton];
         
         y = contactButton.frame.size.height - 10;
@@ -215,9 +240,21 @@
 }
 
 - (void) buttonClicked:(id) sender {
-    [delegate tabBarButtonClicked:sender withIndex:1];
-    
-    NSLog(@"buttonClicked");
+    if (metricTabButton == sender) {
+        [delegate tabBarButtonClicked:sender withIndex:1];
+    } else if (fractionTabButton == sender) {
+        [delegate tabBarButtonClicked:sender withIndex:2];
+    } else if (hardnessCaseDepthButton == sender) {
+        [delegate tabBarButtonClicked:sender withIndex:3];
+    } else if (hardnessChart == sender) {
+        [delegate tabBarButtonClicked:sender withIndex:4];
+    } else if (mtiButton == sender) {
+        [delegate tabBarButtonClicked:sender withIndex:5];
+    } else if (contactButton == sender) {
+        [delegate tabBarButtonClicked:sender withIndex:6];
+    } else {
+        NSLog(@"ingore event for %@", [sender description]);
+    }
 }
 
 /*

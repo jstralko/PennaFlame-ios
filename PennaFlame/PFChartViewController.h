@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PFTabView.h"
 
 @interface PFChartViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UIWebViewDelegate> {
    // IBOutlet UIWebView *hardnessWebView;
@@ -20,6 +21,7 @@
     UIButton *showFullChart;
     UIView *redBanner;
     UIImageView *backgroundImage;
+    PFTabView *tabBar;
 }
 
 -(id)initWithDict:(NSMutableDictionary *)chartDict withTitle:(NSString *)title;

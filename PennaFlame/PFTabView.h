@@ -17,10 +17,18 @@
 @end
 
 @interface PFTabView : UIView {
-    UIButton *metricTabButton;
-    UIButton *fractionTabButton;
+
 }
 
+- (id)initWithFrame:(CGRect)frame withIndex:(NSInteger)index;
+
 @property (nonatomic, assign) id <PFTabViewDelegate> delegate;
+@property (readonly) UIButton *metricTabButton;
+@property (readonly) UIButton *fractionTabButton;
+@property (readonly) UIButton *hardnessCaseDepthButton;
+@property (readonly) UIButton *hardnessChart;
+@property (readonly) UIButton *mtiButton;
+@property (readonly) UIButton *contactButton;
+
 
 @end

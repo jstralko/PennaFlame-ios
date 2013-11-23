@@ -8,8 +8,16 @@
 
 #import "PFAppDelegate.h"
 #import "PFHomeViewController.h"
+#import "PFMetricViewController.h"
+#import "PFMathConverterViewController.h"
+#import "PFChartViewController.h"
+#import "PFMTIViewController.h"
+#import "PFContactInfoViewController.h"
 
 @implementation PFAppDelegate
+
+@synthesize hardnessCaseDepthChartDict;
+@synthesize hardnessChartDict;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -17,6 +25,13 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"HardnessCaseDepth" ofType:@"plist"];
+    hardnessCaseDepthChartDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+    
+    plistPath = [[NSBundle mainBundle] pathForResource:@"HardnessChartData" ofType:@"plist"];
+    hardnessChartDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+    
     
     //New UICollectionViewController - new and shiney!
     PFHomeViewController *home = [[PFHomeViewController alloc] init];
@@ -53,7 +68,55 @@
 }
 
 - (void) tabBarButtonClicked:(id) sender withIndex:(NSInteger) buttonIndex {
-    NSLog(@"buttonIndex: %d was clicked", buttonIndex);
+    switch (buttonIndex) {
+        case 1: {
+            PFMetricViewController *metric = [[PFMetricViewController alloc] init];
+            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            [nav popToRootViewControllerAnimated:NO];
+            [nav pushViewController:metric animated:NO];
+        }
+            break;
+        case 2: {
+            PFMathConverterViewController *math = [[PFMathConverterViewController alloc] init];
+            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            [nav popToRootViewControllerAnimated:NO];
+            [nav pushViewController:math animated:NO];
+        }
+            break;
+        case 3: {
+            PFAppDelegate *appDelegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
+            PFChartViewController *pfhcdc = [[PFChartViewController alloc]initWithDict:appDelegate.hardnessCaseDepthChartDict withTitle:HARDNESS_CASE_DEPTH_TITLE];
+            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            [nav popToRootViewControllerAnimated:NO];
+            [nav pushViewController:pfhcdc animated:NO];
+        }
+            break;
+        case 4: {
+            PFAppDelegate *appDelegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
+            PFChartViewController *pfhcvc = [[PFChartViewController alloc]initWithDict:appDelegate.hardnessChartDict withTitle:HARDNESS_CHART_TITLE];
+            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            [nav popToRootViewControllerAnimated:NO];
+            [nav pushViewController:pfhcvc animated:NO];
+        }
+            break;
+        case 5: {
+            PFMTIViewController *pfmvc = [[PFMTIViewController alloc] init];
+            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            [nav popToRootViewControllerAnimated:NO];
+            [nav pushViewController:pfmvc animated:NO];
+        }
+            break;
+        case 6: {
+            PFContactInfoViewController *pfci = [[PFContactInfoViewController alloc]init];
+            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            [nav popToRootViewControllerAnimated:NO];
+            [nav pushViewController:pfci animated:NO];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

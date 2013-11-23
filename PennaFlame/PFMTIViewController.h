@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PFTabView.h"
 
 @interface PFMTIViewController : UIViewController {
     IBOutlet UIWebView *mtiWebView;
+    PFTabView *tabBar;
 }
 @end

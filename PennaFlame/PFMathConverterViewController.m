@@ -7,6 +7,7 @@
 //
 
 #import "PFMathConverterViewController.h"
+#import "PFAppDelegate.h"
 
 @interface PFMathConverterViewController ()
 
@@ -116,6 +117,14 @@
     [decimalStepper setTranslatesAutoresizingMaskIntoConstraints:NO];
     [decimalStepper setTintColor:[UIColor blackColor]];
     [scrollView addSubview:decimalStepper];
+    
+    tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
+                                                         self.view.bounds.size.height - 65,
+                                                         self.view.bounds.size.width,
+                                                         65) withIndex:1];
+    [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
+    tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
+    [self.view addSubview:tabBar];
 }
 
 - (void)viewDidLoad

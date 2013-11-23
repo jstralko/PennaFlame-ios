@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PFTabView.h"
 
 @interface PFMathConverterViewController : UIViewController <UITextFieldDelegate> {
     IBOutlet UISegmentedControl *segmentedControl;
@@ -22,6 +23,7 @@
     UIScrollView *scrollView;
     UIView *redPadding;
     UIImageView *backgroundImage;
+    PFTabView *tabBar;
     
 }
 
