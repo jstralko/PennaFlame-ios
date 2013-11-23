@@ -636,10 +636,6 @@ NSLayoutConstraint *webViewHeightConstraint;
                    multiplier:1.0
                    constant:0];
     [scrollView addConstraint:myConstraint];
-    
-    
-
-    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {

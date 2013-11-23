@@ -11,8 +11,8 @@
 
 #define TAB_BUTTON_TITLE_FONT_SIZE  6
 #define TAB_PADDING                 2
-#define TAB_IMAGE_HEIGHT            35
 #define TAB_IMAGE_WIDTH             35
+#define TAB_IMAGE_HEIGHT            35
 #define TAB_TOP_PADDING             5
 #define NUMBER_OF_TABS              6
 
@@ -30,12 +30,12 @@
 @synthesize mtiButton;
 @synthesize contactButton;
 
+UIView *groupView;
 
 - (id)initWithFrame:(CGRect)frame withIndex:(NSInteger)index
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
         int tabButtonWidth = (frame.size.width / NUMBER_OF_TABS) - TAB_PADDING;
         // Initialization code
         [self setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
@@ -45,14 +45,14 @@
         int h = frame.size.height - 5;
         int y = 5;
         int x = 0;
-        UIView *groupView = [[UIView alloc] initWithFrame:CGRectMake(x, y, w, h)];
+        groupView = [[UIView alloc] initWithFrame:CGRectMake(x, y, w, h)];
         [groupView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         
-        w = index == NUMBER_OF_TABS ? tabButtonWidth+2 : tabButtonWidth+4;
+        w = index == NUMBER_OF_TABS ? tabButtonWidth+3 : tabButtonWidth+6;
         UIView *selectedView = [[UIView alloc] init];
         selectedView.backgroundColor = [UIColor blackColor];
-        [selectedView setAutoresizingMask:UIViewAutoresizingNone];
-        [selectedView setFrame:CGRectMake((tabButtonWidth*index + (index*TAB_PADDING)), 0, w, frame.size.height)];
+        [selectedView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
+        [selectedView setFrame:CGRectMake((tabButtonWidth*index + (index*TAB_PADDING)-1), 0, w, frame.size.height)];
         [groupView addSubview:selectedView];
         
         //gradient magic
@@ -231,6 +231,10 @@
         [groupView addSubview:title];
     }
     return self;
+}
+
+- (void)layoutSubviews {
+    [[[groupView.layer sublayers] objectAtIndex:0] setFrame:groupView.bounds];
 }
 
 - (void)setDelegate:(id <PFTabViewDelegate>)aDelegate {
