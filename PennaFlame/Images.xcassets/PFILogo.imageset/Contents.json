@@ -8,19 +8,23 @@
     {
       "idiom" : "iphone",
       "scale" : "2x",
+      "filename" : "pfi_logo_1.png"
     },
     {
       "idiom" : "iphone",
       "subtype" : "retina4",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "pfi_logo_1.png"
     },
     {
       "idiom" : "ipad",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "pfi_logo_1.png"
     },
     {
       "idiom" : "ipad",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "pfi_logo_1.png"
     }
   ],
   "info" : {

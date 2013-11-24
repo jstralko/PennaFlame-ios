@@ -29,9 +29,7 @@
 		3C943802180206C000845209 /* PFUnitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9437FA180206C000845209 /* PFUnitTableViewController.m */; };
 		3C943803180206C000845209 /* PFWebsiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9437FC180206C000845209 /* PFWebsiteViewController.m */; };
 		3C943804180206C000845209 /* PFWebsiteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9437FD180206C000845209 /* PFWebsiteViewController.xib */; };
-		3C94380E1802073900845209 /* PFMTIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C94380C1802073900845209 /* PFMTIViewController.xib */; };
 		3C9438131802083800845209 /* PFContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9438101802083800845209 /* PFContactInfoViewController.m */; };
-		3C9438141802083800845209 /* PFContactInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9438111802083800845209 /* PFContactInfoViewController.xib */; };
 		3C9438161802084600845209 /* PFMetricViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9438151802084600845209 /* PFMetricViewController.m */; };
 		3C94381B18020ABF00845209 /* hardness_table.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381718020ABF00845209 /* hardness_table.html */; };
 		3C94381E18020ABF00845209 /* mti_statement.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381A18020ABF00845209 /* mti_statement.html */; };
@@ -84,10 +82,8 @@
 		3C9437FB180206C000845209 /* PFWebsiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFWebsiteViewController.h; sourceTree = "<group>"; };
 		3C9437FC180206C000845209 /* PFWebsiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFWebsiteViewController.m; sourceTree = "<group>"; };
 		3C9437FD180206C000845209 /* PFWebsiteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFWebsiteViewController.xib; sourceTree = "<group>"; };
-		3C94380C1802073900845209 /* PFMTIViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFMTIViewController.xib; sourceTree = "<group>"; };
 		3C94380F1802083800845209 /* PFContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFContactInfoViewController.h; sourceTree = "<group>"; };
 		3C9438101802083800845209 /* PFContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFContactInfoViewController.m; sourceTree = "<group>"; };
-		3C9438111802083800845209 /* PFContactInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFContactInfoViewController.xib; sourceTree = "<group>"; };
 		3C9438121802083800845209 /* PFMetricViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMetricViewController.h; sourceTree = "<group>"; };
 		3C9438151802084600845209 /* PFMetricViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMetricViewController.m; sourceTree = "<group>"; };
 		3C94381718020ABF00845209 /* hardness_table.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = hardness_table.html; sourceTree = "<group>"; };
@@ -165,10 +161,8 @@
 				3C94381F18020CD900845209 /* html */,
 				3C94380F1802083800845209 /* PFContactInfoViewController.h */,
 				3C9438101802083800845209 /* PFContactInfoViewController.m */,
-				3C9438111802083800845209 /* PFContactInfoViewController.xib */,
 				3C9438151802084600845209 /* PFMetricViewController.m */,
 				3C9438121802083800845209 /* PFMetricViewController.h */,
-				3C94380C1802073900845209 /* PFMTIViewController.xib */,
 				3C9437D21802067400845209 /* PFAppDelegate.h */,
 				3C9437D31802067400845209 /* PFAppDelegate.m */,
 				3C9437F2180206C000845209 /* PFChartViewController.h */,
@@ -309,8 +303,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C943804180206C000845209 /* PFWebsiteViewController.xib in Resources */,
-				3C94380E1802073900845209 /* PFMTIViewController.xib in Resources */,
-				3C9438141802083800845209 /* PFContactInfoViewController.xib in Resources */,
 				3C2F60ED1809F7580088B618 /* HardnessChartData.plist in Resources */,
 				3C94381E18020ABF00845209 /* mti_statement.html in Resources */,
 				3C94381B18020ABF00845209 /* hardness_table.html in Resources */,

@@ -89,10 +89,16 @@
     [extra setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:extra];
     
+    int height;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        height = 100;
+    } else {
+        height = 65;
+    }
     tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
-                                                         self.view.bounds.size.height - 65,
+                                                         self.view.bounds.size.height - height,
                                                          self.view.bounds.size.width,
-                                                         65) withIndex:5];
+                                                         height) withIndex:5];
     [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
     tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
     [self.view addSubview:tabBar];

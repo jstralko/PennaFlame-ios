@@ -1,27 +1,14 @@
 {
   "images" : [
     {
-      "idiom" : "iphone",
+      "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "case_depth_50x50_1.png"
-    },
-    {
-      "idiom" : "iphone",
-      "scale" : "2x",
       "filename" : "case_depth_100x100_1.png"
     },
     {
-      "idiom" : "iphone",
-      "subtype" : "retina4",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x"
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "case_depth_100x100_1.png"
     }
   ],
   "info" : {

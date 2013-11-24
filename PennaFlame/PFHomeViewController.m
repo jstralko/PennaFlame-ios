@@ -45,6 +45,7 @@
         layout.sectionInset = UIEdgeInsetsMake(150, 20, 10, 20);
         layout.minimumInteritemSpacing = 25.0f;  //spacing between cells
         layout.minimumLineSpacing = 25.0f;       //space between cells vertical
+        layout.footerReferenceSize = CGSizeMake(0, 100);
         
     } else {
         //iPhone
@@ -52,11 +53,10 @@
         layout.sectionInset = UIEdgeInsetsMake(20, 20, 10, 20);
         layout.minimumInteritemSpacing = 20.0f;  //spacing between cells
         layout.minimumLineSpacing = 20.0f;       //space between cells vertical
+        layout.footerReferenceSize = CGSizeMake(0, 75);
     }
     
     layout.headerReferenceSize = CGSizeMake(0, 10);
-    layout.footerReferenceSize = CGSizeMake(0, 50);
-    
 
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.backgroundColor = nil;
@@ -65,7 +65,6 @@
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL];
     self.collectionView .dataSource = self;
     self.collectionView .delegate = self;
-    
 }
 
 - (void)viewDidLoad
@@ -86,8 +85,8 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *datasetCell =[collectionView cellForItemAtIndexPath:indexPath];
-    datasetCell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImage"]];
+    //UICollectionViewCell *datasetCell =[collectionView cellForItemAtIndexPath:indexPath];
+    //datasetCell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImage"]];
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -120,7 +119,7 @@
 
 - (void)collectionView:(UICollectionView *)colView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell* cell = [colView cellForItemAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImage"]];
+    cell.contentView.backgroundColor = nil;
 }
 
 
@@ -137,15 +136,14 @@
     return YES;
 }
 
-// 1
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     return 6;
 }
-// 2
+
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
     return 1;
 }
-// 3
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     PFHomeCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:HOME_CELL forIndexPath:indexPath];
@@ -166,7 +164,7 @@
         case 2: {
             cell.title.text = @"Hardness Case Depth";
             UIImage *img = [UIImage imageNamed:@"CaseDepthButton"];
-            [cell setImageViewFrame:img];
+            [cell setImageViewFrame:img];		
         }
             break;
         case 3: {

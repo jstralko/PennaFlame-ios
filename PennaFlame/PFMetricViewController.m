@@ -143,10 +143,16 @@ NSMutableDictionary *englishMetricConvertDict;
     //UIImage logoImage = [UIImage imageNamed:@"PFILogo"];
     //logoImageView = [UIImageView alloc] initWithFrame:<#(CGRect)#>
     
+    int height;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        height = 100;
+    } else {
+        height = 65;
+    }
     tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
-                                                     self.view.bounds.size.height - 65,
+                                                     self.view.bounds.size.height - height,
                                                      self.view.bounds.size.width,
-                                                         65) withIndex:0];
+                                                         height) withIndex:0];
     [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
     tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
     [self.view addSubview:tabBar];

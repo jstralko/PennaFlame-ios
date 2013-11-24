@@ -17,20 +17,24 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImage"]];
-
+        //self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImageHiRes"]];
+        
         imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         [self addSubview:imageView];
         
-        int x = self.bounds.origin.x;
-        int y = self.bounds.origin.y + self.bounds.size.height - 80;
-        self.title = [[UILabel alloc] initWithFrame:CGRectMake(x, y, self.bounds.size.width, self.bounds.size.height)];
+        self.title = [[UILabel alloc] initWithFrame:CGRectZero];
         self.title.numberOfLines = 2;
         self.autoresizesSubviews = YES;
         self.title.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
                                        UIViewAutoresizingFlexibleHeight);
-        self.title.font = [UIFont boldSystemFontOfSize:14];
+        
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            self.title.font = [UIFont boldSystemFontOfSize:22];
+        } else {
+            self.title.font = [UIFont boldSystemFontOfSize:14];
+        }
         self.title.textAlignment = NSTextAlignmentCenter;
-        self.title.adjustsFontSizeToFitWidth = YES;
+        self.title.adjustsFontSizeToFitWidth = NO;
         [self.title setTextColor:[UIColor whiteColor]];
         [self addSubview:self.title];
         
@@ -45,9 +49,20 @@
 
 -(void) setImageViewFrame:(UIImage *)image {
     int x = ((self.bounds.origin.x + self.bounds.size.width) / 2) - (image.size.width / 2);
-    int y = self.bounds.origin.y + 5;
+    int padding;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        padding = 25;
+    } else {
+        padding = 15;
+    }
+    
+    int y = (self.bounds.size.height / 2) - (image.size.height /2) - padding;
     [imageView setFrame:CGRectMake(x, y, image.size.width, image.size.height)];
     [imageView setImage:image];
+    
+    y = imageView.frame.origin.y + imageView.frame.size.height;
+    int height = self.bounds.size.height - y;
+    [title setFrame:CGRectMake(0, y, self.bounds.size.width, height)];
 }
 
 /*
