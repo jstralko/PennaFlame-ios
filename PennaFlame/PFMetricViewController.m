@@ -140,8 +140,10 @@ NSMutableDictionary *englishMetricConvertDict;
     bottomStepper.maximumValue = MAX_NUMBER;
     [scrollView addSubview:bottomStepper];
     
-    //UIImage logoImage = [UIImage imageNamed:@"PFILogo"];
-    //logoImageView = [UIImageView alloc] initWithFrame:<#(CGRect)#>
+//    UIImage *logoImage = [UIImage imageNamed:@"PFILogo"];
+//    logoImageView = [[UIImageView alloc] initWithImage:logoImage];
+//    [logoImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [scrollView addSubview:logoImageView];
     
     int height;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -483,6 +485,48 @@ NSMutableDictionary *englishMetricConvertDict;
                    multiplier:1.0
                    constant:0];
     [scrollView addConstraint:myConstraint];
+    
+    //
+//    myConstraint =[NSLayoutConstraint
+//                   constraintWithItem:logoImageView
+//                   attribute:NSLayoutAttributeBottom
+//                   relatedBy:NSLayoutRelationEqual
+//                   toItem:scrollView
+//                   attribute:NSLayoutAttributeBottom
+//                   multiplier:1.0
+//                   constant:-5];
+//    
+//    [scrollView addConstraint:myConstraint];
+//    
+//    myConstraint =[NSLayoutConstraint
+//                   constraintWithItem:logoImageView
+//                   attribute:NSLayoutAttributeWidth
+//                   relatedBy:NSLayoutRelationEqual
+//                   toItem:scrollView
+//                   attribute:NSLayoutAttributeWidth
+//                   multiplier:1.0
+//                   constant:0];
+//    [scrollView addConstraint:myConstraint];
+//    
+//    myConstraint =[NSLayoutConstraint
+//                   constraintWithItem:logoImageView
+//                   attribute:NSLayoutAttributeCenterX
+//                   relatedBy:NSLayoutRelationEqual
+//                   toItem:scrollView
+//                   attribute:NSLayoutAttributeCenterX
+//                   multiplier:1.0
+//                   constant:0];
+//    [scrollView addConstraint:myConstraint];
+//    
+//    myConstraint =[NSLayoutConstraint
+//                   constraintWithItem:logoImageView
+//                   attribute:NSLayoutAttributeHeight
+//                   relatedBy:NSLayoutRelationEqual
+//                   toItem:nil
+//                   attribute:NSLayoutAttributeNotAnAttribute
+//                   multiplier:1.0
+//                   constant:75];
+//    [scrollView addConstraint:myConstraint];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];

@@ -55,11 +55,6 @@ NSInteger defaultSelectionIndex;
             currentDataSource = metricUnits;
         }
         
-        unitTable.dataSource = self;
-        unitTable.delegate = self;
-        
-        [unitTable reloadData];
-        
         metricViewController = controller;
         buttonClicked = button;
     }
@@ -85,6 +80,7 @@ NSInteger defaultSelectionIndex;
     [segmentedControl insertSegmentWithTitle:@"Metric" atIndex:1 animated:NO];
     [segmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
     [segmentedControl setTintColor:[UIColor blackColor]];
+    [segmentedControl setSelectedSegmentIndex:0];
     [segmentedControl addTarget:self action:@selector(onSegmentedControlClick:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segmentedControl];
     
@@ -92,7 +88,10 @@ NSInteger defaultSelectionIndex;
     [unitTable setTranslatesAutoresizingMaskIntoConstraints:NO];
     unitTable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
     [self.view addSubview:unitTable];
-
+    
+    unitTable.dataSource = self;
+    unitTable.delegate = self;
+    [unitTable reloadData];
 }
 
 - (void)viewDidLoad

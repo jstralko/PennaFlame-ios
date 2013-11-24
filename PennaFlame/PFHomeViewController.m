@@ -42,10 +42,10 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         //iPad
         layout.itemSize = CGSizeMake(200, 200);
-        layout.sectionInset = UIEdgeInsetsMake(150, 20, 10, 20);
+        layout.sectionInset = UIEdgeInsetsMake(75, 20, 10, 20);
         layout.minimumInteritemSpacing = 25.0f;  //spacing between cells
         layout.minimumLineSpacing = 25.0f;       //space between cells vertical
-        layout.footerReferenceSize = CGSizeMake(0, 100);
+        layout.footerReferenceSize = CGSizeMake(0, 150);
         
     } else {
         //iPhone
