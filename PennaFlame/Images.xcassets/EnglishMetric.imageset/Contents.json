@@ -7,16 +7,18 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "english-metric_converter_100x100_1.png"
     },
     {
       "idiom" : "iphone",
       "scale" : "1x",
-      "filename" : "english-metric_converter_50x50_1.png"
+      "filename" : "english-metric_converter_100x100_1.png"
     },
     {
       "idiom" : "iphone",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "english-metric_converter_100x100_1.png"
     },
     {
       "idiom" : "ipad",
@@ -25,7 +27,8 @@
     },
     {
       "idiom" : "ipad",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "english-metric_converter_100x100_1.png"
     }
   ],
   "info" : {
