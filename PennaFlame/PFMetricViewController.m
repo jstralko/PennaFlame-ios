@@ -25,6 +25,8 @@
 #define ENGLISH_TO_METRIC   @"Metric"
 #define MAX_NUMBER          1000000
 
+
+int tabBarHeight;
 NSLayoutConstraint *scrollViewBottom;
 NSMutableDictionary *unitConvertDict;
 NSMutableDictionary *metricUnitConvertDict;
@@ -82,8 +84,7 @@ NSMutableDictionary *englishMetricConvertDict;
     [self.view addSubview:scrollView];
     
     backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackgroundImage"]];
-    [backgroundImage setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
-    backgroundImage.frame = self.view.frame;
+    [backgroundImage setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:backgroundImage];
     
     redBanner = [[UIView alloc] initWithFrame:CGRectZero];
@@ -140,21 +141,20 @@ NSMutableDictionary *englishMetricConvertDict;
     bottomStepper.maximumValue = MAX_NUMBER;
     [scrollView addSubview:bottomStepper];
     
-//    UIImage *logoImage = [UIImage imageNamed:@"PFILogo"];
-//    logoImageView = [[UIImageView alloc] initWithImage:logoImage];
-//    [logoImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    [scrollView addSubview:logoImageView];
+    UIImage *logoImage = [UIImage imageNamed:@"PFILogo"];
+    logoImageView = [[UIImageView alloc] initWithImage:logoImage];
+    [logoImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [scrollView addSubview:logoImageView];
     
-    int height;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        height = 100;
+        tabBarHeight = 100;
     } else {
-        height = 65;
+        tabBarHeight = 65;
     }
     tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
-                                                     self.view.bounds.size.height - height,
+                                                     self.view.bounds.size.height - tabBarHeight,
                                                      self.view.bounds.size.width,
-                                                         height) withIndex:0];
+                                                         tabBarHeight) withIndex:0];
     [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
     tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
     [self.view addSubview:tabBar];
@@ -193,17 +193,6 @@ NSMutableDictionary *englishMetricConvertDict;
                    constant:0];
     [self.view addConstraint:myConstraint];
     
-    myConstraint =[NSLayoutConstraint
-                   constraintWithItem:scrollView
-                   attribute:NSLayoutAttributeBottom
-                   relatedBy:NSLayoutRelationEqual
-                   toItem:self.view
-                   attribute:NSLayoutAttributeBottom
-                   multiplier:1.0
-                   constant:0];
-    [self.view addConstraint:myConstraint];
-    
-    
     //magic to get it to scroll when the keyboard is show
     scrollViewBottom =[NSLayoutConstraint
                        constraintWithItem:scrollView
@@ -212,7 +201,50 @@ NSMutableDictionary *englishMetricConvertDict;
                        toItem:self.view
                        attribute:NSLayoutAttributeBottom
                        multiplier:1.0
-                       constant:0];
+                       constant:(-1*tabBarHeight)];
+    
+    [self.view addConstraint:scrollViewBottom];
+    
+    //
+    myConstraint =[NSLayoutConstraint
+                                       constraintWithItem:backgroundImage
+                                       attribute:NSLayoutAttributeTop
+                                       relatedBy:NSLayoutRelationEqual
+                                       toItem:self.view
+                                       attribute:NSLayoutAttributeTop
+                                       multiplier:1.0
+                                       constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:backgroundImage
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:backgroundImage
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:backgroundImage
+                   attribute:NSLayoutAttributeBottom
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:(-1*tabBarHeight)];
+    [self.view addConstraint:myConstraint];
+    
     
     //start of redbanner
     myConstraint =[NSLayoutConstraint
@@ -476,8 +508,49 @@ NSMutableDictionary *englishMetricConvertDict;
                    constant:-57];
     [scrollView addConstraint:myConstraint];
     
+    //
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:bottomStepper
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationGreaterThanOrEqual
+                   toItem:bottomStepper
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:10];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeCenterX
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeHeight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:75];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
                    attribute:NSLayoutAttributeBottom
                    relatedBy:NSLayoutRelationEqual
                    toItem:scrollView
@@ -485,48 +558,6 @@ NSMutableDictionary *englishMetricConvertDict;
                    multiplier:1.0
                    constant:0];
     [scrollView addConstraint:myConstraint];
-    
-    //
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:logoImageView
-//                   attribute:NSLayoutAttributeBottom
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:scrollView
-//                   attribute:NSLayoutAttributeBottom
-//                   multiplier:1.0
-//                   constant:-5];
-//    
-//    [scrollView addConstraint:myConstraint];
-//    
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:logoImageView
-//                   attribute:NSLayoutAttributeWidth
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:scrollView
-//                   attribute:NSLayoutAttributeWidth
-//                   multiplier:1.0
-//                   constant:0];
-//    [scrollView addConstraint:myConstraint];
-//    
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:logoImageView
-//                   attribute:NSLayoutAttributeCenterX
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:scrollView
-//                   attribute:NSLayoutAttributeCenterX
-//                   multiplier:1.0
-//                   constant:0];
-//    [scrollView addConstraint:myConstraint];
-//    
-//    myConstraint =[NSLayoutConstraint
-//                   constraintWithItem:logoImageView
-//                   attribute:NSLayoutAttributeHeight
-//                   relatedBy:NSLayoutRelationEqual
-//                   toItem:nil
-//                   attribute:NSLayoutAttributeNotAnAttribute
-//                   multiplier:1.0
-//                   constant:75];
-//    [scrollView addConstraint:myConstraint];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -590,14 +621,10 @@ NSMutableDictionary *englishMetricConvertDict;
             baseValue = converteeBase * value / converterBase;
         }
         convertedValue = (baseValue * conversionRate);
-        
-        //NSLog(@"DIFFUNITS: converting %@ to %@ %f value converteeBase %f converterBase %f convertedValue %f conversionRate %f",
-        //      convertee, converter, value, converteeBase, converterBase, convertedValue, conversionRate);
     } else {
         converterBase = [[metricUnitConvertDict objectForKey:converter] floatValue];
         converteeBase = [[metricUnitConvertDict objectForKey:convertee]floatValue];
         convertedValue = (converteeBase * value) / converterBase;
-        //NSLog(@"SAMEUNITS: %f value converteeBase %f converterBase %f convertedValue %f", value, converteeBase, converterBase, convertedValue);
     }
     return convertedValue;
 }

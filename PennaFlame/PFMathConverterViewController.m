@@ -22,6 +22,8 @@
 
 @end
 
+int tabBarHeight;
+
 @implementation PFMathConverterViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,15 +46,13 @@
     [self.view addSubview:scrollView];
     
     backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackgroundImage"]];
-    [backgroundImage setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
-    backgroundImage.frame = self.view.frame;
+    [backgroundImage setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:backgroundImage];
     
     redPadding = [[UIView alloc] initWithFrame:CGRectZero];
     [redPadding setTranslatesAutoresizingMaskIntoConstraints:NO];
     redPadding.backgroundColor = [UIColor redColor];
     [scrollView addSubview:redPadding];
-    
     
     NSArray *itemArray = [NSArray arrayWithObjects: @"Fraction", @"Decimal", nil];
     segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
@@ -118,16 +118,15 @@
     [decimalStepper setTintColor:[UIColor blackColor]];
     [scrollView addSubview:decimalStepper];
     
-    int height;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        height = 100;
+        tabBarHeight = 100;
     } else {
-        height = 65;
+        tabBarHeight = 65;
     }
     tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
-                                                         self.view.bounds.size.height - height,
+                                                         self.view.bounds.size.height - tabBarHeight,
                                                          self.view.bounds.size.width,
-                                                         height) withIndex:1];
+                                                         tabBarHeight) withIndex:1];
     [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
     tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
     [self.view addSubview:tabBar];
@@ -336,7 +335,47 @@
                    toItem:self.view
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
+                   constant:(-1*tabBarHeight) +5];
+    [self.view addConstraint:myConstraint];
+    
+    //
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:backgroundImage
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeTop
+                   multiplier:1.0
                    constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:backgroundImage
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:backgroundImage
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:backgroundImage
+                   attribute:NSLayoutAttributeBottom
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:(-1*tabBarHeight)+5];
     [self.view addConstraint:myConstraint];
     
     //

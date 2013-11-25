@@ -17,10 +17,10 @@
 #define TAB_IMAGE_WIDTH                 35
 #define TAB_IMAGE_WIDTH_QUIRK           40 //english and mti images are special
 #define TAB_IMAGE_IPAD_WIDTH            50
-#define TAB_IMAGE_IPAD_WIDTH_QUIRK      60
+#define TAB_IMAGE_IPAD_WIDTH_QUIRK      60 //english and mti images are special
 
 #define TAB_IMAGE_HEIGHT                35
-#define TAB_IMAGE_HEIGHT_QUIRK          40
+#define TAB_IMAGE_HEIGHT_QUIRK          40 //english and mti images are special
 #define TAB_IMAGE_IPAD_HEIGHT           50
 #define TAB_IMAGE_IPAD_HEIGHT_QUIRK     60 //english and mti images are special
 
