@@ -12,12 +12,16 @@
 
 @synthesize title;
 
+UIImageView *backgroundImageView;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImage"]];
+        //self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImage"]];
         //self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImageHiRes"]];
+        backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeButtonImage"]];
+        [self addSubview:backgroundImageView];
         
         imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         [self addSubview:imageView];
@@ -59,10 +63,12 @@
     int y = (self.bounds.size.height / 2) - (image.size.height /2) - padding;
     [imageView setFrame:CGRectMake(x, y, image.size.width, image.size.height)];
     [imageView setImage:image];
-    
+
     y = imageView.frame.origin.y + imageView.frame.size.height;
     int height = self.bounds.size.height - y;
     [title setFrame:CGRectMake(0, y, self.bounds.size.width, height)];
+    
+    [backgroundImageView setFrame:self.bounds];
 }
 
 /*

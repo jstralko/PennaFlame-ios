@@ -55,7 +55,6 @@
         layout.minimumLineSpacing = 20.0f;       //space between cells vertical
         layout.footerReferenceSize = CGSizeMake(0, 75);
     }
-    
     layout.headerReferenceSize = CGSizeMake(0, 10);
 
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
