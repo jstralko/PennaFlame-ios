@@ -8,6 +8,7 @@
 
 #import "PFMTIViewController.h"
 #import "PFAppDelegate.h"
+#import "PFTabView.h"
 
 @interface PFMTIViewController ()
 

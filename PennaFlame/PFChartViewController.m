@@ -9,6 +9,7 @@
 #import "PFChartViewController.h"
 #import "PFFullChartViewController.h"
 #import "PFAppDelegate.h"
+#import "PFTabView.h"
 
 @interface PFChartViewController ()
     

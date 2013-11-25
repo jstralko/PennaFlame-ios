@@ -9,6 +9,7 @@
 #import "PFContactInfoViewController.h"
 #import "PFWebsiteViewController.h"
 #import "PFAppDelegate.h"
+#import "PFTabView.h"
 
 @interface PFContactInfoViewController ()
 

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
-#import "PFTabView.h"
+
+@class PFTabView;
 
 @interface PFContactInfoViewController: UIViewController <MFMailComposeViewControllerDelegate> {
     

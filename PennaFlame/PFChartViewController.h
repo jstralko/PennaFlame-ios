@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PFTabView.h"
+
+@class PFTabView;
 
 @interface PFChartViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UIWebViewDelegate> {
    // IBOutlet UIWebView *hardnessWebView;

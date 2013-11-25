@@ -7,6 +7,7 @@
 //
 
 #import "PFUnitTableViewController.h"
+#import "PFMetricViewController.h"
 
 @interface PFUnitTableViewController ()
 

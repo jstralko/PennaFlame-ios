@@ -9,6 +9,7 @@
 #import "PFMetricViewController.h"
 #import "PFUnitTableViewController.h"
 #import "PFAppDelegate.h"
+#import "PFTabView.h"
 
 @interface PFMetricViewController ()
 

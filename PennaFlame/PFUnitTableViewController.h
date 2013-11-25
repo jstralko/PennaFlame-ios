@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PFMetricViewController.h"
+
+@class PFMetricViewController;
 
 #define ENGLISH_UNITS   0
 #define METRIC_UNITS    1
