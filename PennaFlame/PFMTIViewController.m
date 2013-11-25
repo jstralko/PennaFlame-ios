@@ -20,37 +20,44 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        int height;
-        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-            height = 100;
-        } else {
-            height = 65;
-        }
-        
         self.navigationItem.title = @"MTI Statement";
         self.view.backgroundColor = [UIColor lightGrayColor];
-        
-        mtiWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,0,
-                                        self.view.bounds.size.width,
-                                        self.view.bounds.size.height - height)];
-        [mtiWebView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth|
-            UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|
-            UIViewAutoresizingFlexibleHeight];
-        [self.view addSubview:mtiWebView];
-        
-        NSURL *url = [[NSBundle mainBundle] URLForResource:@"mti_statement" withExtension:@"html"];
-        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-        [mtiWebView loadRequest:request];
-        
-        tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
-                                                             self.view.bounds.size.height - height,
-                                                             self.view.bounds.size.width,
-                                                             height) withIndex:4];
-        [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
-        tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
-        [self.view addSubview:tabBar];
+
     }
     return self;
+}
+
+- (void)loadView
+{
+    [super loadView];
+    
+    int height;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        height = 100;
+    } else {
+        height = 65;
+    }
+    
+    mtiWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,0,
+                                                             self.view.bounds.size.width,
+                                                             self.view.bounds.size.height - height)];
+    [mtiWebView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth|
+     UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|
+     UIViewAutoresizingFlexibleHeight];
+    [self.view addSubview:mtiWebView];
+    
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"mti_statement" withExtension:@"html"];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    [mtiWebView loadRequest:request];
+    
+    tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
+                                                         self.view.bounds.size.height - height,
+                                                         self.view.bounds.size.width,
+                                                         height) withIndex:4];
+    [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
+    tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
+    [self.view addSubview:tabBar];
+    
 }
 
 - (void)viewDidLoad
