@@ -154,7 +154,7 @@ NSMutableDictionary *englishMetricConvertDict;
     tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
                                                      self.view.bounds.size.height - tabBarHeight,
                                                      self.view.bounds.size.width,
-                                                         tabBarHeight) withIndex:0];
+                                                    tabBarHeight) withIndex:0];
     [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
     tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
     [self.view addSubview:tabBar];
@@ -539,6 +539,13 @@ NSMutableDictionary *englishMetricConvertDict;
                    constant:0];
     [scrollView addConstraint:myConstraint];
     
+    int height;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        height = 125;
+    } else {
+        height = 75;
+    }
+    
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:logoImageView
                    attribute:NSLayoutAttributeHeight
@@ -546,7 +553,7 @@ NSMutableDictionary *englishMetricConvertDict;
                    toItem:nil
                    attribute:NSLayoutAttributeNotAnAttribute
                    multiplier:1.0
-                   constant:75];
+                   constant:height];
     [scrollView addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
