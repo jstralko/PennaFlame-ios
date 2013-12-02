@@ -109,6 +109,11 @@ NSLayoutConstraint *webViewHeightConstraint;
     redBanner.backgroundColor = [UIColor redColor];
     [scrollView addSubview:redBanner];
     
+    UIImage *logoImage = [UIImage imageNamed:@"PFILogo"];
+    logoImageView = [[UIImageView alloc] initWithImage:logoImage];
+    [logoImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [scrollView addSubview:logoImageView];
+    
     topPicker.dataSource = self;
     topPicker.delegate = self;
     rangePicker.dataSource = self;
@@ -625,10 +630,6 @@ NSLayoutConstraint *webViewHeightConstraint;
     
     [scrollView addConstraint:webViewHeightConstraint];
     
-    /*
-     * These two contraints below makes the
-     * scrollview scroll in all directions
-     */
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:chartWebView
                    attribute:NSLayoutAttributeRight
@@ -673,8 +674,56 @@ NSLayoutConstraint *webViewHeightConstraint;
                    constant:250];
     [scrollView addConstraint:myConstraint];
     
+    //
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:showFullChart
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationGreaterThanOrEqual
+                   toItem:showFullChart
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:10];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeCenterX
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    int height;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        height = 125;
+    } else {
+        height = 75;
+    }
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeHeight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:height];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
                    attribute:NSLayoutAttributeBottom
                    relatedBy:NSLayoutRelationEqual
                    toItem:scrollView

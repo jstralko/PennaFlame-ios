@@ -25,7 +25,7 @@
     UIView *redPadding;
     UIImageView *backgroundImage;
     PFTabView *tabBar;
-    
+    UIImageView *logoImageView;
 }
 
 - (IBAction) onSegmentedControlChanged:(id)sender;

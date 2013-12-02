@@ -91,6 +91,11 @@ int tabBarHeight;
     [extra setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:extra];
     
+    UIImage *logoImage = [UIImage imageNamed:@"PFILogo"];
+    logoImageView = [[UIImageView alloc] initWithImage:logoImage];
+    [logoImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [scrollView addSubview:logoImageView];
+    
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         tabBarHeight = 100;
     } else {
@@ -342,22 +347,73 @@ int tabBarHeight;
                    constant:0];
     [scrollView addConstraint:myConstraint];
     
+//        myConstraint =[NSLayoutConstraint
+//                       constraintWithItem:extra
+//                       attribute:NSLayoutAttributeBottom
+//                       relatedBy:NSLayoutRelationEqual
+//                       toItem:scrollView
+//                       attribute:NSLayoutAttributeBottom
+//                       multiplier:1.0
+//                       constant:0];
+//        [scrollView addConstraint:myConstraint];
     
-        /*
-         WOW Apple, that is all i'm going to say....
-         
-         This code below is the "magic" to get
-         scrolling working when the device is rotated.
-         */
-        myConstraint =[NSLayoutConstraint
-                       constraintWithItem:extra
-                       attribute:NSLayoutAttributeBottom
-                       relatedBy:NSLayoutRelationEqual
-                       toItem:scrollView
-                       attribute:NSLayoutAttributeBottom
-                       multiplier:1.0
-                       constant:0];
-        [scrollView addConstraint:myConstraint];
+    //
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationGreaterThanOrEqual
+                   toItem:extra
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:10];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeCenterX
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    int height;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        height = 125;
+    } else {
+        height = 75;
+    }
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeHeight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:height];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeBottom
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
 }
 
 - (void)didReceiveMemoryWarning

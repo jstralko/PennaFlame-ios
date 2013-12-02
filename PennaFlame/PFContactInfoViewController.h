@@ -23,7 +23,7 @@
     UIView *redBanner;
     UIImageView *backgroundImage;
     PFTabView *tabBar;
-    
+    UIImageView *logoImageView;
 }
 
 -(IBAction) emailButtonClicked:(id) sender;

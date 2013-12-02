@@ -22,6 +22,7 @@
     UIButton *showFullChart;
     UIView *redBanner;
     UIImageView *backgroundImage;
+    UIImageView *logoImageView;
     PFTabView *tabBar;
 }
 

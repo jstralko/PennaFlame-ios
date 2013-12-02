@@ -119,6 +119,11 @@ int tabBarHeight;
     [decimalStepper setTintColor:[UIColor blackColor]];
     [scrollView addSubview:decimalStepper];
     
+    UIImage *logoImage = [UIImage imageNamed:@"PFILogo"];
+    logoImageView = [[UIImageView alloc] initWithImage:logoImage];
+    [logoImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [scrollView addSubview:logoImageView];
+    
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         tabBarHeight = 100;
     } else {
@@ -689,8 +694,56 @@ int tabBarHeight;
                    constant:3];
     [scrollView addConstraint:myConstraint];
     
+    //
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:decimalStepper
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationGreaterThanOrEqual
+                   toItem:decimalStepper
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:10];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeCenterX
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    int height;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        height = 125;
+    } else {
+        height = 75;
+    }
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeHeight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:height];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
                    attribute:NSLayoutAttributeBottom
                    relatedBy:NSLayoutRelationEqual
                    toItem:scrollView
@@ -743,6 +796,47 @@ int tabBarHeight;
                    multiplier:1.0
                    constant:0];
     [self.view addConstraint:myConstraint];
+    
+    //
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:backgroundImage
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeTop
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:backgroundImage
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:backgroundImage
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:backgroundImage
+                   attribute:NSLayoutAttributeBottom
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:redPadding
@@ -889,17 +983,6 @@ int tabBarHeight;
                    multiplier:1.0
                    constant:3];
     [scrollView addConstraint:myConstraint];
-    
-    myConstraint =[NSLayoutConstraint
-                   constraintWithItem:decimalStepper
-                   attribute:NSLayoutAttributeBottom
-                   relatedBy:NSLayoutRelationEqual
-                   toItem:scrollView
-                   attribute:NSLayoutAttributeBottom
-                   multiplier:1.0
-                   constant:0];
-    [scrollView addConstraint:myConstraint];
-    
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:fractionBarLabel
@@ -1057,6 +1140,64 @@ int tabBarHeight;
                    attribute:NSLayoutAttributeRight
                    multiplier:1.0
                    constant:3];
+    [scrollView addConstraint:myConstraint];
+    
+    //
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationGreaterThanOrEqual
+                   toItem:denominatorStepper
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:10];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeCenterX
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    int height;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        height = 125;
+    } else {
+        height = 75;
+    }
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeHeight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:height];
+    [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:logoImageView
+                   attribute:NSLayoutAttributeBottom
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:0];
     [scrollView addConstraint:myConstraint];
 }
 
