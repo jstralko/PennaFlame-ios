@@ -117,14 +117,14 @@
 }
 
 - (void)collectionView:(UICollectionView *)colView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell* cell = [colView cellForItemAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = nil;
+    //PFHomeCollectionViewCell *cell = (PFHomeCollectionViewCell *)[colView cellForItemAtIndexPath:indexPath];
+    //[cell unSelect];
 }
 
 
 - (void)collectionView:(UICollectionView *)colView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell* cell = [colView cellForItemAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor redColor];
+    PFHomeCollectionViewCell *cell = (PFHomeCollectionViewCell *)[colView cellForItemAtIndexPath:indexPath];
+    [cell setSelection];
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -191,6 +191,10 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    PFHomeCollectionViewCell *cell = (PFHomeCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell unSelect];
+    
     switch (indexPath.row) {
         case 0: {
             PFMetricViewController *pfvc = [[PFMetricViewController alloc]init];

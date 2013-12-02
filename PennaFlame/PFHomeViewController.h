@@ -12,4 +12,5 @@
     UIImageView *logo;
     UIImageView *backgroundImage;
 }
+
 @end

@@ -12,7 +12,6 @@
 
 @synthesize title;
 
-UIImageView *backgroundImageView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -49,6 +48,16 @@ UIImageView *backgroundImageView;
         self.layer.shadowOpacity = 0.8f;
     }
     return self;
+}
+
+-(void)setSelection {
+    [backgroundImageView setHidden:YES];
+    self.backgroundColor = [UIColor redColor];
+}
+
+-(void)unSelect {
+    [backgroundImageView setHidden:NO];
+    self.backgroundColor = nil;
 }
 
 -(void) setImageViewFrame:(UIImage *)image {

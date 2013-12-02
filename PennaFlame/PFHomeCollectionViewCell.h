@@ -10,11 +10,14 @@
 
 @interface PFHomeCollectionViewCell : UICollectionViewCell {
     UILabel *title;
-    UIImageView *imageView;;
+    UIImageView *imageView;
+    UIImageView *backgroundImageView;
 }
 
 @property (strong, nonatomic) UILabel *title;
 
 - (void) setImageViewFrame:(UIImage *)image;
+- (void) setSelection;
+- (void) unSelect;
 
 @end
