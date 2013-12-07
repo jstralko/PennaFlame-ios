@@ -81,7 +81,7 @@ NSInteger defaultSelectionIndex;
     [segmentedControl insertSegmentWithTitle:@"Metric" atIndex:1 animated:NO];
     [segmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
     [segmentedControl setTintColor:[UIColor blackColor]];
-    [segmentedControl setSelectedSegmentIndex:0];
+    [segmentedControl setSelectedSegmentIndex:defaultSelectionIndex];
     [segmentedControl addTarget:self action:@selector(onSegmentedControlClick:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segmentedControl];
     
