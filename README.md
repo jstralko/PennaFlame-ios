@@ -3,6 +3,7 @@ PennaFlame-ios
 
 Penna Flame App for iOS
 
+![alt tag](https://raw.github.com/jstralko/PennaFlame-ios/master/Screenshots/iPhoneAppIcon.png)
 
 ![alt tag](https://raw.github.com/jstralko/PennaFlame-ios/master/Screenshots/iPhoneHomeScreen.png)
 
