@@ -17,9 +17,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        //self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImage"]];
-        //self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"HomeButtonImageHiRes"]];
-        backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeButtonImage"]];
+        //backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeButtonImage"]];
+        backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HomeButtonImageHiRes"]];
         [self addSubview:backgroundImageView];
         
         imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
