@@ -9,18 +9,18 @@
 #import <UIKit/UIKit.h>
 
 @class PFTabView;
+@class PFStepper;
 
 @interface PFMathConverterViewController : UIViewController <UITextFieldDelegate> {
     IBOutlet UISegmentedControl *segmentedControl;
     IBOutlet UITextField *numeratorTextField;
     IBOutlet UITextField *denominatorTextField;
     IBOutlet UILabel *fractionBarLabel;
-    IBOutlet UIStepper *numeratorStepper;
-    IBOutlet UIStepper *denominatorStepper;
-    UIStepper *decimalStepper;
+    IBOutlet PFStepper *numeratorStepper;
+    IBOutlet PFStepper *denominatorStepper;
+    PFStepper *decimalStepper;
     IBOutlet UILabel *equalsLabel;
     IBOutlet UITextField *decimalTextField;
-//    IBOutlet UIButton *clearButton;
     UIScrollView *scrollView;
     UIView *redPadding;
     UIImageView *backgroundImage;

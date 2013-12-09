@@ -9,6 +9,7 @@
 #import "PFMathConverterViewController.h"
 #import "PFAppDelegate.h"
 #import "PFTabView.h"
+#import "PFStepper.h"
 
 @interface PFMathConverterViewController ()
 
@@ -32,6 +33,21 @@ int tabBarHeight;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.navigationItem.title = @"Converter";
+        /*
+         * You can use an appearance proxy to set particular appearance properties for all instances of a view in your application.
+         * For example, if you want all sliders in your app to have a particular minimum track tint color, you can specify this
+         * with a single message to the slider’s appearance proxy.
+         */
+//        UIStepper *proxy = [UIStepper appearance];
+//        UIImage *minusImage = [[UIImage imageNamed:@"MinusImage"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        UIImage *minusDownStateImage = [[UIImage imageNamed:@"MinusDownStateImage"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        UIImage *plusImage = [[UIImage imageNamed:@"PlusImage"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        UIImage *plusDownStateImage = [[UIImage imageNamed:@"PlusDownStateImage"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        
+//        [[UIStepper appearance] setDecrementImage:minusImage forState:UIControlStateNormal];
+//        [[UIStepper appearance] setDecrementImage:minusDownStateImage forState:UIControlStateHighlighted];
+//        [[UIStepper appearance] setIncrementImage:plusImage forState:UIControlStateNormal];
+//        [[UIStepper appearance] setIncrementImage:plusDownStateImage forState:UIControlStateHighlighted];
     }
     return self;
 }
@@ -88,14 +104,14 @@ int tabBarHeight;
     [denominatorTextField setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:denominatorTextField];
     
-    numeratorStepper = [[UIStepper alloc] initWithFrame:CGRectZero];
+    numeratorStepper = [[PFStepper alloc] initWithFrame:CGRectZero];
     [numeratorStepper addTarget:self action:@selector(steppervalueChanged:) forControlEvents:UIControlEventValueChanged];
     numeratorStepper.maximumValue = 100000;
     [numeratorStepper setTintColor:[UIColor blackColor]];
     [numeratorStepper setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:numeratorStepper];
 
-    denominatorStepper = [[UIStepper alloc] initWithFrame:CGRectZero];
+    denominatorStepper = [[PFStepper alloc] initWithFrame:CGRectZero];
     [denominatorStepper addTarget:self action:@selector(steppervalueChanged:) forControlEvents:UIControlEventValueChanged];
     denominatorStepper.maximumValue = 100000;
     [denominatorStepper setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -111,7 +127,7 @@ int tabBarHeight;
     [decimalTextField setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:decimalTextField];
 
-    decimalStepper = [[UIStepper alloc] initWithFrame:CGRectZero];
+    decimalStepper = [[PFStepper alloc] initWithFrame:CGRectZero];
     decimalStepper.minimumValue = 0.00f;
     decimalStepper.stepValue = 0.0001f;
     [decimalStepper addTarget:self action:@selector(steppervalueChanged:) forControlEvents:UIControlEventValueChanged];
