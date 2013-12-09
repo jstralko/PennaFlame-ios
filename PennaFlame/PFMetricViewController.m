@@ -10,6 +10,7 @@
 #import "PFUnitTableViewController.h"
 #import "PFAppDelegate.h"
 #import "PFTabView.h"
+#import "PFStepper.h"
 
 @interface PFMetricViewController ()
 
@@ -111,7 +112,7 @@ NSMutableDictionary *englishMetricConvertDict;
     [topButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:topButton];
 
-    topStepper = [[UIStepper alloc] initWithFrame:CGRectZero];
+    topStepper = [[PFStepper alloc] initWithFrame:CGRectZero];
     [topStepper addTarget:self action:@selector(onStepChanged:) forControlEvents:UIControlEventValueChanged];
     [topStepper setTranslatesAutoresizingMaskIntoConstraints:NO];
     [topStepper setTintColor:[UIColor blackColor]];
@@ -135,7 +136,7 @@ NSMutableDictionary *englishMetricConvertDict;
     [bottomButton setTintColor:[UIColor blackColor]];
     [scrollView addSubview:bottomButton];
 
-    bottomStepper = [[UIStepper alloc] initWithFrame:CGRectZero];
+    bottomStepper = [[PFStepper alloc] initWithFrame:CGRectZero];
     [bottomStepper addTarget:self action:@selector(onStepChanged:) forControlEvents:UIControlEventValueChanged];
     [bottomStepper setTranslatesAutoresizingMaskIntoConstraints:NO];
     [bottomStepper setTintColor:[UIColor blackColor]];

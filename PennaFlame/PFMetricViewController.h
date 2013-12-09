@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class PFTabView;
+@class PFStepper;
 
 @interface PFMetricViewController : UIViewController {
     IBOutlet UIButton *topButton;
-    UIStepper *topStepper;
+    PFStepper *topStepper;
     IBOutlet UIButton *bottomButton;
-    UIStepper *bottomStepper;;
+    PFStepper *bottomStepper;;
     IBOutlet UITextField *topTextField;
     IBOutlet UITextField *bottomTextField;
     UIScrollView *scrollView;
