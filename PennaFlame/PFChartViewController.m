@@ -191,7 +191,7 @@ NSLayoutConstraint *webViewHeightConstraint;
         NSString *metal = [[chartDictionary allKeys] objectAtIndex:metalIndex];
         
         NSArray *metals = [chartDictionary allKeys];
-        NSMutableString *html = [NSMutableString stringWithFormat:@"<html><head></head><body style=\"background-color:#BDBBBB;\">"
+        NSMutableString *html = [NSMutableString stringWithFormat:@"<html><head></head><body style=\"bbackground-color: transparent;\">"
                                  "<table width=\"90%%\" border=\"1\" align=\"center\" cellpadding=\"3\" cellspacing=\"0\" bordercolor=\"#CCCCC\">"
                                  "<tbody>"
                                  "<tr bgcolor=\"lightgrey\" align=\"center\">" ];
