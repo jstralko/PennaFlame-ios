@@ -23,6 +23,10 @@
     UIImageView *logoImageView;
     PFTabView *tabBar;
     UIImageView *backgroundImage;
+    NSLayoutConstraint *scrollViewBottom;
+    NSMutableDictionary *unitConvertDict;
+    NSMutableDictionary *metricUnitConvertDict;
+    NSMutableDictionary *englishMetricConvertDict;
 }
 
 - (void) buttonClicked:(id)sender;

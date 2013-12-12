@@ -29,10 +29,7 @@
 
 
 int tabBarHeight;
-NSLayoutConstraint *scrollViewBottom;
-NSMutableDictionary *unitConvertDict;
-NSMutableDictionary *metricUnitConvertDict;
-NSMutableDictionary *englishMetricConvertDict;
+#define SCROLL_VIEW_BOTTOM_CONSTANT (-1*tabBarHeight)
 
 @implementation PFMetricViewController
 
@@ -203,7 +200,7 @@ NSMutableDictionary *englishMetricConvertDict;
                        toItem:self.view
                        attribute:NSLayoutAttributeBottom
                        multiplier:1.0
-                       constant:(-1*tabBarHeight)];
+                       constant:SCROLL_VIEW_BOTTOM_CONSTANT];
     
     [self.view addConstraint:scrollViewBottom];
     
@@ -581,16 +578,14 @@ NSMutableDictionary *englishMetricConvertDict;
     
     BOOL isPortrait = UIDeviceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
     CGFloat height = isPortrait ? keyboardFrame.size.height : keyboardFrame.size.width;
-    
-    scrollView.frame = CGRectMake(scrollView.frame.origin.x, scrollView.frame.origin.y, scrollView.frame.size.width, scrollView.frame.size.height - height);
+    scrollViewBottom.constant = height;
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
+    scrollViewBottom.constant = SCROLL_VIEW_BOTTOM_CONSTANT;
+    
     NSDictionary *info = [notification userInfo];
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    scrollViewBottom.constant = 0;
-    
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
     }];
