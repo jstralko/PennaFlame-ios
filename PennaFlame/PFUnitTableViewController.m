@@ -65,6 +65,7 @@ NSInteger defaultSelectionIndex;
 - (void) loadView {
     
     [super loadView];
+    [self setEdgesForExtendedLayout:UIRectEdgeNone];
     
     backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackgroundImage"]];
     [backgroundImage setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];

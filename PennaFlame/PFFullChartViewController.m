@@ -37,7 +37,6 @@ NSString *chartHtml;
 
 -(void) loadView {
     [super loadView];
-    
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
     
     background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackgroundImage"]];

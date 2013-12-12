@@ -75,6 +75,7 @@ int tabBarHeight;
 -(void)loadView {
     // Set up main view
     [super loadView];
+    [self setEdgesForExtendedLayout:UIRectEdgeNone];
     
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
