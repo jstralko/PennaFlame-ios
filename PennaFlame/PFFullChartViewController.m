@@ -30,7 +30,6 @@ NSString *chartHtml;
     if (self) {
         chartHtml = html;
         self.navigationItem.title = @"Full Chart";
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
     }
     
     return self;
@@ -39,58 +38,106 @@ NSString *chartHtml;
 -(void) loadView {
     [super loadView];
     
+    [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    
+    background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackgroundImage"]];
+    [background setFrame:self.view.bounds];
+    [background setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:background];
+    
     redBanner = [[UIView alloc] initWithFrame:CGRectZero];
     [redBanner setTranslatesAutoresizingMaskIntoConstraints:NO];
     redBanner.backgroundColor = [UIColor redColor];
-    [self.view addSubview:redBanner];
+    [background addSubview:redBanner];
     
     if(!chart) chart = [[UIWebView alloc]initWithFrame:CGRectZero];
     [chart setTranslatesAutoresizingMaskIntoConstraints:NO];
     [chart loadHTMLString:chartHtml baseURL:nil];
-    [self.view addSubview:chart];
+    [background addSubview:chart];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.view removeConstraints:self.view.constraints];
+    [background removeConstraints:background.constraints];
+    
+    NSLayoutConstraint *myConstraint =[NSLayoutConstraint
+                   constraintWithItem:background
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeTop
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:background
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:background
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:background
+                   attribute:NSLayoutAttributeBottom
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:0];
+    [self.view addConstraint:myConstraint];
     
     //start of redbanner
-    NSLayoutConstraint *myConstraint =[NSLayoutConstraint
+    myConstraint =[NSLayoutConstraint
                    constraintWithItem:redBanner
                    attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationEqual
-                   toItem:self.view
+                   toItem:background
                    attribute:NSLayoutAttributeTop
                    multiplier:1.0
-                   constant:65];
+                   constant:0];
     
-    [self.view addConstraint:myConstraint];
+    [background addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:redBanner
                    attribute:NSLayoutAttributeWidth
                    relatedBy:NSLayoutRelationEqual
-                   toItem:self.view
+                   toItem:background
                    attribute:NSLayoutAttributeWidth
                    multiplier:1.0
                    constant:0];
-    [self.view addConstraint:myConstraint];
+    [background addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:redBanner
                    attribute:NSLayoutAttributeRight
                    relatedBy:NSLayoutRelationEqual
-                   toItem:self.view
+                   toItem:background
                    attribute:NSLayoutAttributeRight
                    multiplier:1.0
                    constant:0];
-    [self.view addConstraint:myConstraint];
+    [background addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:redBanner
                    attribute:NSLayoutAttributeLeft
                    relatedBy:NSLayoutRelationEqual
-                   toItem:self.view
+                   toItem:background
                    attribute:NSLayoutAttributeLeft
                    multiplier:1.0
                    constant:0];
@@ -104,7 +151,7 @@ NSString *chartHtml;
                    attribute:NSLayoutAttributeNotAnAttribute
                    multiplier:1.0
                    constant:10];
-    [self.view addConstraint:myConstraint];
+    [background addConstraint:myConstraint];
     //end of redbanner
     
     myConstraint =[NSLayoutConstraint
@@ -115,17 +162,17 @@ NSString *chartHtml;
                                        attribute:NSLayoutAttributeBottom
                                        multiplier:1.0
                                        constant:25];
-    [self.view addConstraint:myConstraint];
+    [background addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:chart
                    attribute:NSLayoutAttributeLeft
                    relatedBy:NSLayoutRelationEqual
-                   toItem:self.view
+                   toItem:background
                    attribute:NSLayoutAttributeLeft
                    multiplier:1.0
                    constant:0];
-    [self.view addConstraint:myConstraint];
+    [background addConstraint:myConstraint];
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:chart
                    attribute:NSLayoutAttributeRight
@@ -140,11 +187,11 @@ NSString *chartHtml;
                    constraintWithItem:chart
                    attribute:NSLayoutAttributeBottom
                    relatedBy:NSLayoutRelationEqual
-                   toItem:self.view
+                   toItem:background
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
                    constant:0];
-    [self.view addConstraint:myConstraint];
+    [background addConstraint:myConstraint];
     
 }
 
