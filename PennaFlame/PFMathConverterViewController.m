@@ -174,7 +174,22 @@ int tabBarHeight;
     
     BOOL isPortrait = UIDeviceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
     CGFloat height = isPortrait ? keyboardFrame.size.height : keyboardFrame.size.width;
-    scrollViewBottom.constant = height;
+    scrollViewBottom.constant = (-1*height);
+    
+    if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        UITextField *focusTextField;
+        if ([numeratorTextField isFirstResponder]) {
+            focusTextField = numeratorTextField;
+        } else if ([decimalTextField isFirstResponder]) {
+            focusTextField = decimalTextField;
+        } else {
+            focusTextField = denominatorTextField;
+        }
+        
+        CGPoint bottomOffset = CGPointMake(0, focusTextField.frame.origin.y + focusTextField.frame.size.height + 5 - scrollView.bounds.size.height);
+        [scrollView setContentOffset:bottomOffset];
+    }
+    
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
