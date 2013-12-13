@@ -24,6 +24,7 @@
     UIImageView *backgroundImage;
     UIImageView *logoImageView;
     PFTabView *tabBar;
+    NSLayoutConstraint *logoImageViewTop;
 }
 
 -(id)initWithDict:(NSMutableDictionary *)chartDict withTitle:(NSString *)title;

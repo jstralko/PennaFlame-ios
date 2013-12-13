@@ -27,6 +27,7 @@
     PFTabView *tabBar;
     UIImageView *logoImageView;
     NSLayoutConstraint *scrollViewBottom;
+    NSLayoutConstraint *logoImageViewTop;
 }
 
 - (IBAction) onSegmentedControlChanged:(id)sender;

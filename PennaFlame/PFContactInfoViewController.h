@@ -24,6 +24,7 @@
     UIImageView *backgroundImage;
     PFTabView *tabBar;
     UIImageView *logoImageView;
+    NSLayoutConstraint *logoImageViewTop;
 }
 
 -(IBAction) emailButtonClicked:(id) sender;

@@ -509,15 +509,15 @@ int tabBarHeight;
     [scrollView addConstraint:myConstraint];
     
     //
-    myConstraint =[NSLayoutConstraint
+    logoImageViewTop =[NSLayoutConstraint
                    constraintWithItem:logoImageView
                    attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationGreaterThanOrEqual
                    toItem:bottomStepper
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:10];
-    [scrollView addConstraint:myConstraint];
+                   constant:0];
+    [scrollView addConstraint:logoImageViewTop];
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:logoImageView
@@ -568,6 +568,41 @@ int tabBarHeight;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    float bottomOfPage = self.view.frame.size.height - tabBarHeight;
+    float bottomOfImageView = logoImageView.frame.origin.y + logoImageView.frame.size.height;
+    if (bottomOfImageView < bottomOfPage) {
+        [UIView animateWithDuration:.75
+                         animations:^{
+                             logoImageViewTop.constant = bottomOfPage - bottomOfImageView;
+                             [self.view layoutIfNeeded];
+                         }];
+    }
+    
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+ 
+    float bottomOfPage = self.view.frame.size.height - tabBarHeight;
+    float bottomOfImageView = bottomStepper.frame.origin.y + bottomStepper.frame.size.height + logoImageView.frame.size.height + 10;
+    if (bottomOfImageView < bottomOfPage) {
+        [UIView animateWithDuration:.75
+                         animations:^{
+                             logoImageViewTop.constant = bottomOfPage - bottomOfImageView;
+                             [self.view layoutIfNeeded];
+                         }];
+    } else {
+        [UIView animateWithDuration:.75
+                             animations:^{
+                                 logoImageViewTop.constant = 10;
+                                 [self.view layoutIfNeeded];
+                             }];
+    }
     
 }
 

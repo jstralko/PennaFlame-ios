@@ -32,8 +32,7 @@ int tabBarHeight;
 
 - (void) loadView {
     [super loadView];
-    //[self setEdgesForExtendedLayout:UIRectEdgeNone];
-
+    [self setEdgesForExtendedLayout:UIRectEdgeNone];
     
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -347,18 +346,8 @@ int tabBarHeight;
                    constant:0];
     [scrollView addConstraint:myConstraint];
     
-//        myConstraint =[NSLayoutConstraint
-//                       constraintWithItem:extra
-//                       attribute:NSLayoutAttributeBottom
-//                       relatedBy:NSLayoutRelationEqual
-//                       toItem:scrollView
-//                       attribute:NSLayoutAttributeBottom
-//                       multiplier:1.0
-//                       constant:0];
-//        [scrollView addConstraint:myConstraint];
-    
     //
-    myConstraint =[NSLayoutConstraint
+    logoImageViewTop =[NSLayoutConstraint
                    constraintWithItem:logoImageView
                    attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationGreaterThanOrEqual
@@ -366,7 +355,7 @@ int tabBarHeight;
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
                    constant:10];
-    [scrollView addConstraint:myConstraint];
+    [scrollView addConstraint:logoImageViewTop];
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:logoImageView
@@ -414,6 +403,42 @@ int tabBarHeight;
                    multiplier:1.0
                    constant:0];
     [scrollView addConstraint:myConstraint];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    float bottomOfPage = self.view.frame.size.height - tabBarHeight;
+    float bottomOfImageView = logoImageView.frame.origin.y + logoImageView.frame.size.height;
+    if (bottomOfImageView < bottomOfPage) {
+        [UIView animateWithDuration:.75
+                         animations:^{
+                             logoImageViewTop.constant = bottomOfPage - bottomOfImageView;
+                             [self.view layoutIfNeeded];
+                         }];
+    } else {
+        logoImageViewTop.constant = 10;
+    }
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    
+    float bottomOfPage = self.view.frame.size.height - tabBarHeight;
+    float bottomOfImageView = extra.frame.origin.y + extra.frame.size.height + logoImageView.frame.size.height + 10;
+    if (bottomOfImageView < bottomOfPage) {
+        [UIView animateWithDuration:.75
+                         animations:^{
+                             logoImageViewTop.constant = bottomOfPage - bottomOfImageView;
+                             [self.view layoutIfNeeded];
+                         }];
+    } else {
+        [UIView animateWithDuration:.75
+                         animations:^{
+                             logoImageViewTop.constant = 10;
+                             [self.view layoutIfNeeded];
+                         }];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -24,6 +24,7 @@
     PFTabView *tabBar;
     UIImageView *backgroundImage;
     NSLayoutConstraint *scrollViewBottom;
+    NSLayoutConstraint *logoImageViewTop;
     NSMutableDictionary *unitConvertDict;
     NSMutableDictionary *metricUnitConvertDict;
     NSMutableDictionary *englishMetricConvertDict;

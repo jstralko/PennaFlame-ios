@@ -203,6 +203,42 @@ int tabBarHeight;
     }];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    float bottomOfPage = self.view.frame.size.height - tabBarHeight;
+    float bottomOfImageView = logoImageView.frame.origin.y + logoImageView.frame.size.height;
+    if (bottomOfImageView < bottomOfPage) {
+        [UIView animateWithDuration:.75
+                     animations:^{
+                         logoImageViewTop.constant = bottomOfPage - bottomOfImageView;
+                        [self.view layoutIfNeeded];
+                     }];
+    }
+    
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    
+    float bottomOfPage = self.view.frame.size.height - tabBarHeight;
+    UIView *view = [segmentedControl selectedSegmentIndex] == 0 ? decimalStepper : numeratorStepper;
+    float bottomOfImageView = view.frame.origin.y + view.frame.size.height + logoImageView.frame.size.height + 10;
+    if (bottomOfImageView < bottomOfPage) {
+        [UIView animateWithDuration:.75
+                         animations:^{
+                             logoImageViewTop.constant = bottomOfPage - bottomOfImageView;
+                             [self.view layoutIfNeeded];
+                         }];
+    } else {
+        [UIView animateWithDuration:.75
+                         animations:^{
+                             logoImageViewTop.constant = 10;
+                             [self.view layoutIfNeeded];
+                         }];
+    }
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -541,7 +577,7 @@ int tabBarHeight;
                    toItem:segmentedControl
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:23];
+                   constant:25];
     
     [scrollView addConstraint:myConstraint];
     
@@ -573,7 +609,7 @@ int tabBarHeight;
                    toItem:segmentedControl
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:23];
+                   constant:25];
     
     [scrollView addConstraint:myConstraint];
     
@@ -728,15 +764,19 @@ int tabBarHeight;
     [scrollView addConstraint:myConstraint];
     
     //
-    myConstraint =[NSLayoutConstraint
+    float constant = 0.0f;
+    if (logoImageViewTop != nil) {
+        constant = logoImageViewTop.constant;
+    }
+    logoImageViewTop =[NSLayoutConstraint
                    constraintWithItem:logoImageView
                    attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationGreaterThanOrEqual
                    toItem:decimalStepper
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:10];
-    [scrollView addConstraint:myConstraint];
+                   constant:constant];
+    [scrollView addConstraint:logoImageViewTop];
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:logoImageView
@@ -1176,15 +1216,16 @@ int tabBarHeight;
     [scrollView addConstraint:myConstraint];
     
     //
-    myConstraint =[NSLayoutConstraint
+    float constant = logoImageViewTop.constant;
+    logoImageViewTop =[NSLayoutConstraint
                    constraintWithItem:logoImageView
                    attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationGreaterThanOrEqual
                    toItem:denominatorStepper
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:10];
-    [scrollView addConstraint:myConstraint];
+                   constant:constant];
+    [scrollView addConstraint:logoImageViewTop];
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:logoImageView
@@ -1230,7 +1271,7 @@ int tabBarHeight;
                    toItem:scrollView
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:0];
+                   constant:-143];
     [scrollView addConstraint:myConstraint];
 }
 

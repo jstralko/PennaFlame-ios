@@ -41,7 +41,7 @@ NSLayoutConstraint *webViewHeightConstraint;
 
 - (void) loadView {
     [super loadView];
-    
+    [self setEdgesForExtendedLayout:UIRectEdgeNone];
 
     NSInteger halfIndex = [chartDictionary allKeys].count/2;
     NSString *half = [[chartDictionary allKeys] objectAtIndex:halfIndex];
@@ -676,15 +676,15 @@ NSLayoutConstraint *webViewHeightConstraint;
     [scrollView addConstraint:myConstraint];
     
     //
-    myConstraint =[NSLayoutConstraint
+    logoImageViewTop =[NSLayoutConstraint
                    constraintWithItem:logoImageView
                    attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationGreaterThanOrEqual
                    toItem:showFullChart
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:10];
-    [scrollView addConstraint:myConstraint];
+                   constant:0];
+    [scrollView addConstraint:logoImageViewTop];
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:logoImageView
@@ -737,6 +737,41 @@ NSLayoutConstraint *webViewHeightConstraint;
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [webView sizeToFit];
     webViewHeightConstraint.constant = webView.frame.size.height;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    float bottomOfPage = self.view.frame.size.height - tabBarHeight;
+    float bottomOfImageView = logoImageView.frame.origin.y + logoImageView.frame.size.height;
+    if (bottomOfImageView < bottomOfPage) {
+        [UIView animateWithDuration:.75
+                         animations:^{
+                             logoImageViewTop.constant = bottomOfPage - bottomOfImageView;
+                             [self.view layoutIfNeeded];
+                         }];
+    }
+    
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    
+    float bottomOfPage = self.view.frame.size.height - tabBarHeight;
+    float bottomOfImageView = chartWebView.frame.origin.y + chartWebView.frame.size.height + logoImageView.frame.size.height + 10;
+    if (bottomOfImageView < bottomOfPage) {
+        [UIView animateWithDuration:.75
+                         animations:^{
+                             logoImageViewTop.constant = bottomOfPage - bottomOfImageView;
+                             [self.view layoutIfNeeded];
+                         }];
+    } else {
+        [UIView animateWithDuration:.75
+                         animations:^{
+                             logoImageViewTop.constant = 10;
+                             [self.view layoutIfNeeded];
+                         }];
+    }
+    
 }
 
 // returns the number of 'columns' to display.
