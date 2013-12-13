@@ -1273,7 +1273,7 @@ int tabBarHeight;
                    toItem:scrollView
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:-143];
+                   constant:0];
     [scrollView addConstraint:myConstraint];
 }
 
