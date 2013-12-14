@@ -17,10 +17,6 @@
 
 @implementation PFChartViewController
 
-int tabBarHeight;
-NSMutableDictionary *chartDictionary;
-NSLayoutConstraint *webViewHeightConstraint;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -129,9 +125,9 @@ NSLayoutConstraint *webViewHeightConstraint;
     }
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        tabBarHeight = 100;
+        tabBarHeight = 125;
     } else {
-        tabBarHeight = 65;
+        tabBarHeight = 75;
     }
     tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
                                                          self.view.bounds.size.height - tabBarHeight,
@@ -207,7 +203,7 @@ NSLayoutConstraint *webViewHeightConstraint;
         }
         [html appendFormat:@"</tr>"];
         
-        int total = [[chartDictionary objectForKey:metal] count];
+        NSUInteger total = [[chartDictionary objectForKey:metal] count];
         for (int i = 0 ; i < total; i++) {
             [html appendFormat:@"<tr bgcolor=\"white\">"];
             for (NSString *key in metals) {
@@ -271,13 +267,10 @@ NSLayoutConstraint *webViewHeightConstraint;
         [chartWebView loadHTMLString:html baseURL:nil];
         [chartWebView setHidden:NO];
     }
-    
     [self drawLayout];
-    
 }
 
 - (void) drawLayout {
-    
     [self.view removeConstraints:self.view.constraints];
     [scrollView removeConstraints:scrollView.constraints];
     
@@ -350,15 +343,15 @@ NSLayoutConstraint *webViewHeightConstraint;
                    constant:0];
     [self.view addConstraint:myConstraint];
     
-    myConstraint =[NSLayoutConstraint
+    backgroundImageViewBottom =[NSLayoutConstraint
                    constraintWithItem:backgroundImage
                    attribute:NSLayoutAttributeBottom
                    relatedBy:NSLayoutRelationEqual
                    toItem:self.view
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:(-1*tabBarHeight)];
-    [self.view addConstraint:myConstraint];
+                   constant:0];
+    [self.view addConstraint:backgroundImageViewBottom];
     
     //start of redbanner
     myConstraint =[NSLayoutConstraint
@@ -737,11 +730,33 @@ NSLayoutConstraint *webViewHeightConstraint;
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [webView sizeToFit];
     webViewHeightConstraint.constant = webView.frame.size.height;
+    backgroundImageViewBottom.constant = 0;
+    //CGPoint bottomOffset = CGPointMake(0, webView.frame.origin.y + webView.frame.size.height + 5 - scrollView.bounds.size.height);
+    [scrollView setContentOffset:CGPointMake(0, 0)];
+    
+//    float bottomOfPage = self.view.frame.size.height - tabBarHeight;
+//    float bottomOfImageView = chartWebView.frame.origin.y + chartWebView.frame.size.height + logoImageView.frame.size.height+20;
+//    if (bottomOfImageView < bottomOfPage) {
+//        [UIView animateWithDuration:.75
+//                         animations:^{
+//                             logoImageViewTop.constant = bottomOfPage - bottomOfImageView;
+//                             [self.view layoutIfNeeded];
+//                         }];
+//    } else {
+//        [UIView animateWithDuration:.75
+//                         animations:^{
+//                             logoImageViewTop.constant = 20;
+//                             [self.view layoutIfNeeded];
+//                         }];
+//    }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self.view layoutIfNeeded];
+    
     float bottomOfPage = self.view.frame.size.height - tabBarHeight;
     float bottomOfImageView = logoImageView.frame.origin.y + logoImageView.frame.size.height;
     if (bottomOfImageView < bottomOfPage) {
@@ -757,7 +772,7 @@ NSLayoutConstraint *webViewHeightConstraint;
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     
     float bottomOfPage = self.view.frame.size.height - tabBarHeight;
-    float bottomOfImageView = chartWebView.frame.origin.y + chartWebView.frame.size.height + logoImageView.frame.size.height + 10;
+    float bottomOfImageView = chartWebView.frame.origin.y + chartWebView.frame.size.height + logoImageView.frame.size.height+20;
     if (bottomOfImageView < bottomOfPage) {
         [UIView animateWithDuration:.75
                          animations:^{
@@ -822,6 +837,7 @@ NSLayoutConstraint *webViewHeightConstraint;
     
     [generateChart setEnabled:YES];
     generateChart.alpha = 1.0f;
+    backgroundImageViewBottom.constant =  (-1*tabBarHeight);
 }
 
 - (void)didReceiveMemoryWarning

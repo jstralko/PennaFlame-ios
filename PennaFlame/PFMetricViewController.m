@@ -574,16 +574,17 @@ int tabBarHeight;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    //TODO: why do I need to call this for the logo to animate nicely when animated is NO
+    [self.view layoutIfNeeded];
     float bottomOfPage = self.view.frame.size.height - tabBarHeight;
     float bottomOfImageView = logoImageView.frame.origin.y + logoImageView.frame.size.height;
     if (bottomOfImageView < bottomOfPage) {
-        [UIView animateWithDuration:.75
+            [UIView animateWithDuration:.75
                          animations:^{
                              logoImageViewTop.constant = bottomOfPage - bottomOfImageView;
                              [self.view layoutIfNeeded];
                          }];
     }
-    
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

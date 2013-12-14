@@ -206,6 +206,8 @@ int tabBarHeight;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self.view layoutIfNeeded];
+    
     float bottomOfPage = self.view.frame.size.height - tabBarHeight;
     float bottomOfImageView = logoImageView.frame.origin.y + logoImageView.frame.size.height;
     if (bottomOfImageView < bottomOfPage) {
@@ -350,7 +352,7 @@ int tabBarHeight;
 {
     NSString *decimalString = [NSString stringWithFormat:@"%f", decimalNumber];
     NSArray *components = [decimalString componentsSeparatedByString:@"."];
-    int decimalLength = [[components objectAtIndex:1] length];
+    NSUInteger decimalLength = [[components objectAtIndex:1] length];
     int n = [PFMathConverterViewController tenRaisedTopower:decimalLength];
     int m = [[components objectAtIndex:1] intValue];
     if (m != 0) {

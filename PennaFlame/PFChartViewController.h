@@ -25,6 +25,10 @@
     UIImageView *logoImageView;
     PFTabView *tabBar;
     NSLayoutConstraint *logoImageViewTop;
+    NSLayoutConstraint *backgroundImageViewBottom;
+    int tabBarHeight;
+    NSMutableDictionary *chartDictionary;
+    NSLayoutConstraint *webViewHeightConstraint;
 }
 
 -(id)initWithDict:(NSMutableDictionary *)chartDict withTitle:(NSString *)title;
