@@ -280,7 +280,7 @@
 				ORGANIZATIONNAME = "Gerald Stralko";
 				TargetAttributes = {
 					3C9437BF1802067400845209 = {
-						DevelopmentTeam = 23UQM8QT45;
+						DevelopmentTeam = QF8AYB743A;
 					};
 					3C9437DA1802067500845209 = {
 						TestTargetID = 3C9437BF1802067400845209;
