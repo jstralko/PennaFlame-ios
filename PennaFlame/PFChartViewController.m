@@ -125,9 +125,9 @@
     }
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        tabBarHeight = 125;
+        tabBarHeight = 100;
     } else {
-        tabBarHeight = 75;
+        tabBarHeight = 65;
     }
     tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
                                                          self.view.bounds.size.height - tabBarHeight,

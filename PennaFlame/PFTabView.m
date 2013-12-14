@@ -79,6 +79,7 @@ UIView *groupView;
         groupView = [[UIView alloc] initWithFrame:CGRectMake(x, y, w, h)];
         [groupView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth];
         
+        selectedIndex = index + 1;
         w = index == NUMBER_OF_TABS ? tabButtonWidth+3 : tabButtonWidth+6;
         UIView *selectedView = [[UIView alloc] init];
         selectedView.backgroundColor = [UIColor blackColor];
@@ -269,17 +270,17 @@ UIView *groupView;
 
 - (void) buttonClicked:(id) sender {
     if (metricTabButton == sender) {
-        [delegate tabBarButtonClicked:sender withIndex:1];
+        [delegate tabBarButtonClicked:sender fromIndex:selectedIndex toIndex:1];
     } else if (fractionTabButton == sender) {
-        [delegate tabBarButtonClicked:sender withIndex:2];
+        [delegate tabBarButtonClicked:sender fromIndex:selectedIndex toIndex:2];
     } else if (hardnessCaseDepthButton == sender) {
-        [delegate tabBarButtonClicked:sender withIndex:3];
+        [delegate tabBarButtonClicked:sender fromIndex:selectedIndex toIndex:3];
     } else if (hardnessChart == sender) {
-        [delegate tabBarButtonClicked:sender withIndex:4];
+        [delegate tabBarButtonClicked:sender fromIndex:selectedIndex toIndex:4];
     } else if (mtiButton == sender) {
-        [delegate tabBarButtonClicked:sender withIndex:5];
+        [delegate tabBarButtonClicked:sender fromIndex:selectedIndex toIndex:5];
     } else if (contactButton == sender) {
-        [delegate tabBarButtonClicked:sender withIndex:6];
+        [delegate tabBarButtonClicked:sender fromIndex:selectedIndex toIndex:6];
     } else {
         NSLog(@"ingore event for %@", [sender description]);
     }

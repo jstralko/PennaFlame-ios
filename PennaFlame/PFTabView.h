@@ -12,12 +12,12 @@
 
 @required
 
-- (void) tabBarButtonClicked:(id) sender withIndex:(NSInteger) buttonIndex;
+- (void) tabBarButtonClicked:(id) sender fromIndex:(NSInteger) selectedIndex toIndex:(NSInteger) toIndex;
 
 @end
 
 @interface PFTabView : UIView {
-
+    NSInteger selectedIndex;
 }
 
 - (id)initWithFrame:(CGRect)frame withIndex:(NSInteger)index;

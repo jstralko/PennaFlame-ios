@@ -67,48 +67,52 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void) tabBarButtonClicked:(id) sender withIndex:(NSInteger) buttonIndex {
-    switch (buttonIndex) {
+- (void) tabBarButtonClicked:(id) sender fromIndex:(NSInteger) fromIndex toIndex:(NSInteger) toIndex {
+    
+    if (fromIndex == toIndex)
+        return;
+    
+    switch (toIndex) {
         case 1: {
-            PFMetricViewController *metric = [[PFMetricViewController alloc] init];
             UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            PFMetricViewController *metric = [[PFMetricViewController alloc] init];
             [nav popToRootViewControllerAnimated:NO];
             [nav pushViewController:metric animated:NO];
         }
             break;
         case 2: {
-            PFMathConverterViewController *math = [[PFMathConverterViewController alloc] init];
             UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            PFMathConverterViewController *math = [[PFMathConverterViewController alloc] init];
             [nav popToRootViewControllerAnimated:NO];
             [nav pushViewController:math animated:NO];
         }
             break;
         case 3: {
+            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
             PFAppDelegate *appDelegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
             PFChartViewController *pfhcdc = [[PFChartViewController alloc]initWithDict:appDelegate.hardnessCaseDepthChartDict withTitle:HARDNESS_CASE_DEPTH_TITLE];
-            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
             [nav popToRootViewControllerAnimated:NO];
             [nav pushViewController:pfhcdc animated:NO];
         }
             break;
         case 4: {
+            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
             PFAppDelegate *appDelegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
             PFChartViewController *pfhcvc = [[PFChartViewController alloc]initWithDict:appDelegate.hardnessChartDict withTitle:HARDNESS_CHART_TITLE];
-            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
             [nav popToRootViewControllerAnimated:NO];
             [nav pushViewController:pfhcvc animated:NO];
         }
             break;
         case 5: {
-            PFMTIViewController *pfmvc = [[PFMTIViewController alloc] init];
             UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            PFMTIViewController *pfmvc = [[PFMTIViewController alloc] init];
             [nav popToRootViewControllerAnimated:NO];
             [nav pushViewController:pfmvc animated:NO];
         }
             break;
         case 6: {
-            PFContactInfoViewController *pfci = [[PFContactInfoViewController alloc]init];
             UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            PFContactInfoViewController *pfci = [[PFContactInfoViewController alloc]init];
             [nav popToRootViewControllerAnimated:NO];
             [nav pushViewController:pfci animated:NO];
         }
