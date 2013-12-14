@@ -42,15 +42,16 @@
     NSInteger halfIndex = [chartDictionary allKeys].count/2;
     NSString *half = [[chartDictionary allKeys] objectAtIndex:halfIndex];
     
+    backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackgroundImage"]];
+    [backgroundImage setFrame:self.view.bounds];
+    [backgroundImage setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+    [self.view addSubview:backgroundImage];
+    
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView setBounces:YES];
     [scrollView setScrollEnabled:YES];
     [self.view addSubview:scrollView];
-    
-    backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackgroundImage"]];
-    [backgroundImage setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [scrollView addSubview:backgroundImage];
     
     redBanner = [[UIView alloc] initWithFrame:CGRectZero];
     [redBanner setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -312,46 +313,6 @@
                    multiplier:1.0
                    constant:(-1*tabBarHeight)];
     [self.view addConstraint:myConstraint];
-    
-    //
-     myConstraint =[NSLayoutConstraint
-                                       constraintWithItem:backgroundImage
-                                       attribute:NSLayoutAttributeTop
-                                       relatedBy:NSLayoutRelationEqual
-                                       toItem:self.view
-                                       attribute:NSLayoutAttributeTop
-                                       multiplier:1.0
-                                       constant:0];
-    [self.view addConstraint:myConstraint];
-    
-    myConstraint =[NSLayoutConstraint
-                   constraintWithItem:backgroundImage
-                   attribute:NSLayoutAttributeLeft
-                   relatedBy:NSLayoutRelationEqual
-                   toItem:self.view
-                   attribute:NSLayoutAttributeLeft
-                   multiplier:1.0
-                   constant:0];
-    [self.view addConstraint:myConstraint];
-    myConstraint =[NSLayoutConstraint
-                   constraintWithItem:backgroundImage
-                   attribute:NSLayoutAttributeRight
-                   relatedBy:NSLayoutRelationEqual
-                   toItem:self.view
-                   attribute:NSLayoutAttributeRight
-                   multiplier:1.0
-                   constant:0];
-    [self.view addConstraint:myConstraint];
-    
-    backgroundImageViewBottom =[NSLayoutConstraint
-                   constraintWithItem:backgroundImage
-                   attribute:NSLayoutAttributeBottom
-                   relatedBy:NSLayoutRelationEqual
-                   toItem:self.view
-                   attribute:NSLayoutAttributeBottom
-                   multiplier:1.0
-                   constant:0];
-    [self.view addConstraint:backgroundImageViewBottom];
     
     //start of redbanner
     myConstraint =[NSLayoutConstraint
@@ -730,20 +691,19 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [webView sizeToFit];
     webViewHeightConstraint.constant = webView.frame.size.height;
-    backgroundImageViewBottom.constant = 0;
     //CGPoint bottomOffset = CGPointMake(0, webView.frame.origin.y + webView.frame.size.height + 5 - scrollView.bounds.size.height);
     [scrollView setContentOffset:CGPointMake(0, 0)];
     
 //    float bottomOfPage = self.view.frame.size.height - tabBarHeight;
 //    float bottomOfImageView = chartWebView.frame.origin.y + chartWebView.frame.size.height + logoImageView.frame.size.height+20;
 //    if (bottomOfImageView < bottomOfPage) {
-//        [UIView animateWithDuration:.75
+//        [UIView animateWithDuration:.25
 //                         animations:^{
 //                             logoImageViewTop.constant = bottomOfPage - bottomOfImageView;
 //                             [self.view layoutIfNeeded];
 //                         }];
 //    } else {
-//        [UIView animateWithDuration:.75
+//        [UIView animateWithDuration:.25
 //                         animations:^{
 //                             logoImageViewTop.constant = 20;
 //                             [self.view layoutIfNeeded];
@@ -837,7 +797,6 @@
     
     [generateChart setEnabled:YES];
     generateChart.alpha = 1.0f;
-    backgroundImageViewBottom.constant =  (-1*tabBarHeight);
 }
 
 - (void)didReceiveMemoryWarning

@@ -11,7 +11,6 @@
 @class PFTabView;
 
 @interface PFChartViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UIWebViewDelegate> {
-   // IBOutlet UIWebView *hardnessWebView;
     UIWebView *chartWebView;
     UIButton *showTopPickerButton;
     UIButton *showRangePickerButton;
@@ -25,7 +24,6 @@
     UIImageView *logoImageView;
     PFTabView *tabBar;
     NSLayoutConstraint *logoImageViewTop;
-    NSLayoutConstraint *backgroundImageViewBottom;
     int tabBarHeight;
     NSMutableDictionary *chartDictionary;
     NSLayoutConstraint *webViewHeightConstraint;
