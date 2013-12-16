@@ -32,7 +32,6 @@
     plistPath = [[NSBundle mainBundle] pathForResource:@"HardnessChartData" ofType:@"plist"];
     hardnessChartDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     
-    
     //New UICollectionViewController - new and shiney!
     PFHomeViewController *home = [[PFHomeViewController alloc] init];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:home];

@@ -20,7 +20,6 @@
     if (self) {
         // Custom initialization
         self.navigationItem.title = @"Penna Flame";
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundImage"]];
         
         NSURL *url = [[NSURL alloc] initWithString:@"http://www.pennaflame.com"];
         NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];

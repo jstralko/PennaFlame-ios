@@ -97,9 +97,7 @@
         cell = headerView;
     } else if (kind == UICollectionElementKindSectionFooter) {
         UICollectionReusableView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:SUPPLEMENTARY_FOOTER_VIEW_CELL forIndexPath:indexPath];
-        
-        [[footerView subviews]
-         makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [[footerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
         UIImage *image = [UIImage imageNamed:@"PFILogo"];
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:footerView.bounds];
@@ -115,12 +113,6 @@
     /* resize the image at the footer */
     [self.collectionView reloadData];
 }
-
-- (void)collectionView:(UICollectionView *)colView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    //PFHomeCollectionViewCell *cell = (PFHomeCollectionViewCell *)[colView cellForItemAtIndexPath:indexPath];
-    //[cell unSelect];
-}
-
 
 - (void)collectionView:(UICollectionView *)colView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     PFHomeCollectionViewCell *cell = (PFHomeCollectionViewCell *)[colView cellForItemAtIndexPath:indexPath];
