@@ -215,7 +215,7 @@
         }
         [html appendFormat:@"</table></body></html>"];
         
-        PFFullChartViewController *fcvc = [[PFFullChartViewController alloc ] initWithString:html];
+        PFFullChartViewController *fcvc = [[PFFullChartViewController alloc ] initWithString:html setTitle:self.navigationItem.title];
         [self.navigationController pushViewController:fcvc animated:YES];
         
     } else {

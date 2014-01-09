@@ -12,7 +12,8 @@
     UIWebView *chart;
     UIImageView *background;
     UIView *redBanner;
+    UITextField *disclaimer;
 }
 
--(id) initWithString:(NSString *)html;
+-(id) initWithString:(NSString *)html setTitle:(NSString *)title;
 @end

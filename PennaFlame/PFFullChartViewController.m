@@ -25,11 +25,15 @@ NSString *chartHtml;
     return self;
 }
 
--(id) initWithString:(NSString *)html {
+-(id) initWithString:(NSString *)html setTitle:(NSString *)title {
     self = [super init];
     if (self) {
         chartHtml = html;
-        self.navigationItem.title = @"Full Chart";
+        if (title == nil) {
+            self.navigationItem.title = @"Full Chart";
+        } else {
+            self.navigationItem.title = title;
+        }
     }
     
     return self;
@@ -55,6 +59,12 @@ NSString *chartHtml;
     [chart setBackgroundColor:[UIColor clearColor]];
     [chart setOpaque:NO];
     [self.view addSubview:chart];
+    
+    disclaimer = [[UITextField alloc] initWithFrame:CGRectZero];
+    [disclaimer setTranslatesAutoresizingMaskIntoConstraints:NO];
+    //[disclaimer setText:@"dlfjaksdfljlkasfjdsklfjakldflasjdfajlkdfjklasjfkl"];
+    [self.view addSubview:disclaimer];
+    
 }
 
 - (void)viewDidLoad
@@ -193,6 +203,7 @@ NSString *chartHtml;
                    multiplier:1.0
                    constant:0];
     [self.view addConstraint:myConstraint];
+    
     
 }
 
