@@ -20,6 +20,7 @@
 - (void)syncSteppers;
 - (void)drawFractionLayout;
 - (void)drawDecimalLayout;
+- (void) dismissKeyboard:(id)sender;
 
 
 @end
@@ -190,7 +191,13 @@ int tabBarHeight;
         CGPoint bottomOffset = CGPointMake(0, focusTextField.frame.origin.y + focusTextField.frame.size.height + 5 - scrollView.bounds.size.height);
         [scrollView setContentOffset:bottomOffset];
     }
-    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self
+                                              action:@selector(dismissKeyboard:)];
+}
+
+- (void) dismissKeyboard:(id)sender {
+    [self.view endEditing:YES];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
@@ -201,6 +208,7 @@ int tabBarHeight;
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
     }];
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
