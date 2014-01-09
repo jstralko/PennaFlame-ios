@@ -202,11 +202,7 @@
         }
             break;
         case 2: {
-//            PFAppDelegate *appDelegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
-//            PFChartViewController *pfhcdc = [[PFChartViewController alloc]initWithDict:appDelegate.hardnessCaseDepthChartDict withTitle:HARDNESS_CASE_DEPTH_TITLE];
-//            [self.navigationController pushViewController:pfhcdc animated:YES];
             [self showCaseDepthChartController];
-            break;
         }
             break;
         case 3: {
@@ -234,32 +230,7 @@
 
 - (void) showCaseDepthChartController {
     PFAppDelegate *appDelegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
-    NSDictionary *chartDictionary = appDelegate.hardnessCaseDepthChartDict;
-    
-    NSArray *keys = [chartDictionary allKeys];
-    NSMutableString *html = [NSMutableString stringWithFormat:@"<html><head></head><body style=\"bbackground-color: transparent;\">"
-                             "<table width=\"90%%\" border=\"1\" align=\"center\" cellpadding=\"3\" cellspacing=\"0\" bordercolor=\"#CCCCC\">"
-                             "<tbody>"
-                             "<tr bgcolor=\"lightgrey\" align=\"center\">" ];
-    
-    for (NSString *key in keys) {
-        [html appendFormat:@"<td bgcolor=\"#FF0000\"><span style=\"font-weight:bold\">%@</span></td>", key];
-    }
-    [html appendFormat:@"</tr>"];
-    
-    NSUInteger total = [[chartDictionary objectForKey:[keys objectAtIndex:0]] count];
-    for (int i = 0 ; i < total; i++) {
-        [html appendFormat:@"<tr bgcolor=\"white\">"];
-        for (NSString *key in keys) {
-            NSString *range = [[chartDictionary objectForKey:key] objectAtIndex:i];
-            [html appendFormat:@"<td><div align=\"center\">%@</div></td>", range];
-        }
-        [html appendFormat:@"</tr>"];
-    }
-    [html appendFormat:@"</table></body></html>"];
-    
-    PFFullChartViewController *fcvc = [[PFFullChartViewController alloc ] initWithString:html setTitle:HARDNESS_CASE_DEPTH_TITLE];
-    [self.navigationController pushViewController:fcvc animated:YES];
+    [appDelegate showCaseDepthChartController];
 }
 
 @end

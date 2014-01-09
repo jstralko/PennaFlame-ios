@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		134F04A6183961FE009E0420 /* PFTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 134F04A5183961FE009E0420 /* PFTabView.m */; };
+		13A7E436187B389E00827A5D /* jquery-1.10.2.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 13A7E435187B389E00827A5D /* jquery-1.10.2.min.js */; };
+		13A7E437187B3BE400827A5D /* jquery-1.10.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 13A7E435187B389E00827A5D /* jquery-1.10.2.min.js */; };
+		13A7E439187B653500827A5D /* jquery.fixedheadertable.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 13A7E438187B653500827A5D /* jquery.fixedheadertable.min.js */; };
+		13A7E43A187B663700827A5D /* jquery.fixedheadertable.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 13A7E438187B653500827A5D /* jquery.fixedheadertable.min.js */; };
+		13A7E43F187B6A7D00827A5D /* foo.js in Resources */ = {isa = PBXBuildFile; fileRef = 13A7E43D187B6A6F00827A5D /* foo.js */; };
 		13A7E9A7185562AA00BA50D7 /* PFStepper.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A7E9A6185562A900BA50D7 /* PFStepper.m */; };
 		13F057CC1836DAE700B45092 /* PFHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F057CB1836DAE700B45092 /* PFHomeCollectionViewCell.m */; };
 		13F6D4A71839C34B00CB7082 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13F6D4A61839C34B00CB7082 /* QuartzCore.framework */; };
@@ -32,7 +37,6 @@
 		3C943804180206C000845209 /* PFWebsiteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9437FD180206C000845209 /* PFWebsiteViewController.xib */; };
 		3C9438131802083800845209 /* PFContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9438101802083800845209 /* PFContactInfoViewController.m */; };
 		3C9438161802084600845209 /* PFMetricViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9438151802084600845209 /* PFMetricViewController.m */; };
-		3C94381B18020ABF00845209 /* hardness_table.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381718020ABF00845209 /* hardness_table.html */; };
 		3C94381E18020ABF00845209 /* mti_statement.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C94381A18020ABF00845209 /* mti_statement.html */; };
 		64E26DE8181076A20056519F /* PFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E26DE7181076A20056519F /* PFHomeViewController.m */; };
 		64E26DEA181236A90056519F /* HardnessCaseDepth.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64E26DE9181236A90056519F /* HardnessCaseDepth.plist */; };
@@ -52,6 +56,9 @@
 /* Begin PBXFileReference section */
 		134F04A4183961FE009E0420 /* PFTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFTabView.h; sourceTree = "<group>"; };
 		134F04A5183961FE009E0420 /* PFTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFTabView.m; sourceTree = "<group>"; };
+		13A7E435187B389E00827A5D /* jquery-1.10.2.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.10.2.min.js"; sourceTree = "<group>"; };
+		13A7E438187B653500827A5D /* jquery.fixedheadertable.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.fixedheadertable.min.js; sourceTree = "<group>"; };
+		13A7E43D187B6A6F00827A5D /* foo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = foo.js; sourceTree = "<group>"; };
 		13A7E9A5185562A900BA50D7 /* PFStepper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFStepper.h; sourceTree = "<group>"; };
 		13A7E9A6185562A900BA50D7 /* PFStepper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFStepper.m; sourceTree = "<group>"; };
 		13F057CA1836DAE700B45092 /* PFHomeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFHomeCollectionViewCell.h; sourceTree = "<group>"; };
@@ -89,7 +96,6 @@
 		3C9438101802083800845209 /* PFContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFContactInfoViewController.m; sourceTree = "<group>"; };
 		3C9438121802083800845209 /* PFMetricViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMetricViewController.h; sourceTree = "<group>"; };
 		3C9438151802084600845209 /* PFMetricViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMetricViewController.m; sourceTree = "<group>"; };
-		3C94381718020ABF00845209 /* hardness_table.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = hardness_table.html; sourceTree = "<group>"; };
 		3C94381A18020ABF00845209 /* mti_statement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mti_statement.html; sourceTree = "<group>"; };
 		64E26DE6181076A20056519F /* PFHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFHomeViewController.h; sourceTree = "<group>"; };
 		64E26DE7181076A20056519F /* PFHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFHomeViewController.m; sourceTree = "<group>"; };
@@ -161,7 +167,7 @@
 				134F04A5183961FE009E0420 /* PFTabView.m */,
 				64E26DE6181076A20056519F /* PFHomeViewController.h */,
 				64E26DE7181076A20056519F /* PFHomeViewController.m */,
-				3C94381F18020CD900845209 /* html */,
+				3C94381F18020CD900845209 /* web */,
 				3C94380F1802083800845209 /* PFContactInfoViewController.h */,
 				3C9438101802083800845209 /* PFContactInfoViewController.m */,
 				3C9438151802084600845209 /* PFMetricViewController.m */,
@@ -222,13 +228,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3C94381F18020CD900845209 /* html */ = {
+		3C94381F18020CD900845209 /* web */ = {
 			isa = PBXGroup;
 			children = (
+				13A7E438187B653500827A5D /* jquery.fixedheadertable.min.js */,
 				3C94381A18020ABF00845209 /* mti_statement.html */,
-				3C94381718020ABF00845209 /* hardness_table.html */,
+				13A7E43D187B6A6F00827A5D /* foo.js */,
+				13A7E435187B389E00827A5D /* jquery-1.10.2.min.js */,
 			);
-			name = html;
+			name = web;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,10 +318,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13A7E43F187B6A7D00827A5D /* foo.js in Resources */,
+				13A7E43A187B663700827A5D /* jquery.fixedheadertable.min.js in Resources */,
+				13A7E437187B3BE400827A5D /* jquery-1.10.2.min.js in Resources */,
 				3C943804180206C000845209 /* PFWebsiteViewController.xib in Resources */,
 				3C2F60ED1809F7580088B618 /* HardnessChartData.plist in Resources */,
 				3C94381E18020ABF00845209 /* mti_statement.html in Resources */,
-				3C94381B18020ABF00845209 /* hardness_table.html in Resources */,
 				3C9437CE1802067400845209 /* InfoPlist.strings in Resources */,
 				3C9437D61802067400845209 /* Images.xcassets in Resources */,
 				64E26DEA181236A90056519F /* HardnessCaseDepth.plist in Resources */,
@@ -336,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C9437FE180206C000845209 /* PFChartViewController.m in Sources */,
+				13A7E436187B389E00827A5D /* jquery-1.10.2.min.js in Sources */,
 				3C9438131802083800845209 /* PFContactInfoViewController.m in Sources */,
 				3C943800180206C000845209 /* PFMathConverterViewController.m in Sources */,
 				3C943801180206C000845209 /* PFMTIViewController.m in Sources */,
@@ -344,6 +355,7 @@
 				3C9437D41802067400845209 /* PFAppDelegate.m in Sources */,
 				13F057CC1836DAE700B45092 /* PFHomeCollectionViewCell.m in Sources */,
 				3C9437D01802067400845209 /* main.m in Sources */,
+				13A7E439187B653500827A5D /* jquery.fixedheadertable.min.js in Sources */,
 				64E26DED18135CAD0056519F /* PFFullChartViewController.m in Sources */,
 				3C943802180206C000845209 /* PFUnitTableViewController.m in Sources */,
 				13A7E9A7185562AA00BA50D7 /* PFStepper.m in Sources */,

@@ -411,7 +411,7 @@ int tabBarHeight;
     [self.view layoutIfNeeded];
     
     float bottomOfPage = self.view.frame.size.height - tabBarHeight;
-    float bottomOfImageView = logoImageView.frame.origin.y + logoImageView.frame.size.height;
+    float bottomOfImageView = logoImageView.frame.origin.y + logoImageView.frame.size.height + 10;
     if (bottomOfImageView < bottomOfPage) {
         [UIView animateWithDuration:.75
                          animations:^{

@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PFFullChartViewController : UIViewController {
+@interface PFFullChartViewController : UIViewController <UIWebViewDelegate> {
     UIWebView *chart;
+    UIWebView *header_internalChart;
     UIImageView *background;
     UIView *redBanner;
     UITextField *disclaimer;
+    NSDictionary *chartDictionary;
 }
 
--(id) initWithString:(NSString *)html setTitle:(NSString *)title;
+-(id) initWithDict:(NSDictionary *)chartDict;
+
+-(id) initWithDict:(NSDictionary *)chartDict withTile:(NSString *)title;
+
 @end

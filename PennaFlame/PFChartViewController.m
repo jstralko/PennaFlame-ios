@@ -185,37 +185,7 @@
         }
         [rangePicker setHidden:![rangePicker isHidden]];
     } else if (sender == showFullChart) {
-        NSInteger metalIndex = [topPicker selectedRowInComponent:0];
-        NSString *metal = [[chartDictionary allKeys] objectAtIndex:metalIndex];
-        
-        NSArray *metals = [chartDictionary allKeys];
-        NSMutableString *html = [NSMutableString stringWithFormat:@"<html><head></head><body style=\"bbackground-color: transparent;\">"
-                                 "<table width=\"90%%\" border=\"1\" align=\"center\" cellpadding=\"3\" cellspacing=\"0\" bordercolor=\"#CCCCC\">"
-                                 "<tbody>"
-                                 "<tr bgcolor=\"lightgrey\" align=\"center\">" ];
-        
-        for (NSString *key in metals) {
-            //if ([metal isEqualToString:key]) {
-            //    [html appendFormat:@"<td bgcolor=\"#FF0000\"><span style=\"font-weight:bold\">%@</span></td>", key];
-            //
-            //} else {
-                [html appendFormat:@"<td bgcolor=\"#FF0000\"><span style=\"font-weight:bold\">%@</span></td>", key];
-            //}
-        }
-        [html appendFormat:@"</tr>"];
-        
-        NSUInteger total = [[chartDictionary objectForKey:metal] count];
-        for (int i = 0 ; i < total; i++) {
-            [html appendFormat:@"<tr bgcolor=\"white\">"];
-            for (NSString *key in metals) {
-                NSString *range = [[chartDictionary objectForKey:key] objectAtIndex:i];
-                [html appendFormat:@"<td><div align=\"center\">%@</div></td>", range];
-            }
-            [html appendFormat:@"</tr>"];
-        }
-        [html appendFormat:@"</table></body></html>"];
-        
-        PFFullChartViewController *fcvc = [[PFFullChartViewController alloc ] initWithString:html setTitle:self.navigationItem.title];
+        PFFullChartViewController *fcvc = [[PFFullChartViewController alloc ] initWithDict:chartDictionary];
         [self.navigationController pushViewController:fcvc animated:YES];
         
     } else {

@@ -11,6 +11,7 @@
 #import "PFMetricViewController.h"
 #import "PFMathConverterViewController.h"
 #import "PFChartViewController.h"
+#import "PFFullChartViewController.h"
 #import "PFMTIViewController.h"
 #import "PFContactInfoViewController.h"
 
@@ -87,11 +88,7 @@
         }
             break;
         case 3: {
-            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
-            PFAppDelegate *appDelegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
-            PFChartViewController *pfhcdc = [[PFChartViewController alloc]initWithDict:appDelegate.hardnessCaseDepthChartDict withTitle:HARDNESS_CASE_DEPTH_TITLE];
-            [nav popToRootViewControllerAnimated:NO];
-            [nav pushViewController:pfhcdc animated:NO];
+            [self showCaseDepthChartController];
         }
             break;
         case 4: {
@@ -120,6 +117,13 @@
         default:
             break;
     }
+}
+
+- (void) showCaseDepthChartController {
+    NSDictionary *chartDictionary = self.hardnessCaseDepthChartDict;
+    PFFullChartViewController *fcvc = [[PFFullChartViewController alloc ] initWithDict:chartDictionary withTile:HARDNESS_CASE_DEPTH_TITLE];
+    UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+    [nav pushViewController:fcvc animated:YES];
 }
 
 @end
