@@ -104,9 +104,9 @@ int tabBarHeight;
     topButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [topButton setFrame:CGRectZero];
     [topButton setTitle:@"Inch" forState:UIControlStateNormal];
-    [topButton setTintColor:[UIColor blackColor]];
+    [topButton setTintColor:[UIColor whiteColor]];
     [topButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    // Set the target, action and event for the button
+    topButton.layer.cornerRadius = 10;
     [topButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:topButton];
 
@@ -129,9 +129,10 @@ int tabBarHeight;
     bottomButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [bottomButton setFrame:CGRectZero];
     [bottomButton setTitle:@"Centimeter" forState:UIControlStateNormal];
-    [bottomButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [bottomButton setTintColor:[UIColor whiteColor]];
     [bottomButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [bottomButton setTintColor:[UIColor blackColor]];
+    bottomButton.layer.cornerRadius = 10;
+    [bottomButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:bottomButton];
 
     bottomStepper = [[PFStepper alloc] initWithFrame:CGRectZero];
@@ -569,6 +570,7 @@ int tabBarHeight;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -585,6 +587,32 @@ int tabBarHeight;
                              [self.view layoutIfNeeded];
                          }];
     }
+    
+    //gradient magic
+    CAGradientLayer *buttonGradient = [CAGradientLayer layer];
+    buttonGradient.frame = CGRectMake(0, 0, topButton.bounds.size.width, topButton.bounds.size.height);
+    buttonGradient.cornerRadius = 10;
+    buttonGradient.colors = [NSArray arrayWithObjects:(id) [[UIColor lightGrayColor] CGColor],
+                             (id)[[UIColor grayColor] CGColor], (id)[[UIColor blackColor] CGColor], nil];
+    NSNumber *stopOne       = [NSNumber numberWithFloat:0.0];
+    NSNumber *stopTwo       = [NSNumber numberWithFloat:0.2];
+    NSNumber *stopThree = [NSNumber numberWithFloat:0.5];
+    NSArray *locations = [NSArray arrayWithObjects:stopOne, stopTwo, stopThree, nil];
+    buttonGradient.locations = locations;
+    
+    CAGradientLayer *buttonGradient2 = [CAGradientLayer layer];
+    buttonGradient2.frame = CGRectMake(0, 0, bottomButton.bounds.size.width, bottomButton.bounds.size.height);
+    buttonGradient2.cornerRadius = 10;
+    buttonGradient2.colors = [NSArray arrayWithObjects:(id) [[UIColor lightGrayColor] CGColor],
+                              (id)[[UIColor grayColor] CGColor], (id)[[UIColor blackColor] CGColor], nil];
+    stopOne = [NSNumber numberWithFloat:0.0];
+    stopTwo = [NSNumber numberWithFloat:0.2];
+    stopThree = [NSNumber numberWithFloat:0.5];
+    locations = [NSArray arrayWithObjects:stopOne, stopTwo, stopThree, nil];
+    buttonGradient2.locations = locations;
+    
+    [topButton.layer insertSublayer:buttonGradient atIndex:0];
+    [bottomButton.layer insertSublayer:buttonGradient2 atIndex:0];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -823,6 +851,7 @@ int tabBarHeight;
     bottomTextField.text = [NSString stringWithFormat:@"%4.2f", value];
     bottomStepper.value = value;
 }
+
 
 - (void)viewDidUnload {
     // Release any retained subviews of the main view.
