@@ -251,7 +251,7 @@
                    toItem:redBanner
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:20];
+                   constant:15];
     [self.view addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
@@ -354,10 +354,10 @@
                              "<body style=\"bbackground-color: transparent;\">"
                              "<table id=\"myTable\" width=\"90%%\" border=\"1\" align=\"center\" cellpadding=\"3\" cellspacing=\"0\" bordercolor=\"#CCCCC\">"
                              "<thead id=\"myTableHeader\" style=\"height:1px\">"
-                             "<tr bgcolor=\"lightgrey\" align=\"center\">"];
+                             "<tr bgcolor=\"transparent\" align=\"center\">"];
     
     for (NSString *key in keys) {
-        [html appendFormat:@"<th bgcolor=\"#FF0000\"><span style=\"font-weight:bold;font-size:0.50em\">%@</span></th>", key];
+        [html appendFormat:@"<th bgcolor=\"transparent\"><span style=\"opacity:0;font-weight:bold;font-size:0.50em\">%@</span></th>", key];
     }
     [html appendFormat:@"</tr></thread>"];
     [html appendFormat:@"<tbody>"];
