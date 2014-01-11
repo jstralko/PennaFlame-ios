@@ -19,8 +19,6 @@
 @property (readonly) NSMutableDictionary *hardnessCaseDepthChartDict;
 @property (readonly) NSMutableDictionary *hardnessChartDict;
 
-- (void) showCaseDepthChartController;
-
 @end
 
 

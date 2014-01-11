@@ -22,8 +22,6 @@
 
 @interface PFHomeViewController ()
 
-- (void) showCaseDepthChartController;
-
 @end
 
 @implementation PFHomeViewController
@@ -202,7 +200,9 @@
         }
             break;
         case 2: {
-            [self showCaseDepthChartController];
+            PFAppDelegate *appDelegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
+            PFFullChartViewController *fcvc = [[PFFullChartViewController alloc ] initWithDict:appDelegate.hardnessCaseDepthChartDict withTile:HARDNESS_CASE_DEPTH_TITLE];
+            [self.navigationController pushViewController:fcvc animated:YES];
         }
             break;
         case 3: {
@@ -226,11 +226,6 @@
             break;
     }
     
-}
-
-- (void) showCaseDepthChartController {
-    PFAppDelegate *appDelegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate showCaseDepthChartController];
 }
 
 @end

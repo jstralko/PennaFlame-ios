@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class PFTabView;
 
 @interface PFFullChartViewController : UIViewController <UIWebViewDelegate> {
     UIWebView *chart;
     UIWebView *header_internalChart;
     UIImageView *background;
     UIView *redBanner;
-    UITextField *disclaimer;
+    UILabel *disclaimer;
     NSDictionary *chartDictionary;
+    NSInteger tabBarHeight;
+    PFTabView *tabBar;
 }
 
 -(id) initWithDict:(NSDictionary *)chartDict;

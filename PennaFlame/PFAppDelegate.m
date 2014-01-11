@@ -88,7 +88,11 @@
         }
             break;
         case 3: {
-            [self showCaseDepthChartController];
+            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            NSDictionary *chartDictionary = self.hardnessCaseDepthChartDict;
+            PFFullChartViewController *fcvc = [[PFFullChartViewController alloc ] initWithDict:chartDictionary withTile:HARDNESS_CASE_DEPTH_TITLE];
+            [nav popToRootViewControllerAnimated:NO];
+            [nav pushViewController:fcvc animated:NO];
         }
             break;
         case 4: {
@@ -117,13 +121,6 @@
         default:
             break;
     }
-}
-
-- (void) showCaseDepthChartController {
-    NSDictionary *chartDictionary = self.hardnessCaseDepthChartDict;
-    PFFullChartViewController *fcvc = [[PFFullChartViewController alloc ] initWithDict:chartDictionary withTile:HARDNESS_CASE_DEPTH_TITLE];
-    UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
-    [nav pushViewController:fcvc animated:YES];
 }
 
 @end

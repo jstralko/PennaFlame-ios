@@ -7,6 +7,8 @@
 //
 
 #import "PFFullChartViewController.h"
+#import "PFAppDelegate.h"
+#import "PFTabView.h"
 
 @interface PFFullChartViewController ()
 
@@ -74,6 +76,33 @@
     header_internalChart.scrollView.bounces = NO;
     //chart.delegate = self;
     [self.view addSubview:header_internalChart];
+    
+    disclaimer = [[UILabel alloc] initWithFrame:CGRectZero];
+    [disclaimer setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [disclaimer setLineBreakMode:NSLineBreakByWordWrapping];
+    disclaimer.numberOfLines = 4;
+    disclaimer.textAlignment = NSTextAlignmentCenter;
+    disclaimer.adjustsFontSizeToFitWidth = YES;
+    disclaimer.font = [UIFont italicSystemFontOfSize:12];
+    disclaimer.minimumScaleFactor = 0.5f;
+    [disclaimer setText:@"Note: This chart is a general guide. Hardness and case depth's may vary depending on the flame hardening technique used and actual chemistry of the material."];
+    [self.view addSubview:disclaimer];
+    
+    if ([self.navigationItem.title isEqualToString:HARDNESS_CASE_DEPTH_TITLE]) {
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            tabBarHeight = 100;
+        } else {
+            tabBarHeight = 65;
+        }
+        tabBar = [[PFTabView alloc] initWithFrame:CGRectMake(0,
+                                                         self.view.bounds.size.height - tabBarHeight,
+                                                         self.view.bounds.size.width,
+                                                         tabBarHeight) withIndex:2];
+        [tabBar setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth];
+        tabBar.delegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
+        [self.view addSubview:tabBar];
+    }
+    
 }
 
 - (void)viewDidLoad
@@ -245,14 +274,55 @@
                    constant:0];
     [self.view addConstraint:myConstraint];
     
+    //disclaimer
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:chart
+                   constraintWithItem:disclaimer
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:chart
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:5];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:disclaimer
+                   attribute:NSLayoutAttributeLeft
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeLeft
+                   multiplier:1.0
+                   constant:15];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:disclaimer
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:self.view
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:-15];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:disclaimer
                    attribute:NSLayoutAttributeBottom
                    relatedBy:NSLayoutRelationEqual
                    toItem:self.view
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
                    constant:0];
+    [self.view addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:disclaimer
+                   attribute:NSLayoutAttributeHeight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:65];
     [self.view addConstraint:myConstraint];
     
     
