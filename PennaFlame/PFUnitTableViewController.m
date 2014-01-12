@@ -13,13 +13,6 @@
 
 @end
 
-NSArray *currentDataSource;
-NSMutableArray *englishUnits;
-NSMutableArray *metricUnits;
-PFMetricViewController *metricViewController;
-NSInteger buttonClicked;
-NSInteger defaultSelectionIndex;
-
 @implementation PFUnitTableViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -110,7 +103,7 @@ NSInteger defaultSelectionIndex;
                    toItem:self.view
                    attribute:NSLayoutAttributeTop
                    multiplier:1.0
-                   constant:65];
+                   constant:0];
     
     [self.view addConstraint:myConstraint];
     

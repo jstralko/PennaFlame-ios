@@ -21,6 +21,12 @@
     IBOutlet UITableView *unitTable;
     UIView *redBanner;
     UIImageView *backgroundImage;
+    NSArray *currentDataSource;
+    NSMutableArray *englishUnits;
+    NSMutableArray *metricUnits;
+    PFMetricViewController *metricViewController;
+    NSInteger buttonClicked;
+    NSInteger defaultSelectionIndex;
 }
 
 -(id)initWithUnitType:(NSInteger)unitType settingCallback:(PFMetricViewController *)controller fromButton:(NSInteger) button;
