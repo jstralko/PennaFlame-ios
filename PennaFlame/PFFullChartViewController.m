@@ -10,6 +10,8 @@
 #import "PFAppDelegate.h"
 #import "PFTabView.h"
 
+static NSString *disclaimerString = @"Note: This chart is a general guide. Hardness and case depth's may vary depending on the flame hardening technique used and actual chemistry of the material.";
+
 @interface PFFullChartViewController ()
 
 - (NSString *) generateChartFromDictionary;
@@ -68,6 +70,7 @@
     [chart loadHTMLString:html baseURL:nil];
     [chart setBackgroundColor:[UIColor clearColor]];
     [chart setOpaque:NO];
+    chart.scrollView.bounces = NO;
     chart.delegate = self;
     [self.view addSubview:chart];
     
@@ -79,7 +82,6 @@
     [header_internalChart setOpaque:NO];
     header_internalChart.scrollView.scrollEnabled = NO;
     header_internalChart.scrollView.bounces = NO;
-    //chart.delegate = self;
     [self.view addSubview:header_internalChart];
     
     disclaimer = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -90,7 +92,7 @@
     disclaimer.adjustsFontSizeToFitWidth = YES;
     disclaimer.font = [UIFont italicSystemFontOfSize:12];
     disclaimer.minimumScaleFactor = 0.5f;
-    [disclaimer setText:@"Note: This chart is a general guide. Hardness and case depth's may vary depending on the flame hardening technique used and actual chemistry of the material."];
+    [disclaimer setText:disclaimerString];
     [self.view addSubview:disclaimer];
     
     if ([self.navigationItem.title isEqualToString:HARDNESS_CASE_DEPTH_TITLE]) {
@@ -215,7 +217,7 @@
                    toItem:redBanner
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:15];
+                   constant:5];
     [self.view addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
@@ -256,7 +258,7 @@
                    toItem:redBanner
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:15];
+                   constant:10];
     [self.view addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
@@ -287,7 +289,7 @@
                    toItem:chart
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:5];
+                   constant:0];
     [self.view addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
@@ -341,8 +343,16 @@
                              "<thead>"
                              "<tr bgcolor=\"lightgrey\" align=\"center\">"];
     
+    NSString *fontSize;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        //iPad
+        fontSize = @"1.0em";
+    } else {
+        fontSize = @"0.50em";
+    }
+    
     for (NSString *key in sortedKeys) {
-        [html appendFormat:@"<th bgcolor=\"#FF0000\"><span style=\"font-weight:bold;font-size:0.50em\">%@</span></th>", key];
+        [html appendFormat:@"<th bgcolor=\"#FF0000\"><span style=\"font-weight:bold;font-size:%@\">%@</span></th>", fontSize, key];
     }
     [html appendFormat:@"</tr></thread>"];
     [html appendFormat:@"<tbody>"];
