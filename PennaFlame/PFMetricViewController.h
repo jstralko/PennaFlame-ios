@@ -10,11 +10,12 @@
 
 @class PFTabView;
 @class PFStepper;
+@class PFButton;
 
 @interface PFMetricViewController : UIViewController {
-    IBOutlet UIButton *topButton;
+    IBOutlet PFButton *topButton;
     PFStepper *topStepper;
-    IBOutlet UIButton *bottomButton;
+    IBOutlet PFButton *bottomButton;
     PFStepper *bottomStepper;;
     IBOutlet UITextField *topTextField;
     IBOutlet UITextField *bottomTextField;
