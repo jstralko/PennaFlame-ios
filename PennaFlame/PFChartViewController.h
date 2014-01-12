@@ -26,9 +26,12 @@
     NSLayoutConstraint *logoImageViewTop;
     int tabBarHeight;
     NSMutableDictionary *chartDictionary;
+    NSArray *sortedKeys;
     NSLayoutConstraint *webViewHeightConstraint;
 }
 
 -(id)initWithDict:(NSMutableDictionary *)chartDict withTitle:(NSString *)title;
+
+-(id)initWithDict:(NSMutableDictionary *)chartDict sortedKeys:(NSArray *)keys withTitle:(NSString *)title;
 
 @end

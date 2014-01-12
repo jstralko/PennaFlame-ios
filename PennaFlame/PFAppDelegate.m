@@ -19,6 +19,7 @@
 
 @synthesize hardnessCaseDepthChartDict;
 @synthesize hardnessChartDict;
+@synthesize hardnessChartSortedKeys;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -32,6 +33,15 @@
     
     plistPath = [[NSBundle mainBundle] pathForResource:@"HardnessChartData" ofType:@"plist"];
     hardnessChartDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+    
+    NSMutableArray *sortedKeys = [NSMutableArray array];
+    [sortedKeys addObject:@"EQUO TIP Ld"];
+    [sortedKeys addObject:@"ROCKWELL C HRC"];
+    [sortedKeys addObject:@"BRINELL BHN"];
+    [sortedKeys addObject:@"SHORE C HSc"];
+    [sortedKeys addObject:@"SHORE C HFRSc"];
+    [sortedKeys addObject:@"VICKERS HV/DPH"];
+    hardnessChartSortedKeys = [[NSArray alloc] initWithArray:sortedKeys];
     
     //New UICollectionViewController - new and shiney!
     PFHomeViewController *home = [[PFHomeViewController alloc] init];

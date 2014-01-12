@@ -18,6 +18,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (readonly) NSMutableDictionary *hardnessCaseDepthChartDict;
 @property (readonly) NSMutableDictionary *hardnessChartDict;
+@property (readonly) NSArray *hardnessChartSortedKeys;
 
 @end
 

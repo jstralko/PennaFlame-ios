@@ -207,7 +207,9 @@
             break;
         case 3: {
             PFAppDelegate *appDelegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
-            PFChartViewController *pfhcvc = [[PFChartViewController alloc]initWithDict:appDelegate.hardnessChartDict withTitle:HARDNESS_CHART_TITLE];
+            PFChartViewController *pfhcvc = [[PFChartViewController alloc]initWithDict:appDelegate.hardnessChartDict
+                                            sortedKeys:appDelegate.hardnessChartSortedKeys
+                                            withTitle:HARDNESS_CHART_TITLE];
             [self.navigationController pushViewController:pfhcvc animated:YES];
         }
             break;

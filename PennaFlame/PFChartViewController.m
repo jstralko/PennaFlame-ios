@@ -27,9 +27,14 @@
 }
 
 -(id)initWithDict:(NSMutableDictionary *)chartDict withTitle:(NSString *)title {
+    return [self initWithDict:chartDict sortedKeys:[chartDict allKeys] withTitle:title];
+}
+
+-(id)initWithDict:(NSMutableDictionary *)chartDict sortedKeys:(NSArray *)keys withTitle:(NSString *)title {
     self = [super init];
     if (self) {
         chartDictionary = chartDict;
+        sortedKeys = keys;
         self.navigationItem.title = title;
     }
     return self;
@@ -185,7 +190,8 @@
         }
         [rangePicker setHidden:![rangePicker isHidden]];
     } else if (sender == showFullChart) {
-        PFFullChartViewController *fcvc = [[PFFullChartViewController alloc ] initWithDict:chartDictionary];
+        PFFullChartViewController *fcvc = [[PFFullChartViewController alloc ] initWithDict:chartDictionary
+                                                                            withSortedKeys:sortedKeys withTile:self.navigationItem.title];
         [self.navigationController pushViewController:fcvc animated:YES];
         
     } else {
@@ -194,7 +200,6 @@
         
         NSInteger metalIndex = [topPicker selectedRowInComponent:0];
         NSString *metal = [[chartDictionary allKeys] objectAtIndex:metalIndex];
-        NSArray *metals = [chartDictionary allKeys];
         //NSString *range = [[hardnessChartDict objectForKey:metal] objectAtIndex:[rangePicker selectedRowInComponent:0]];
         
         /*
@@ -219,7 +224,7 @@
                                  "<tbody>"
                                  "<tr bgcolor=\"lightgrey\" align=\"center\">" ];
         
-        for (NSString *key in metals) {
+        for (NSString *key in sortedKeys) {
             if ([metal isEqualToString:key]) {
                 [html appendFormat:@"<td bgcolor=\"#FF0000\"><span style=\"font-weight:bold\">%@</span></td>", key];
                 
@@ -228,12 +233,10 @@
             }
         }
         [html appendFormat:@"</tr><tr bgcolor=\"white\">"];
-        for (NSString *key in metals) {
+        for (NSString *key in sortedKeys) {
             [html appendFormat:@"<td><div align=\"center\">%@</div></td>", [[chartDictionary objectForKey:key] objectAtIndex:[rangePicker selectedRowInComponent:0]]];
         }
         [html appendFormat:@"</tr></table></body></html>"];
-        
-        //NSLog(@"%@", html);
         
         [chartWebView loadHTMLString:html baseURL:nil];
         [chartWebView setHidden:NO];
@@ -741,12 +744,11 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
 {
     if (pickerView == topPicker) {
-        NSArray *array = [chartDictionary allKeys];
-        return [array objectAtIndex:row];
+        return [sortedKeys objectAtIndex:row];
     }
     
     NSInteger index = [topPicker selectedRowInComponent:0];
-    NSString *key = [[chartDictionary allKeys] objectAtIndex:index];
+    NSString *key = [sortedKeys objectAtIndex:index];
     NSArray *array = [chartDictionary objectForKey:key];
     return [array objectAtIndex:row];
     

@@ -34,9 +34,14 @@
 }
 
 -(id) initWithDict:(NSDictionary *)chartDict withTile:(NSString *)title {
+    return [self initWithDict:chartDict withSortedKeys:[chartDict allKeys] withTile:title];
+}
+
+-(id) initWithDict:(NSDictionary *)chartDict withSortedKeys:(NSArray *)keys withTile:(NSString *)title {
     self = [super init];
     if (self) {
         chartDictionary = chartDict;
+        sortedKeys = keys;
         self.navigationItem.title = title;
     }
     
@@ -329,7 +334,6 @@
 }
 
 - (NSString *)generateHeaderChartFromDictionary {
-    NSArray *keys = [chartDictionary allKeys];
     NSMutableString *html = [NSMutableString stringWithFormat:@"<html><head>"
                              "</head>"
                              "<body style=\"bbackground-color: transparent;\">"
@@ -337,7 +341,7 @@
                              "<thead>"
                              "<tr bgcolor=\"lightgrey\" align=\"center\">"];
     
-    for (NSString *key in keys) {
+    for (NSString *key in sortedKeys) {
         [html appendFormat:@"<th bgcolor=\"#FF0000\"><span style=\"font-weight:bold;font-size:0.50em\">%@</span></th>", key];
     }
     [html appendFormat:@"</tr></thread>"];
@@ -348,37 +352,37 @@
 }
 
 -(NSString *) generateChartFromDictionary {
-    NSArray *keys = [chartDictionary allKeys];
     NSMutableString *html = [NSMutableString stringWithFormat:@"<html><head>"
                              "</head>"
                              "<body style=\"bbackground-color: transparent;\">"
                              "<table id=\"myTable\" width=\"90%%\" border=\"1\" align=\"center\" cellpadding=\"3\" cellspacing=\"0\" bordercolor=\"#CCCCC\">"
-                             "<thead id=\"myTableHeader\" style=\"height:1px\">"
+                             "<thead id=\"myTableHeader\">"
                              "<tr bgcolor=\"transparent\" align=\"center\">"];
     
-    for (NSString *key in keys) {
+    for (NSString *key in sortedKeys) {
         [html appendFormat:@"<th bgcolor=\"transparent\"><span style=\"opacity:0;font-weight:bold;font-size:0.50em\">%@</span></th>", key];
     }
     [html appendFormat:@"</tr></thread>"];
     [html appendFormat:@"<tbody>"];
-    NSUInteger total = [[chartDictionary objectForKey:[keys objectAtIndex:0]] count];
+    NSUInteger total = [[chartDictionary objectForKey:[sortedKeys objectAtIndex:0]] count];
     
     for (int i = 0 ; i < total; i++) {
         [html appendFormat:@"<tr bgcolor=\"white\">"];
-        for (NSString *key in keys) {
+        for (NSString *key in sortedKeys) {
             NSString *range = [[chartDictionary objectForKey:key] objectAtIndex:i];
             [html appendFormat:@"<td><div align=\"center\">%@</div></td>", range];
         }
         [html appendFormat:@"</tr>"];
     }
-    [html appendFormat:@"</tbody></table></body></html>"];
+    [html appendFormat:@"</tbody></table>"];
+    [html appendFormat:@"<span style=\"margin-left:5%%;margin-right:5%%;font-size:0.8em;font-style:italic;\">%@</span>", disclaimerString];
+    [html appendFormat:@"</body></html>"];
+    
     return html;
 }
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView
-{
-    NSLog(@"webviewDidFinished");
-    
+{    
     //load the jquery framework
     NSString *jqueryCore = [NSString stringWithFormat:@"%@", [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"jquery-1.10.2.min.js"]];
     

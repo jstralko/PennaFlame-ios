@@ -16,6 +16,7 @@
     UIView *redBanner;
     UILabel *disclaimer;
     NSDictionary *chartDictionary;
+    NSArray *sortedKeys;
     NSInteger tabBarHeight;
     PFTabView *tabBar;
 }
@@ -23,5 +24,7 @@
 -(id) initWithDict:(NSDictionary *)chartDict;
 
 -(id) initWithDict:(NSDictionary *)chartDict withTile:(NSString *)title;
+
+-(id) initWithDict:(NSDictionary *)chartDict withSortedKeys:(NSArray *)keys withTile:(NSString *)title;
 
 @end
