@@ -75,14 +75,14 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
     [self.view addSubview:chart];
     
     NSString *headerWV = [self generateHeaderChartFromDictionary];
-    if(!header_internalChart) header_internalChart = [[UIWebView alloc]initWithFrame:CGRectZero];
-    [header_internalChart setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [header_internalChart loadHTMLString:headerWV baseURL:nil];
-    [header_internalChart setBackgroundColor:[UIColor clearColor]];
-    [header_internalChart setOpaque:NO];
-    header_internalChart.scrollView.scrollEnabled = NO;
-    header_internalChart.scrollView.bounces = NO;
-    [self.view addSubview:header_internalChart];
+    if(!headerWebView) headerWebView = [[UIWebView alloc]initWithFrame:CGRectZero];
+    [headerWebView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [headerWebView loadHTMLString:headerWV baseURL:nil];
+    [headerWebView setBackgroundColor:[UIColor clearColor]];
+    [headerWebView setOpaque:NO];
+    headerWebView.scrollView.scrollEnabled = NO;
+    headerWebView.scrollView.bounces = NO;
+    [self.view addSubview:headerWebView];
     
     disclaimer = [[UILabel alloc] initWithFrame:CGRectZero];
     [disclaimer setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -211,7 +211,7 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
     
     //header
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:header_internalChart
+                   constraintWithItem:headerWebView
                    attribute:NSLayoutAttributeTop
                    relatedBy:NSLayoutRelationEqual
                    toItem:redBanner
@@ -221,7 +221,7 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
     [self.view addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:header_internalChart
+                   constraintWithItem:headerWebView
                    attribute:NSLayoutAttributeLeft
                    relatedBy:NSLayoutRelationEqual
                    toItem:self.view
@@ -231,7 +231,7 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
     [self.view addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:header_internalChart
+                   constraintWithItem:headerWebView
                    attribute:NSLayoutAttributeRight
                    relatedBy:NSLayoutRelationEqual
                    toItem:self.view
@@ -241,7 +241,7 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
     [self.view addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:header_internalChart
+                   constraintWithItem:headerWebView
                    attribute:NSLayoutAttributeHeight
                    relatedBy:NSLayoutRelationEqual
                    toItem:nil

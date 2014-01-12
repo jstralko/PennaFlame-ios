@@ -11,7 +11,7 @@
 
 @interface PFFullChartViewController : UIViewController <UIWebViewDelegate> {
     UIWebView *chart;
-    UIWebView *header_internalChart;
+    UIWebView *headerWebView;
     UIImageView *background;
     UIView *redBanner;
     UILabel *disclaimer;
