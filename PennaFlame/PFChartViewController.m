@@ -86,6 +86,20 @@
     [showRangePickerButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:showRangePickerButton];
     
+    rangePickerDoneButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    [rangePickerDoneButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [rangePickerDoneButton setTitle:@"Done" forState:UIControlStateNormal];
+    [rangePickerDoneButton setHidden:YES];
+    [rangePickerDoneButton addTarget:self action:@selector(rangePickerDone:) forControlEvents:UIControlEventTouchUpInside];
+    [scrollView addSubview:rangePickerDoneButton];
+    
+    topPickerDoneButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    [topPickerDoneButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [topPickerDoneButton setTitle:@"Done" forState:UIControlStateNormal];
+    [topPickerDoneButton setHidden:YES];
+    [topPickerDoneButton addTarget:self action:@selector(topPickerDone:) forControlEvents:UIControlEventTouchUpInside];
+    [scrollView addSubview:topPickerDoneButton];
+    
     if(!generateChart) generateChart = [[UIButton alloc] initWithFrame:CGRectZero];
     [generateChart setTranslatesAutoresizingMaskIntoConstraints:NO];
     [generateChart setTitle:@"Show  Chart" forState:UIControlStateNormal];
@@ -174,9 +188,22 @@
     [self drawLayout];
 }
 
+- (void) topPickerDone:(id)sender {
+    [topPicker setHidden:YES];
+    [topPickerDoneButton setHidden:YES];
+    [self drawLayout];
+}
+
+- (void) rangePickerDone:(id)sender {
+    [rangePicker setHidden:YES];
+    [rangePickerDoneButton setHidden:YES];
+    [self drawLayout];
+}
+
 - (void) buttonClicked:(id)sender {
     if (sender == showTopPickerButton) {
         [topPicker setHidden:![topPicker isHidden]];
+        [topPickerDoneButton setHidden:[topPicker isHidden]];
     } else  if(sender == showRangePickerButton) {
         if ([showRangePickerButton.titleLabel.text isEqualToString:@"Select Range"]) {
             //set a default - pick middle value
@@ -189,6 +216,7 @@
             generateChart.alpha = 1.0f;
         }
         [rangePicker setHidden:![rangePicker isHidden]];
+        [rangePickerDoneButton setHidden:[rangePicker isHidden]];
     } else if (sender == showFullChart) {
         PFFullChartViewController *fcvc = [[PFFullChartViewController alloc ] initWithDict:chartDictionary
                                                                             withSortedKeys:sortedKeys withTile:self.navigationItem.title];
@@ -372,6 +400,40 @@
                    constant:250];
     [scrollView addConstraint:myConstraint];
     
+    //topPickerDoneButton
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:topPickerDoneButton
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationGreaterThanOrEqual
+                   toItem:redBanner
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:0];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:topPickerDoneButton
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:-5];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:topPickerDoneButton
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:50];
+    [scrollView addConstraint:myConstraint];
+    
+    
     id toItem = nil;
     if (![topPicker isHidden]) {
         
@@ -442,6 +504,41 @@
                    multiplier:1.0
                    constant:250];
     [scrollView addConstraint:myConstraint];
+    
+    
+    //rangePickerDoneButton
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:rangePickerDoneButton
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationGreaterThanOrEqual
+                   toItem:toItem
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:5];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:rangePickerDoneButton
+                   attribute:NSLayoutAttributeRight
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:scrollView
+                   attribute:NSLayoutAttributeRight
+                   multiplier:1.0
+                   constant:-5];
+    [scrollView addConstraint:myConstraint];
+    
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:rangePickerDoneButton
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:50];
+    [scrollView addConstraint:myConstraint];
+    //
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:rangePicker
@@ -756,8 +853,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component{
     if (pickerView == topPicker) {
-        NSArray *array = [chartDictionary allKeys];
-        NSString *title = [array objectAtIndex:row];
+        NSString *title = [sortedKeys objectAtIndex:row];
         [showTopPickerButton setTitle:title forState:UIControlStateNormal];
         [rangePicker reloadComponent:0];
         NSString *range = [[chartDictionary objectForKey:title] objectAtIndex:[rangePicker selectedRowInComponent:0]];

@@ -16,6 +16,8 @@
     UIButton *showRangePickerButton;
     UIPickerView *topPicker;
     UIPickerView *rangePicker;
+    UIButton *rangePickerDoneButton;
+    UIButton *topPickerDoneButton;
     UIScrollView *scrollView;
     UIButton *generateChart;
     UIButton *showFullChart;
