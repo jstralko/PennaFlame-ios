@@ -10,6 +10,7 @@
 #import "PFFullChartViewController.h"
 #import "PFAppDelegate.h"
 #import "PFTabView.h"
+#import "PFButton.h"
 
 @interface PFChartViewController ()
     
@@ -74,34 +75,29 @@
     [rangePicker setHidden:YES];
     [scrollView addSubview:rangePicker];
     
-    if (!showTopPickerButton) showTopPickerButton = [[UIButton alloc] initWithFrame:CGRectZero];
-    [showTopPickerButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    showTopPickerButton = [PFButton buttonWithType:UIButtonTypeRoundedRect];
     [showTopPickerButton setTitle:half forState:UIControlStateNormal];
     [showTopPickerButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:showTopPickerButton];
     
-    if(!showRangePickerButton) showRangePickerButton = [[UIButton alloc] initWithFrame:CGRectZero];
-    [showRangePickerButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    showRangePickerButton = [PFButton buttonWithType:UIButtonTypeRoundedRect];
     [showRangePickerButton setTitle:@"Select Range" forState:UIControlStateNormal];
     [showRangePickerButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:showRangePickerButton];
     
-    rangePickerDoneButton = [[UIButton alloc] initWithFrame:CGRectZero];
-    [rangePickerDoneButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    rangePickerDoneButton = [PFButton buttonWithType:UIButtonTypeRoundedRect];
     [rangePickerDoneButton setTitle:@"Done" forState:UIControlStateNormal];
     [rangePickerDoneButton setHidden:YES];
     [rangePickerDoneButton addTarget:self action:@selector(rangePickerDone:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:rangePickerDoneButton];
     
-    topPickerDoneButton = [[UIButton alloc] initWithFrame:CGRectZero];
-    [topPickerDoneButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    topPickerDoneButton = [PFButton buttonWithType:UIButtonTypeRoundedRect];
     [topPickerDoneButton setTitle:@"Done" forState:UIControlStateNormal];
     [topPickerDoneButton setHidden:YES];
     [topPickerDoneButton addTarget:self action:@selector(topPickerDone:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:topPickerDoneButton];
     
-    if(!generateChart) generateChart = [[UIButton alloc] initWithFrame:CGRectZero];
-    [generateChart setTranslatesAutoresizingMaskIntoConstraints:NO];
+    generateChart = [PFButton buttonWithType:UIButtonTypeRoundedRect];
     [generateChart setTitle:@"Show  Chart" forState:UIControlStateNormal];
     [generateChart addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [generateChart setEnabled:NO];
@@ -114,9 +110,8 @@
     chartWebView.delegate = self;
     [scrollView addSubview:chartWebView];
     
-    if(!showFullChart) showFullChart = [[UIButton alloc] initWithFrame:CGRectZero];
+    showFullChart = [PFButton buttonWithType:UIButtonTypeRoundedRect];
     [showFullChart setTitle:@"Show Full Chart" forState:UIControlStateNormal];
-    [showFullChart setTranslatesAutoresizingMaskIntoConstraints:NO];
     [showFullChart addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:showFullChart];
     
@@ -375,7 +370,7 @@
                    toItem:redBanner
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:0];
+                   constant:5];
     [scrollView addConstraint:myConstraint];
     
     
@@ -397,7 +392,7 @@
                    toItem:nil
                    attribute:NSLayoutAttributeNotAnAttribute
                    multiplier:1.0
-                   constant:250];
+                   constant:175];
     [scrollView addConstraint:myConstraint];
     
     //topPickerDoneButton
@@ -408,7 +403,7 @@
                    toItem:redBanner
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:0];
+                   constant:5];
     [scrollView addConstraint:myConstraint];
     
     
@@ -502,7 +497,7 @@
                    toItem:nil
                    attribute:NSLayoutAttributeNotAnAttribute
                    multiplier:1.0
-                   constant:250];
+                   constant:175];
     [scrollView addConstraint:myConstraint];
     
     
@@ -585,7 +580,7 @@
                    toItem:generateChartToItem
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:0];
+                   constant:5];
     [scrollView addConstraint:myConstraint];
     
     
@@ -607,7 +602,7 @@
                    toItem:nil
                    attribute:NSLayoutAttributeNotAnAttribute
                    multiplier:1.0
-                   constant:250];
+                   constant:175];
     [scrollView addConstraint:myConstraint];
     
     //
@@ -674,7 +669,7 @@
                    toItem:chartWebView
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:0];
+                   constant:5];
     [scrollView addConstraint:myConstraint];
     
     
@@ -696,7 +691,7 @@
                    toItem:nil
                    attribute:NSLayoutAttributeNotAnAttribute
                    multiplier:1.0
-                   constant:250];
+                   constant:175];
     [scrollView addConstraint:myConstraint];
     
     //
@@ -796,6 +791,13 @@
                              [self.view layoutIfNeeded];
                          }];
     }
+    
+    [showTopPickerButton addGradientLayer];
+    [topPickerDoneButton addGradientLayer];
+    [showRangePickerButton addGradientLayer];
+    [rangePickerDoneButton addGradientLayer];
+    [generateChart addGradientLayer];
+    [showFullChart addGradientLayer];
     
 }
 

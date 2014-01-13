@@ -9,18 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @class PFTabView;
+@class PFButton;
 
 @interface PFChartViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UIWebViewDelegate> {
     UIWebView *chartWebView;
-    UIButton *showTopPickerButton;
-    UIButton *showRangePickerButton;
+    PFButton *showTopPickerButton;
+    PFButton *showRangePickerButton;
     UIPickerView *topPicker;
     UIPickerView *rangePicker;
-    UIButton *rangePickerDoneButton;
-    UIButton *topPickerDoneButton;
+    PFButton *rangePickerDoneButton;
+    PFButton *topPickerDoneButton;
     UIScrollView *scrollView;
-    UIButton *generateChart;
-    UIButton *showFullChart;
+    PFButton *generateChart;
+    PFButton *showFullChart;
     UIView *redBanner;
     UIImageView *backgroundImage;
     UIImageView *logoImageView;
