@@ -338,7 +338,7 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
 - (NSString *)generateHeaderChartFromDictionary {
     NSMutableString *html = [NSMutableString stringWithFormat:@"<html><head>"
                              "</head>"
-                             "<body style=\"bbackground-color: transparent;\">"
+                             "<body style=\"background-color: transparent;\">"
                              "<table id=\"myTable\" width=\"90%%\" border=\"1\" align=\"center\" cellpadding=\"3\" cellspacing=\"0\" bordercolor=\"#CCCCC\">"
                              "<thead>"
                              "<tr bgcolor=\"lightgrey\" align=\"center\">"];
@@ -364,7 +364,7 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
 -(NSString *) generateChartFromDictionary {
     NSMutableString *html = [NSMutableString stringWithFormat:@"<html><head>"
                              "</head>"
-                             "<body style=\"bbackground-color: transparent;\">"
+                             "<body style=\"background-color: transparent;\">"
                              "<table id=\"myTable\" width=\"90%%\" border=\"1\" align=\"center\" cellpadding=\"3\" cellspacing=\"0\" bordercolor=\"#CCCCC\">"
                              "<thead id=\"myTableHeader\">"
                              "<tr bgcolor=\"transparent\" align=\"center\">"];

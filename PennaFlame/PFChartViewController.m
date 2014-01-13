@@ -108,6 +108,10 @@
     [chartWebView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [chartWebView setHidden:YES];
     chartWebView.delegate = self;
+    [chartWebView setBackgroundColor:[UIColor clearColor]];
+    [chartWebView setOpaque:NO];
+    chartWebView.scrollView.scrollEnabled = NO;
+    chartWebView.scrollView.bounces = NO;
     [scrollView addSubview:chartWebView];
     
     showFullChart = [PFButton buttonWithType:UIButtonTypeRoundedRect];
@@ -220,11 +224,6 @@
     } else {
         [topPicker setHidden:YES];
         [rangePicker setHidden:YES];
-        
-        NSInteger metalIndex = [topPicker selectedRowInComponent:0];
-        NSString *metal = [[chartDictionary allKeys] objectAtIndex:metalIndex];
-        //NSString *range = [[hardnessChartDict objectForKey:metal] objectAtIndex:[rangePicker selectedRowInComponent:0]];
-        
         /*
          <html>
          <head>
@@ -242,18 +241,22 @@
          <td><div align="center" class="style25">1/8</div></td>
          </tr>
          */
-        NSMutableString *html = [NSMutableString stringWithFormat:@"<html><head></head><body style=\"background-color:#BDBBBB;\">"
+        NSMutableString *html = [NSMutableString stringWithFormat:@"<html><head></head>"
+                                 "<body style=\"background-color: transparent;\">"
                                  "<table width=\"90%%\" border=\"1\" align=\"center\" cellpadding=\"3\" cellspacing=\"0\" bordercolor=\"#CCCCC\">"
                                  "<tbody>"
                                  "<tr bgcolor=\"lightgrey\" align=\"center\">" ];
         
+        NSString *fontSize;
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            //iPad
+            fontSize = @"1.0em";
+        } else {
+            fontSize = @"0.50em";
+        }
+        
         for (NSString *key in sortedKeys) {
-            if ([metal isEqualToString:key]) {
-                [html appendFormat:@"<td bgcolor=\"#FF0000\"><span style=\"font-weight:bold\">%@</span></td>", key];
-                
-            } else {
-                [html appendFormat:@"<td bgcolor=\"#FF0000\"><span style=\"font-weight:bold\">%@</span></td>", key];
-            }
+            [html appendFormat:@"<td bgcolor=\"#FF0000\"><span style=\"font-weight:bold;font-size:%@\">%@</span></td>", fontSize, key];
         }
         [html appendFormat:@"</tr><tr bgcolor=\"white\">"];
         for (NSString *key in sortedKeys) {
