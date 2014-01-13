@@ -10,14 +10,14 @@
 #import <MessageUI/MessageUI.h>
 
 @class PFTabView;
+@class PFButton;
 
 @interface PFContactInfoViewController: UIViewController <MFMailComposeViewControllerDelegate> {
     
     UILabel *label;
-    //IBOutlet UIImageView *logo;
-    IBOutlet UIButton *emailButton;
-    IBOutlet UIButton *callButton;
-    IBOutlet UIButton *websiteButton;
+    PFButton  *emailButton;
+    PFButton *callButton;
+    PFButton *websiteButton;
     UIScrollView *scrollView;
     UILabel *extra;
     UIView *redBanner;

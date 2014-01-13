@@ -10,6 +10,7 @@
 #import "PFWebsiteViewController.h"
 #import "PFAppDelegate.h"
 #import "PFTabView.h"
+#import "PFButton.h"
 
 @interface PFContactInfoViewController ()
 
@@ -59,24 +60,18 @@ int tabBarHeight;
     [label setTranslatesAutoresizingMaskIntoConstraints:NO];
     [scrollView addSubview:label];
     
-    if(!websiteButton) websiteButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    websiteButton = [PFButton buttonWithType:UIButtonTypeRoundedRect];
 	[websiteButton setTitle:@"Website" forState:UIControlStateNormal];
-    [websiteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [websiteButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [websiteButton addTarget:self action:@selector(websiteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	[scrollView addSubview:websiteButton];
     
-    if(!callButton) callButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    callButton = [PFButton buttonWithType:UIButtonTypeRoundedRect];
 	[callButton setTitle:@"Call" forState:UIControlStateNormal];
-    [callButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [callButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [callButton addTarget:self action:@selector(callButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	[scrollView addSubview:callButton];
     
-    if(!emailButton) emailButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    emailButton = [PFButton buttonWithType:UIButtonTypeRoundedRect];
 	[emailButton setTitle:@"Email" forState:UIControlStateNormal];
-    [emailButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [emailButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [emailButton addTarget:self action:@selector(emailButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	[scrollView addSubview:emailButton];
     
@@ -285,7 +280,17 @@ int tabBarHeight;
                        multiplier:1.0
                        constant:0];
         [scrollView addConstraint:myConstraint];
-        
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:websiteButton
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:175];
+    [scrollView addConstraint:myConstraint];
+    
         myConstraint =[NSLayoutConstraint
                        constraintWithItem:callButton
                        attribute:NSLayoutAttributeTop
@@ -305,7 +310,17 @@ int tabBarHeight;
                        multiplier:1.0
                        constant:0];
         [scrollView addConstraint:myConstraint];
-        
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:callButton
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:175];
+    [scrollView addConstraint:myConstraint];
+    
         myConstraint =[NSLayoutConstraint
                        constraintWithItem:emailButton
                        attribute:NSLayoutAttributeTop
@@ -325,6 +340,16 @@ int tabBarHeight;
                        multiplier:1.0
                        constant:0];
         [scrollView addConstraint:myConstraint];
+    
+    myConstraint =[NSLayoutConstraint
+                   constraintWithItem:emailButton
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:nil
+                   attribute:NSLayoutAttributeNotAnAttribute
+                   multiplier:1.0
+                   constant:175];
+    [scrollView addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
                    constraintWithItem:extra
@@ -421,6 +446,10 @@ int tabBarHeight;
     } else {
         logoImageViewTop.constant = 10;
     }
+    
+    [emailButton addGradientLayer];
+    [callButton addGradientLayer];
+    [websiteButton addGradientLayer];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -466,7 +495,7 @@ int tabBarHeight;
         mail.mailComposeDelegate = self;
 
         [mail setToRecipients:[NSArray arrayWithObject:@"brucec@pennaflame.com"]];
-        [mail setSubject:@"<Set Subject Here>"];
+        [mail setSubject:@""];
 
         [self presentViewController:mail animated:YES completion:nil];
     }
