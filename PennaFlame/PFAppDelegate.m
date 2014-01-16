@@ -108,7 +108,7 @@
         case 4: {
             UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
             PFAppDelegate *appDelegate = (PFAppDelegate *)[UIApplication sharedApplication].delegate;
-            PFChartViewController *pfhcvc = [[PFChartViewController alloc]initWithDict:appDelegate.hardnessChartDict withTitle:HARDNESS_CHART_TITLE];
+            PFChartViewController *pfhcvc = [[PFChartViewController alloc]initWithDict:appDelegate.hardnessChartDict sortedKeys:appDelegate.hardnessChartSortedKeys withTitle:HARDNESS_CHART_TITLE];
             [nav popToRootViewControllerAnimated:NO];
             [nav pushViewController:pfhcvc animated:NO];
         }

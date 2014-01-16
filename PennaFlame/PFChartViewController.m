@@ -224,6 +224,8 @@
     } else {
         [topPicker setHidden:YES];
         [rangePicker setHidden:YES];
+        [topPickerDoneButton setHidden:YES];
+        [rangePickerDoneButton setHidden:YES];
         /*
          <html>
          <head>
