@@ -19,6 +19,7 @@
     NSArray *sortedKeys;
     NSInteger tabBarHeight;
     PFTabView *tabBar;
+    BOOL showInlineDisclaimer;
 }
 
 -(id) initWithDict:(NSDictionary *)chartDict;

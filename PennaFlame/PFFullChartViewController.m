@@ -45,6 +45,15 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
         chartDictionary = chartDict;
         sortedKeys = keys;
         self.navigationItem.title = title;
+        //this is somewhat a hack.
+        if ([title isEqualToString:HARDNESS_CASE_DEPTH_TITLE]) {
+            showInlineDisclaimer = YES;
+        } else {
+            showInlineDisclaimer = NO;
+        }
+        
+        NSLog(@"showInlineDisclaimer %@ %d", title, showInlineDisclaimer);
+        
     }
     
     return self;
@@ -84,6 +93,7 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
     headerWebView.scrollView.bounces = NO;
     [self.view addSubview:headerWebView];
     
+    
     disclaimer = [[UILabel alloc] initWithFrame:CGRectZero];
     [disclaimer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [disclaimer setLineBreakMode:NSLineBreakByWordWrapping];
@@ -93,7 +103,11 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
     disclaimer.font = [UIFont italicSystemFontOfSize:12];
     disclaimer.minimumScaleFactor = 0.5f;
     [disclaimer setText:disclaimerString];
+    if (showInlineDisclaimer) {
+        [disclaimer setHidden:YES];
+    }
     [self.view addSubview:disclaimer];
+    
     
     if ([self.navigationItem.title isEqualToString:HARDNESS_CASE_DEPTH_TITLE]) {
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -331,8 +345,6 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
                    multiplier:1.0
                    constant:65];
     [self.view addConstraint:myConstraint];
-    
-    
 }
 
 - (NSString *)generateHeaderChartFromDictionary {
@@ -385,7 +397,10 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
         [html appendFormat:@"</tr>"];
     }
     [html appendFormat:@"</tbody></table>"];
-    [html appendFormat:@"<span style=\"margin-left:5%%;margin-right:5%%;font-size:0.8em;font-style:italic;\">%@</span>", disclaimerString];
+    
+    if (showInlineDisclaimer) {
+        [html appendFormat:@"<div style=\"text-align: center;margin-top:2%%;margin-left:2%%;margin-right:2%%;font-size:0.8em;font-style:italic;\">%@</div>", disclaimerString];
+    }
     [html appendFormat:@"</body></html>"];
     
     return html;
@@ -402,21 +417,21 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
     
     NSLog(@"jquery loaded");
     
-    NSString *jqueryFixedHeaderTablePlugin = [NSString stringWithFormat:@"%@", [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"jquery.fixedheadertable.min.js"]];
-    NSData *jqueryFixedHeaderTablePluginData = [NSData dataWithContentsOfFile:jqueryFixedHeaderTablePlugin];
-    NSString *jqueryFixedHeaderTablePluginString = [[NSMutableString alloc] initWithData:jqueryFixedHeaderTablePluginData encoding:NSUTF8StringEncoding];
-    [chart stringByEvaluatingJavaScriptFromString:jqueryFixedHeaderTablePluginString];
-    
-    NSLog(@"jquery.fixedheadertable plugin loaded");
+//    NSString *jqueryFixedHeaderTablePlugin = [NSString stringWithFormat:@"%@", [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"jquery.fixedheadertable.min.js"]];
+//    NSData *jqueryFixedHeaderTablePluginData = [NSData dataWithContentsOfFile:jqueryFixedHeaderTablePlugin];
+//    NSString *jqueryFixedHeaderTablePluginString = [[NSMutableString alloc] initWithData:jqueryFixedHeaderTablePluginData encoding:NSUTF8StringEncoding];
+//    [chart stringByEvaluatingJavaScriptFromString:jqueryFixedHeaderTablePluginString];
+//    
+//    NSLog(@"jquery.fixedheadertable plugin loaded");
     
     //debugging
-    NSString *filePath = [NSString stringWithFormat:@"%@", [[[NSBundle mainBundle] resourcePath]
-        stringByAppendingPathComponent:@"foo.js"]];
-    NSData *fooData = [NSData dataWithContentsOfFile:filePath];
-    NSString *fooString = [[NSMutableString alloc] initWithData:fooData encoding:NSUTF8StringEncoding];
-    [chart stringByEvaluatingJavaScriptFromString:fooString];
-    
-    NSLog(@"foo loaded");
+//    NSString *filePath = [NSString stringWithFormat:@"%@", [[[NSBundle mainBundle] resourcePath]
+//        stringByAppendingPathComponent:@"foo.js"]];
+//    NSData *fooData = [NSData dataWithContentsOfFile:filePath];
+//    NSString *fooString = [[NSMutableString alloc] initWithData:fooData encoding:NSUTF8StringEncoding];
+//    [chart stringByEvaluatingJavaScriptFromString:fooString];
+//    
+//    NSLog(@"foo loaded");
 }
 
 - (void)didReceiveMemoryWarning
