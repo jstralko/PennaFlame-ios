@@ -51,9 +51,6 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
         } else {
             showInlineDisclaimer = NO;
         }
-        
-        NSLog(@"showInlineDisclaimer %@ %d", title, showInlineDisclaimer);
-        
     }
     
     return self;
@@ -415,7 +412,7 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
     NSString *jqueryString = [[NSMutableString alloc] initWithData:jquery encoding:NSUTF8StringEncoding];
     [chart stringByEvaluatingJavaScriptFromString:jqueryString];
     
-    NSLog(@"jquery loaded");
+//    NSLog(@"jquery loaded");
     
 //    NSString *jqueryFixedHeaderTablePlugin = [NSString stringWithFormat:@"%@", [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"jquery.fixedheadertable.min.js"]];
 //    NSData *jqueryFixedHeaderTablePluginData = [NSData dataWithContentsOfFile:jqueryFixedHeaderTablePlugin];
