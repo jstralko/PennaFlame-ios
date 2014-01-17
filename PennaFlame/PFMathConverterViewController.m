@@ -275,15 +275,9 @@ int tabBarHeight;
     int intValue = (int)value;
     if (sender == numeratorStepper) {
         [numeratorTextField setText:[NSString stringWithFormat:@"%d", intValue]];
-        if (denominatorTextField.text.length == 0) {
-            numeratorTextField.text = [NSString stringWithFormat:@"%d", 1];
-        }
         [self updateDecimal];
     } else if (sender == denominatorStepper)  {
         [denominatorTextField setText:[NSString stringWithFormat:@"%d", intValue]];
-        if (numeratorTextField.text.length == 0) {
-            numeratorTextField.text = [NSString stringWithFormat:@"%d", 1];
-        }
         [self updateDecimal];
     } else {
         [decimalTextField setText:[NSString stringWithFormat:@"%4.4f", value]];
@@ -301,6 +295,8 @@ int tabBarHeight;
     
     if (demInt != 0) {
         [decimalTextField setText:[NSString stringWithFormat:@"%4.4f", numInt/(demInt*1.0)]];
+    } else {
+        [decimalTextField setText:@""];
     }
 }
 
@@ -312,19 +308,10 @@ int tabBarHeight;
 
 -(void)textFieldDidChange :(UITextField *)theTextField{
     if (numeratorTextField == theTextField) {
-        if (denominatorTextField.text.length == 0) {
-            denominatorTextField.text = [NSString stringWithFormat:@"%d", 1];
-        }
         [self updateDecimal];
     } else if (denominatorTextField == theTextField) {
-        if ([denominatorTextField.text intValue] >= 0) {
-            if (numeratorTextField.text.length == 0) {
-                numeratorTextField.text = [NSString stringWithFormat:@"%d", 1];
-            }
-            [self updateDecimal];
-        }
+        [self updateDecimal];
     } else {
-        
         float decimal = [decimalTextField.text floatValue];
         if (decimal > 0.0f) {
             [self floatToFraction:[decimalTextField.text floatValue]];
