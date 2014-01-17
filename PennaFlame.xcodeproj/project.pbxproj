@@ -12,7 +12,6 @@
 		13A7E437187B3BE400827A5D /* jquery-1.10.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 13A7E435187B389E00827A5D /* jquery-1.10.2.min.js */; };
 		13A7E439187B653500827A5D /* jquery.fixedheadertable.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 13A7E438187B653500827A5D /* jquery.fixedheadertable.min.js */; };
 		13A7E43A187B663700827A5D /* jquery.fixedheadertable.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 13A7E438187B653500827A5D /* jquery.fixedheadertable.min.js */; };
-		13A7E43F187B6A7D00827A5D /* foo.js in Resources */ = {isa = PBXBuildFile; fileRef = 13A7E43D187B6A6F00827A5D /* foo.js */; };
 		13A7E4481883141500827A5D /* PFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A7E4471883141500827A5D /* PFButton.m */; };
 		13A7E9A7185562AA00BA50D7 /* PFStepper.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A7E9A6185562A900BA50D7 /* PFStepper.m */; };
 		13F057CC1836DAE700B45092 /* PFHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F057CB1836DAE700B45092 /* PFHomeCollectionViewCell.m */; };
@@ -59,7 +58,6 @@
 		134F04A5183961FE009E0420 /* PFTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFTabView.m; sourceTree = "<group>"; };
 		13A7E435187B389E00827A5D /* jquery-1.10.2.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.10.2.min.js"; sourceTree = "<group>"; };
 		13A7E438187B653500827A5D /* jquery.fixedheadertable.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.fixedheadertable.min.js; sourceTree = "<group>"; };
-		13A7E43D187B6A6F00827A5D /* foo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = foo.js; sourceTree = "<group>"; };
 		13A7E4461883141500827A5D /* PFButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFButton.h; sourceTree = "<group>"; };
 		13A7E4471883141500827A5D /* PFButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFButton.m; sourceTree = "<group>"; };
 		13A7E9A5185562A900BA50D7 /* PFStepper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFStepper.h; sourceTree = "<group>"; };
@@ -238,7 +236,6 @@
 			children = (
 				13A7E438187B653500827A5D /* jquery.fixedheadertable.min.js */,
 				3C94381A18020ABF00845209 /* mti_statement.html */,
-				13A7E43D187B6A6F00827A5D /* foo.js */,
 				13A7E435187B389E00827A5D /* jquery-1.10.2.min.js */,
 			);
 			name = web;
@@ -323,7 +320,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13A7E43F187B6A7D00827A5D /* foo.js in Resources */,
 				13A7E43A187B663700827A5D /* jquery.fixedheadertable.min.js in Resources */,
 				13A7E437187B3BE400827A5D /* jquery-1.10.2.min.js in Resources */,
 				3C943804180206C000845209 /* PFWebsiteViewController.xib in Resources */,
