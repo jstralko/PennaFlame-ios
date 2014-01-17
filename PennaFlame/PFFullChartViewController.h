@@ -14,12 +14,11 @@
     UIWebView *headerWebView;
     UIImageView *background;
     UIView *redBanner;
-    UILabel *disclaimer;
     NSDictionary *chartDictionary;
     NSArray *sortedKeys;
     NSInteger tabBarHeight;
     PFTabView *tabBar;
-    BOOL showInlineDisclaimer;
+    BOOL showDisclaimer;
 }
 
 -(id) initWithDict:(NSDictionary *)chartDict;

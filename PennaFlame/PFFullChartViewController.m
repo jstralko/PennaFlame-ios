@@ -47,9 +47,9 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
         self.navigationItem.title = title;
         //this is somewhat a hack.
         if ([title isEqualToString:HARDNESS_CASE_DEPTH_TITLE]) {
-            showInlineDisclaimer = YES;
+            showDisclaimer = YES;
         } else {
-            showInlineDisclaimer = NO;
+            showDisclaimer = NO;
         }
     }
     
@@ -89,22 +89,6 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
     headerWebView.scrollView.scrollEnabled = NO;
     headerWebView.scrollView.bounces = NO;
     [self.view addSubview:headerWebView];
-    
-    
-    disclaimer = [[UILabel alloc] initWithFrame:CGRectZero];
-    [disclaimer setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [disclaimer setLineBreakMode:NSLineBreakByWordWrapping];
-    disclaimer.numberOfLines = 4;
-    disclaimer.textAlignment = NSTextAlignmentCenter;
-    disclaimer.adjustsFontSizeToFitWidth = YES;
-    disclaimer.font = [UIFont italicSystemFontOfSize:12];
-    disclaimer.minimumScaleFactor = 0.5f;
-    [disclaimer setText:disclaimerString];
-    if (showInlineDisclaimer) {
-        [disclaimer setHidden:YES];
-    }
-    [self.view addSubview:disclaimer];
-    
     
     if ([self.navigationItem.title isEqualToString:HARDNESS_CASE_DEPTH_TITLE]) {
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -228,7 +212,7 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
                    toItem:redBanner
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:5];
+                   constant:0];
     [self.view addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
@@ -258,7 +242,7 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
                    toItem:nil
                    attribute:NSLayoutAttributeNotAnAttribute
                    multiplier:1.0
-                   constant:60];
+                   constant:70];
     [self.view addConstraint:myConstraint];
     //end of header
     
@@ -269,7 +253,7 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
                    toItem:redBanner
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:10];
+                   constant:8];
     [self.view addConstraint:myConstraint];
     
     myConstraint =[NSLayoutConstraint
@@ -292,55 +276,19 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
                    constant:0];
     [self.view addConstraint:myConstraint];
     
-    //disclaimer
-    myConstraint =[NSLayoutConstraint
-                   constraintWithItem:disclaimer
-                   attribute:NSLayoutAttributeTop
-                   relatedBy:NSLayoutRelationEqual
-                   toItem:chart
-                   attribute:NSLayoutAttributeBottom
-                   multiplier:1.0
-                   constant:0];
-    [self.view addConstraint:myConstraint];
     
+    int constant = 0;
+    if ([self.navigationItem.title isEqualToString:HARDNESS_CASE_DEPTH_TITLE]) {
+        constant = tabBarHeight * -1;
+    }
     myConstraint =[NSLayoutConstraint
-                   constraintWithItem:disclaimer
-                   attribute:NSLayoutAttributeLeft
-                   relatedBy:NSLayoutRelationEqual
-                   toItem:self.view
-                   attribute:NSLayoutAttributeLeft
-                   multiplier:1.0
-                   constant:15];
-    [self.view addConstraint:myConstraint];
-    
-    myConstraint =[NSLayoutConstraint
-                   constraintWithItem:disclaimer
-                   attribute:NSLayoutAttributeRight
-                   relatedBy:NSLayoutRelationEqual
-                   toItem:self.view
-                   attribute:NSLayoutAttributeRight
-                   multiplier:1.0
-                   constant:-15];
-    [self.view addConstraint:myConstraint];
-    
-    myConstraint =[NSLayoutConstraint
-                   constraintWithItem:disclaimer
+                   constraintWithItem:chart
                    attribute:NSLayoutAttributeBottom
                    relatedBy:NSLayoutRelationEqual
                    toItem:self.view
                    attribute:NSLayoutAttributeBottom
                    multiplier:1.0
-                   constant:0];
-    [self.view addConstraint:myConstraint];
-    
-    myConstraint =[NSLayoutConstraint
-                   constraintWithItem:disclaimer
-                   attribute:NSLayoutAttributeHeight
-                   relatedBy:NSLayoutRelationEqual
-                   toItem:nil
-                   attribute:NSLayoutAttributeNotAnAttribute
-                   multiplier:1.0
-                   constant:65];
+                   constant:constant];
     [self.view addConstraint:myConstraint];
 }
 
@@ -353,15 +301,18 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
                              "<tr bgcolor=\"lightgrey\" align=\"center\">"];
     
     NSString *fontSize;
+    NSString *padding;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         //iPad
         fontSize = @"1.0em";
+        padding = @"5px";
     } else {
         fontSize = @"0.50em";
+        padding = @"8px";
     }
     
     for (NSString *key in sortedKeys) {
-        [html appendFormat:@"<th bgcolor=\"#FF0000\"><span style=\"font-weight:bold;font-size:%@\">%@</span></th>", fontSize, key];
+        [html appendFormat:@"<th style=\"padding-top:%@;padding-bottom:%@;\" bgcolor=\"#FF0000\"><span style=\"font-weight:bold;font-size:%@\">%@</span></th>", padding, padding, fontSize, key];
     }
     [html appendFormat:@"</tr></thread>"];
     [html appendFormat:@"<tbody>"];
@@ -379,7 +330,7 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
                              "<tr bgcolor=\"transparent\" align=\"center\">"];
     
     for (NSString *key in sortedKeys) {
-        [html appendFormat:@"<th bgcolor=\"transparent\"><span style=\"opacity:0;font-weight:bold;font-size:0.50em\">%@</span></th>", key];
+        [html appendFormat:@"<th bgcolor=\"white\"><span style=\"opacity:0;font-weight:bold;font-size:0.50em\">%@</span></th>", key];
     }
     [html appendFormat:@"</tr></thread>"];
     [html appendFormat:@"<tbody>"];
@@ -395,7 +346,7 @@ static NSString *disclaimerString = @"Note: This chart is a general guide. Hardn
     }
     [html appendFormat:@"</tbody></table>"];
     
-    if (showInlineDisclaimer) {
+    if (showDisclaimer) {
         [html appendFormat:@"<div style=\"text-align: center;margin-top:2%%;margin-left:2%%;margin-right:2%%;font-size:0.8em;font-style:italic;\">%@</div>", disclaimerString];
     }
     [html appendFormat:@"</body></html>"];
