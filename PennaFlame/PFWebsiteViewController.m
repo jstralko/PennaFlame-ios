@@ -20,10 +20,6 @@
     if (self) {
         // Custom initialization
         self.navigationItem.title = @"Penna Flame";
-        
-        NSURL *url = [[NSURL alloc] initWithString:@"http://www.pennaflame.com"];
-        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-        [pennaflameWebView loadRequest:request];
     }
     return self;
 }
@@ -32,6 +28,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSURL *url = [[NSURL alloc] initWithString:@"http://www.pennaflame.com"];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    [pennaflameWebView loadRequest:request];
 }
 
 - (void)didReceiveMemoryWarning
