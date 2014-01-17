@@ -202,6 +202,7 @@ int tabBarHeight;
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     scrollViewBottom.constant = SCROLL_VIEW_BOTTOM_CONSTANT;
+    [scrollView setContentOffset:CGPointZero];
     
     NSDictionary *info = [notification userInfo];
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
@@ -371,7 +372,7 @@ int tabBarHeight;
     [self.view removeConstraints:self.view.constraints];
     [scrollView removeConstraints:scrollView.constraints];
     // Do any additional setup after loading the view from its nib.
-    NSLayoutConstraint *myConstraint =[NSLayoutConstraint
+    NSLayoutConstraint *myConstraint =  [NSLayoutConstraint
                                        constraintWithItem:scrollView
                                        attribute:NSLayoutAttributeTop
                                        relatedBy:NSLayoutRelationEqual
@@ -828,17 +829,17 @@ int tabBarHeight;
     [scrollView removeConstraints:scrollView.constraints];
     
     // Do any additional setup after loading the view from its nib.
-    NSLayoutConstraint *myConstraint = [NSLayoutConstraint
-                                        constraintWithItem:scrollView
-                                        attribute:NSLayoutAttributeTop
-                                        relatedBy:NSLayoutRelationEqual
-                                        toItem:self.view
-                                        attribute:NSLayoutAttributeTop
-                                        multiplier:1.0
-                                        constant:0];
+    NSLayoutConstraint *myConstraint =  [NSLayoutConstraint
+                      constraintWithItem:scrollView
+                      attribute:NSLayoutAttributeTop
+                      relatedBy:NSLayoutRelationEqual
+                      toItem:self.view
+                      attribute:NSLayoutAttributeTop
+                      multiplier:1.0
+                      constant:0];
     [self.view addConstraint:myConstraint];
     
-    myConstraint =[NSLayoutConstraint
+     myConstraint =[NSLayoutConstraint
                    constraintWithItem:scrollView
                    attribute:NSLayoutAttributeLeft
                    relatedBy:NSLayoutRelationEqual
@@ -856,16 +857,16 @@ int tabBarHeight;
                    multiplier:1.0
                    constant:0];
     [self.view addConstraint:myConstraint];
-    
-    myConstraint =[NSLayoutConstraint
-                   constraintWithItem:scrollView
-                   attribute:NSLayoutAttributeBottom
-                   relatedBy:NSLayoutRelationEqual
-                   toItem:self.view
-                   attribute:NSLayoutAttributeBottom
-                   multiplier:1.0
-                   constant:0];
-    [self.view addConstraint:myConstraint];
+
+    scrollViewBottom =[NSLayoutConstraint
+                       constraintWithItem:scrollView
+                       attribute:NSLayoutAttributeBottom
+                       relatedBy:NSLayoutRelationEqual
+                       toItem:self.view
+                       attribute:NSLayoutAttributeBottom
+                       multiplier:1.0
+                       constant:SCROLL_VIEW_BOTTOM_CONSTANT];
+    [self.view addConstraint:scrollViewBottom];
     
     //
     myConstraint =[NSLayoutConstraint
