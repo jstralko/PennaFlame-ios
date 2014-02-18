@@ -38,9 +38,9 @@
     [sortedKeys addObject:@"EQUO TIP Ld"];
     [sortedKeys addObject:@"ROCKWELL C HRC"];
     [sortedKeys addObject:@"BRINELL BHN"];
+    [sortedKeys addObject:@"VICKERS HV/DPH"];
     [sortedKeys addObject:@"SHORE C HSc"];
     [sortedKeys addObject:@"SHORE C HFRSc"];
-    [sortedKeys addObject:@"VICKERS HV/DPH"];
     hardnessChartSortedKeys = [[NSArray alloc] initWithArray:sortedKeys];
     
     //New UICollectionViewController - new and shiney!
