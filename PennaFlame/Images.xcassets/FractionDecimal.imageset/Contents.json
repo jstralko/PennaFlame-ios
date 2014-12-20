@@ -11,6 +11,10 @@
       "filename" : "fraction-decimal_converter_100x100_1.png"
     },
     {
+      "idiom" : "iphone",
+      "scale" : "3x"
+    },
+    {
       "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "fraction-decimal_converter_100x100_1.png"

@@ -11,6 +11,10 @@
       "filename" : "english-metric_converter_100x100_1.png"
     },
     {
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
       "idiom" : "iphone",
       "scale" : "1x",
       "filename" : "english-metric_converter_100x100_1.png"
@@ -19,6 +23,10 @@
       "idiom" : "iphone",
       "scale" : "2x",
       "filename" : "english-metric_converter_100x100_1.png"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "3x"
     },
     {
       "idiom" : "ipad",
